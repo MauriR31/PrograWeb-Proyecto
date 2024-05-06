@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Usuarios Registrados</title>
+</head>
+
+<body>
+    <header id="HeaderAdmin">
+        <h1 id="HAnombreTienda">TIENDA</h1>
+        <button id="CerrarSesionAdmin">Cerrar Sesión</button>
+    </header>
+    <aside id="BarraNavegacionAdmin">
+        <p id="BNANombre">Admin</p>
+        <ul id="BNAListado">
+            <li id="BNADasboard">Dasboard</li>
+            <li id="BNAUsuariosRegistrados">Usuarios registrados</li>
+            <li id="BNAProductos">Productos</li>
+            <li id="BNAOrdenes">Órdenes</li>
+            <li id="BNAProductosMV">Productos más vendidos</li>
+            <li id="BNASeries">Series</li>
+        </ul>
+    </aside>
+    <main id="MainUsuariosRegistradosAdmin">
+        <section id="MURACabecera">
+            <p>Usuarios registrados</p>
+        </section>
+        <section id="MURABuscador">
+            <input type="text" name="BuscarC-N-A" id="BuscarC-N-A"
+                placeholder="Buscar por correo, nombre o apellidos...">
+        </section>
+        <section id="MURAListado">
+            <article id="MURALCabecera">
+                <p class="MURALID">ID</p>
+                <p class="MURALNombre">Nombre</p>
+                <p class="MURALApellido">Apellido</p>
+                <p class="MURALCorreo">Correo</p>
+                <p class="MURALFRegistro">Fecha de Registro</p>
+                <p class="MURALEstado">Estado</p>
+                <p class="MURALAcciones">Acciones</p>
+            </article>
+            <article class="MURALCuerpo">
+                <p class="MURALID">ID</p>
+                <p class="MURALNombre">Nombre</p>
+                <p class="MURALApellido">Apellido</p>
+                <p class="MURALCorreo">Correo</p>
+                <p class="MURALFRegistro">Fecha de Registro</p>
+                <p class="MURALEstado">Estado</p>
+                <p class="MURALAcciones">Acciones</p>
+            </article>
+        </section>
+        <section id="MURABarraPaginacion">
+            <ol id="MURABPListado" class="MURABPListado">
+                <li id="MURABPLAnterior">
+                    <button id="ButtonMURABPLAnteior">
+                        < Anterior</button>
+                </li>
+                <li id="MURABPLPrimero">
+                    <button id="ButtonMURABPLPrimero">1</button>
+                </li>
+                <li id="MURABPL2">
+                    <button id="ButtonMURABPL2">2</button>
+                </li>
+                <li id="MURABPL3">
+                    <button id="ButtonMURABPL3">3</button>
+                </li>
+                <li id="MURABPL4">
+                    <button id="ButtonMURABPL4">4</button>
+                </li>
+                <li id="MURABPL5">
+                    <button id="ButtonMURABPL5">5</button>
+                </li>
+                <li id="MURABPLUltimo">
+                    <button id="ButtonMURABPLUltimo">Ultimo</button>
+                </li>
+                <li id="MURABPLSiguiente">
+                    <button id="ButtonMURABPLSiguiente">Siguiente ></button>
+                </li>
+            </ol>
+        </section>
+    </main>
+    <footer>
+        <p>Pie de Pagina</p>
+    </footer>
+    <script type="module" src="./src/PantUsuarioRegistrado/UsuariosRegistrados.jsx"></script>
+</body>
+
+</html>

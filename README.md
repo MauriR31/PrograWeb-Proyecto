@@ -15,4 +15,14 @@ si el "npm install" se demora mucho:
 # Empezar a trabajar
 En el CMD donde esta la carpeta clonado:
 - npm install
-- npm dev
+- npm run dev
+
+# Durante el desarrollo (despues de clonar)
+Antes de hacer un commit es necesario hacer:
+- git pull
+Despues se recomienda:
+- git commit -m "Comentario descriptivo"
+- git push
+
+# Bibliotecas instaladas
+- npm install react-router-dom
