@@ -2,6 +2,7 @@ import React from 'react';
 /** @type {import('tailwindcss').Config} */
 
 function BarraPaginacion({ paginaActual, totalPaginas, onChangePagina }) {
+
     const irPagina = (pagina) => {
         onChangePagina(pagina);
     };
@@ -46,14 +47,16 @@ function BarraPaginacion({ paginaActual, totalPaginas, onChangePagina }) {
     };
 
     return (
-        <section id="MURABarraPaginacion" className="p-4">
-            <ol id="MURABPListado" className="flex">
-                <li id="MURABPLAnterior">
+        <section className="p-4">
+            <ol className="flex justify-end">
+                {/* Boton para ir a la anterior pagina */}
+                <li>
                     <button onClick={irPaginaAnterior} className="px-4 py-2 bg-gray-300 text-gray-800 rounded-md mr-2">&lt; Anterior</button>
                 </li>
                 {/* Botones de paginación */}
                 {generarBotonesPaginacion()}
-                <li id="MURABPLSiguiente">
+                {/* Boton para ir a la siguiente pagina*/}
+                <li>
                     <button onClick={irPaginaSiguiente} className="px-4 py-2 bg-gray-300 text-gray-800 rounded-md mr-2">Siguiente &gt;</button>
                 </li>
             </ol>
