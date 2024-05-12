@@ -26,3 +26,7 @@ Despues se recomienda:
 
 # Bibliotecas instaladas
 - npm install react-router-dom
+
+# Extensiones a instalar
+- Tailwind CSS IntelliSense
+- ES7+ React/Redux/React-Nativa snippets

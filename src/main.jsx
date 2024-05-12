@@ -5,12 +5,17 @@ import './index.css'
 import {createBrowserRouter, RouterProvider, Route, Link} from "react-router-dom";
 import Principal from './vistas/Pagina/Principal/Principal.jsx'
 import PaginaError from './componentes/PaginaError.jsx'
+import UsuariosRegistrados from './vistas/Administrador/Usuarios/UsuariosRegistrados.jsx';
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <Principal />,
     errorElement: <PaginaError />
+  },
+  {
+    path: "/Admin/UsersLog",
+    element: <UsuariosRegistrados />
   },
 ]);
 
