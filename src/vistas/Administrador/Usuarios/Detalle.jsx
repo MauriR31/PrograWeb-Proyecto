@@ -268,7 +268,7 @@ function Detalle() {
                     <section id="MURAListado" className="p-3.5 text-sm">
                         {/* Cabecera de la lista de usuarios registrados */}
                         <article className="flex bg-gray-300 p-2">
-                            <p className="flex-none w-12">ID</p>
+                            <p className="flex-none w-28">ID</p>
                             <p className="flex-auto w-56">Fecha Orden</p>
                             <p className="flex-auto w-56">Total</p>
                             <p className="flex-auto w-96">Productos</p>
@@ -278,7 +278,7 @@ function Detalle() {
                         {/* Cuerpo de la lista de usuarios registrados */}
                         {ultimas10Ordenes.map((orden) => (
                             <article key={orden.id} className="flex bg-white p-2">
-                                <p className="flex-none w-12">{orden.id}</p>
+                                <p className="flex-none w-28">{orden.id}</p>
                                 <p className="flex-auto w-56">{orden.fechaOrden}</p>
                                 <p className="flex-auto w-56">{orden.total}</p>
                                 <p className="flex-auto w-96">{orden.productos}</p>

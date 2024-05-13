@@ -176,24 +176,24 @@ function UsuariosRegistrados() {
             {/* Cabecera de la lista de usuarios registrados */}
             <article id="MURALCabecera" className="flex bg-gray-300 p-2">
               <p className="flex-none w-12">ID</p>
-              <p className="flex-auto w-56">Nombre</p>
-              <p className="flex-auto w-56">Apellido</p>
+              <p className="flex-auto w-60">Nombre</p>
+              <p className="flex-auto w-60">Apellido</p>
               <p className="flex-auto w-96">Correo</p>
               <p className="flex-none w-28">Fecha Registro</p>
               <p className="flex-none w-20">Estado</p>
-              <p className="flex-auto w-56">Acciones</p>
+              <p className="flex-none w-40">Acciones</p>
             </article>
             {/* Cuerpo de la lista de usuarios registrados */}
             {usuariosEnPagina.map(usuario => (
               <article key={usuario.id} className="flex bg-white p-2">
                 <p className="flex-none w-12">{usuario.id}</p>
-                <p className="flex-auto w-56">{usuario.nombre}</p>
-                <p className="flex-auto w-56">{usuario.apellido}</p>
+                <p className="flex-auto w-60">{usuario.nombre}</p>
+                <p className="flex-auto w-60">{usuario.apellido}</p>
                 <p className="flex-auto w-96">{usuario.correo}</p>
                 <p className="flex-none w-28">{usuario.fechaRegistro}</p>
                 <p className="flex-none w-20">{usuario.estado}</p>
                 {/* Columna de Acciones */}
-                <p className="flex-auto w-56">
+                <p className="flex-none w-40">
                 <Link to={`/Admin/UsersLog/Detail/${usuario.id}`} className="px-2 py-1 bg-blue-500 text-white rounded-md mr-2">Ver</Link>
                   {usuario.estado === 'Activo' ? (
                     <button className="px-2 py-1 bg-green-500 text-white rounded-md">Activado</button>
