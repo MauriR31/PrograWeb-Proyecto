@@ -1,0 +1,43 @@
+section{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 560px;
+  background-color: whitesmoke;
+}
+p{
+  margin: 30px;
+}
+input{
+  width: 350px;
+  height: 50px;
+  
+}
+
+button{
+  margin: 35px;
+  width: 250px;
+  height: 50px;
+  background-color: black;
+  color: white;
+}
+
+button:hover{
+  background-color: lightgray;
+  border-color: lightgray;
+  color:black
+}
+
+button,input{
+  border-radius: 5px;
+  border-color: lightgray;
+}
+
+a{
+  color: black;
+}
+
+a:hover{
+  color: lightgray;
+}
