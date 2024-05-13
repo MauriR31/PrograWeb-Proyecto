@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from "react-router-dom"
 import BarraCuenta from '../../../componentes/BarraCuenta'
 import BarraPaginacion from '../../../componentes/BarraPaginacion';
 /** @type {import('tailwindcss').Config} */
@@ -193,7 +194,7 @@ function UsuariosRegistrados() {
                 <p className="flex-none w-20">{usuario.estado}</p>
                 {/* Columna de Acciones */}
                 <p className="flex-auto w-56">
-                  <button className="px-2 py-1 bg-blue-500 text-white rounded-md mr-2">Ver</button>
+                <Link to={`/Admin/UsersLog/Detail/${usuario.id}`} className="px-2 py-1 bg-blue-500 text-white rounded-md mr-2">Ver</Link>
                   {usuario.estado === 'Activo' ? (
                     <button className="px-2 py-1 bg-green-500 text-white rounded-md">Activado</button>
                   ) : (
