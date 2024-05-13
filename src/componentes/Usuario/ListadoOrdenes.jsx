@@ -1,5 +1,26 @@
+import FilaOrdenes from "./FilaOrdenes"
 import "./MainUsuario.css"
-function ListadoOrdenes() {
+function ListadoOrdenes(props) {
+  const ordenes = [
+    {
+      items: "x3",
+      fecha: "12 de octubre del 2024",
+      destino: "Lima",
+      numeroOrden: "121321421",      
+    },
+    {
+      items: "x4",
+      fecha: "12 de febrero del 2024",
+      destino: "Lima",
+      numeroOrden: "127688621",      
+    },
+    {
+      items: "x4",
+      fecha: "15 de octubre del 2024",
+      destino: "Ica",
+      numeroOrden: "121241412",      
+    }
+  ]
   return(
     <>    
     <section id="Ordenes">
@@ -9,17 +30,9 @@ function ListadoOrdenes() {
           <th className="LadoDer" colSpan="2">Ordenar por fecha (mas antiguas primero)</th>
         </thead>
         <tbody>
-          <tr>
-            <td className="LadoIzq">
-              <ol>
-                <li>Orden x3 items</li>
-                <li>Fecha 12 de octubre del 2024</li>
-                <li>Enviado a Lima</li>
-              </ol>
-            </td>
-            <td className="LadoDer">Orden num:121321421</td>    
-            <td className="LadoDer">Ver detalle</td>                         
-          </tr>
+        {
+          ordenes.map( (orden) => <FilaOrdenes { ...orden } /> )
+        }
         </tbody>
       </table>
     </section>    

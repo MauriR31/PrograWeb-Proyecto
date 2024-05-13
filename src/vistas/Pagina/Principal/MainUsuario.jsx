@@ -4,13 +4,14 @@ import ListadoOrdenes from "../../../componentes/Usuario/ListadoOrdenes";
 import Menu from "../../../componentes/Usuario/Menu";
 import "./MainUsuario.css"
 
-function MainUsuario() {
+function MainUsuario() {  
   return(
     <>
       <Header />
       <div id="user">
         <Menu />
-        <ListadoOrdenes />        
+        <ListadoOrdenes />
+               
       </div>
       <Footer />
     </>

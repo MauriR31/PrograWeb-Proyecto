@@ -3,7 +3,6 @@ aside {
   width: 200px;  
 }
 aside,#Ordenes{
-  height: 530px;
   margin: 15px;  
 }
 #Ordenes{ 
@@ -20,36 +19,41 @@ aside h5{
 aside li{
   list-style: none;
   font-size: 14px;
-  margin-bottom: 14px;  
+  margin-bottom: 14px; 
+  width: 200px;   
 }
 
 #Ordenes table{
   width:100%;
-  border-collapse: collapse;  
-  
+  border-collapse: collapse;    
 }
 
-#Ordenes th{
-  padding: 15px;
+#Ordenes th{  
   background-color: lightgray;   
   font-weight: normal;
 }
 
-.LadoIzq{
+.LadoIzq,.LadoDer{
   text-align: left;
-  padding-right:800px;
+  padding: 15px;
   border: 1px solid;
+  
+}
+
+.LadoIzq ol{
+  padding-left: 15px;
+  width: 800px;
 }
 
 .LadoIzq li{  
   font-size: 14px;
   margin-top: 5px;
-  list-style: none;
+  list-style: none;  
 }
 
 .LadoDer{
   text-align: right;
-  padding-right: 20px;
+  padding-right: 20px;  
   border: 1px solid  
 }
 
