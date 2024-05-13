@@ -3,6 +3,7 @@ body{
   max-width: auto;
   max-height:fit-content;
   margin: 0px; 
+  padding: 0px;
   font-family: "Freeman", sans-serif; 
 };
 

@@ -1,8 +1,8 @@
-import "../RegistroLogin/ContenidoRegistroLogin.css"
+import "./ContenidoRegistroLogin.css"
 function ContenidoLogin() {
   return(
     <>
-      <section>
+      <section className="inicio">
         <p>Ingreso para clientes registrados</p>        
         <input type="text" placeholder="Correo"></input>
         <br/>

@@ -1,8 +1,8 @@
-import "../RegistroLogin/ContenidoRegistroLogin.css"
+import "./ContenidoRegistroLogin.css"
 function ContenidoRegistro() {
   return(
     <>
-      <section>
+      <section className="inicio">
         <p>Registra una nueva cuenta</p>
         <input type="text" placeholder="Nombre"></input>
         <br/>

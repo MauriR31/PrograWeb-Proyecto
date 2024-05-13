@@ -1,0 +1,56 @@
+aside {
+  background-color: white;
+  width: 200px;  
+}
+aside,#Ordenes{
+  height: 530px;
+  margin: 15px;  
+}
+#Ordenes{ 
+  background-color: white;
+  height: 400px;
+  flex-grow: 1;
+}
+
+aside h5{
+  margin-left: 30px;
+  font-size: 15px;
+  font-weight: normal;
+}
+aside li{
+  list-style: none;
+  font-size: 14px;
+  margin-bottom: 14px;  
+}
+
+#Ordenes table{
+  width:100%;
+  border-collapse: collapse;  
+  
+}
+
+#Ordenes th{
+  padding: 15px;
+  background-color: lightgray;   
+  font-weight: normal;
+}
+
+.LadoIzq{
+  text-align: left;
+  padding-right:800px;
+  border: 1px solid;
+}
+
+.LadoIzq li{  
+  font-size: 14px;
+  margin-top: 5px;
+  list-style: none;
+}
+
+.LadoDer{
+  text-align: right;
+  padding-right: 20px;
+  border: 1px solid  
+}
+
+
