@@ -10,8 +10,7 @@ function MainUsuario() {
       <Header />
       <div id="user">
         <Menu />
-        <ListadoOrdenes />
-               
+        <ListadoOrdenes />               
       </div>
       <Footer />
     </>

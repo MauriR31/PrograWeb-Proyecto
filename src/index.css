@@ -1,4 +1,8 @@
-/*Por ahora no estoy aplicando tailwind*/
+/*Por ahora no estoy aplicando tailwind
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+*/
 body{  
   max-width: auto;
   max-height:fit-content;

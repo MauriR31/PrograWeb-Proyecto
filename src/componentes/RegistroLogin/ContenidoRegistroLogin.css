@@ -40,4 +40,9 @@
 
 .inicio a:hover{
   color: lightgray;
+}  
+
+#ErrorUser p{
+  margin-bottom: 0px;
 }
+
