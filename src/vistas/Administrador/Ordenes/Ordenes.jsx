@@ -219,25 +219,25 @@ function Ordenes() {
           <section className="p-3.5 text-sm">
             {/* Cabecera de la lista de ordenes */}
             <article className="flex bg-gray-300 p-2">
-              <p className="flex-none w-12">ID</p>
-              <p className="flex-auto w-56">Usuario</p>
-              <p className="flex-auto w-56">Fecha Orden</p>
-              <p className="flex-auto w-96">Total</p>
-              <p className="flex-none w-28">Correo</p>
-              <p className="flex-none w-20">Estado</p>
-              <p className="flex-auto w-56">Acciones</p>
+              <p className="flex-none w-28">ID</p>
+              <p className="flex-auto w-96">Usuario</p>
+              <p className="flex-none w-24">Fecha Orden</p>
+              <p className="flex-none w-20">Total</p>
+              <p className="flex-auto w-96">Correo</p>
+              <p className="flex-none w-24">Estado</p>
+              <p className="flex-none w-20 text-center">Acciones</p>
             </article>
             {/* Cuerpo de la lista de ordenes */}
             {ordenesEnPagina.map(orden => (
               <article key={orden.id} className="flex bg-white p-2">
-                <p className="flex-none w-12">{orden.id}</p>
-                <p className="flex-auto w-56">{orden.nombre + " " + orden.apellido}</p>
-                <p className="flex-auto w-56">{orden.fechaOrden}</p>
-                <p className="flex-auto w-96">{orden.total}</p>
-                <p className="flex-none w-28">{orden.correo}</p>
-                <p className="flex-none w-20">{orden.estado}</p>
+                <p className="flex-none w-28">{orden.id}</p>
+                <p className="flex-auto w-96">{orden.nombre + " " + orden.apellido}</p>
+                <p className="flex-none w-24">{orden.fechaOrden}</p>
+                <p className="flex-none w-20">{orden.total}</p>
+                <p className="flex-auto w-96">{orden.correo}</p>
+                <p className="flex-none w-24">{orden.estado}</p>
                 {/* Columna de Acciones */}
-                <p className="flex-auto w-56">
+                <p className="flex-none w-20 grid justify-center">
                   <Link to={`/Admin/OrdenLog/Detail/${orden.id}`} className="px-2 py-1 bg-blue-500 text-white rounded-md mr-2">Ver</Link>
                 </p>
               </article>
