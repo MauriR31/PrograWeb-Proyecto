@@ -25,7 +25,8 @@ aside li{
 
 #Ordenes table{
   width:100%;
-  border-collapse: collapse;    
+  border-collapse: collapse;  
+   
 }
 
 #Ordenes th{  
@@ -55,6 +56,11 @@ aside li{
   text-align: right;
   padding-right: 20px;  
   border: 1px solid  
+}
+
+.barraPag{
+  display: flex;  
+  flex-direction: row-reverse;  
 }
 
 
