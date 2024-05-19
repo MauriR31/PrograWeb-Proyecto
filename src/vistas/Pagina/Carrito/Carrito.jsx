@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import React, { useState } from "react";
 
 const pedidosIniciales = [
@@ -119,7 +120,9 @@ const Carrito = () => {
             <div className="mr-8 ml-auto block text-right">
                 <p className="font-bold">Total: S/ {total.toFixed(2)}</p>
                 <br />
-                <button className="bg-black text-white text-base font-light p-4 rounded w-40 ml-auto block">Checkout</button>
+                <button className="bg-black text-white text-base font-light p-4 rounded w-40 ml-auto block">
+                    <Link to="/Checkout">Checkout</Link>
+                    </button>
             </div>
             <br /><br />
             <h2 className="text-base font-bold bg-gray-400 border-2 mb-2 p-1 pl-2 rounded-lg">Guardado para después</h2>
