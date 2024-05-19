@@ -9,12 +9,24 @@ import AdUsuariosRegistrados from './vistas/Administrador/Usuarios/UsuariosRegis
 import AdUsReDetalle from './vistas/Administrador/Usuarios/Detalle.jsx';
 import AdListOrdenes from './vistas/Administrador/Ordenes/Ordenes.jsx';
 import AdListOrdDetalle from './vistas/Administrador/Ordenes/Detalle.jsx';
+import Carrito from './vistas/Pagina/Carrito/Carrito.jsx';
+import Checkout from './vistas/Pagina/Carrito/Checkout.jsx';
+import PedidoCompleto from './vistas/Pagina/Carrito/PedidoCompleto.jsx';
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <Principal />,
-    errorElement: <PaginaError />,
+    //element: <Principal />,
+    //errorElement: <PaginaError />,
+    element: <Carrito />,
+  },
+  {
+    path: "/Checkout",
+    element: <Checkout />
+  },
+  {
+    path: "/Pedido",
+    element: <PedidoCompleto />
   },
   {
     path: "/Admin/UsersLog",
@@ -32,6 +44,7 @@ const router = createBrowserRouter([
     path: "/Admin/OrdenLog/Detail/:id",
     element: <AdListOrdDetalle />,
   },
+
 ]);
 
 ReactDOM.createRoot(document.getElementById('root')).render(
