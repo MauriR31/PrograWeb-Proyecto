@@ -1,28 +1,29 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 
 function AgregarProducto({ onAgregarProducto }) {
   const [busqueda, setBusqueda] = useState('');
   const [productos, setProductos] = useState([]);
 
-  const handleBusquedaChange = (e) => {
-    setBusqueda(e.target.value);
-  };
-
+  // Función para simular la búsqueda de productos por ID
   const handleBuscar = () => {
-    // Aquí implementarías la lógica para buscar productos según la búsqueda
-    // En este ejemplo, simularemos una búsqueda simple con un array de productos
-    const productos = [
-      { id: 1, descripcion: 'Producto 1' },
-      { id: 2, descripcion: 'Producto 2' },
-      { id: 3, descripcion: 'Producto 3' },
-    ];
-    setProductos(productos);
+    // Lógica para buscar el producto por ID
+    // En este ejemplo, simulamos una búsqueda simple
+    const productoEncontrado = {
+      id: Math.floor(Math.random() * 1000), // ID aleatorio para simular el producto encontrado
+      descripcion: `Producto encontrado con ID: ${busqueda}` // Descripción basada en el ID ingresado
+    };
+
+    setProductos([productoEncontrado]);
   };
 
+  // Función para agregar el producto seleccionado
   const handleAgregarProducto = (id) => {
     // Lógica para agregar el producto seleccionado
     onAgregarProducto(id);
   };
+
+  // Resto del código
 
   return (
     <div className="flex flex-col">
@@ -34,10 +35,10 @@ function AgregarProducto({ onAgregarProducto }) {
           <div className="flex items-center mb-4">
             <input
               type="text"
-              placeholder="Buscar por ID o descripción"
+              placeholder="Buscar por ID"
               className="border-2 border-gray-400 rounded-md w-full p-2 mr-2"
               value={busqueda}
-              onChange={handleBusquedaChange}
+              onChange={(e) => setBusqueda(e.target.value)}
             />
             <button
               onClick={handleBuscar}
@@ -46,6 +47,7 @@ function AgregarProducto({ onAgregarProducto }) {
               Buscar
             </button>
           </div>
+          {/* Mostrar la lista de productos */}
           <table className="w-full border-collapse border border-gray-400">
             <thead>
               <tr className="bg-gray-200">
@@ -58,22 +60,18 @@ function AgregarProducto({ onAgregarProducto }) {
               {productos.map((producto) => (
                 <tr key={producto.id}>
                   <td className="border border-gray-400 p-2">{producto.id}</td>
-                  <td className="border border-gray-400 p-2">{
-                    producto.descripcion}</td>
-                    <td className="border border-gray-400 p-2">
-                      <button onClick={() => handleAgregarProducto(producto.id)} className="bg-green-500 text-white px-4 py-2 rounded-lg">
-                        Agregar
-                      </button>
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-        </main>
-      </div>
-    );
-  }
-  
-  export default AgregarProducto;
-  
+                  <td className="border border-gray-400 p-2">{producto.descripcion}</td>
+                  <td className="border border-gray-400 p-2">
+                  <Link to="/Admin/series/AgregarSeries" className="bg-blue-500 text-white px-4 py-2 rounded-md mr-2">Agregar</Link>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </main>
+    </div>
+  );
+}
+
+export default AgregarProducto;

@@ -16,7 +16,7 @@ const ImageUploader = ({ onImageUpload, image }) => {
 
   return (
     <div className="w-full max-w-full">
-      <div className="border border-gray-400 rounded-lg p-10 bg-white text-center mb-4">
+      <div className="border border-gray-400 rounded-lg pl-10 p-10 bg-white text-center mb-4">
         {image && (
           <img
             src={URL.createObjectURL(image)}
@@ -35,7 +35,7 @@ const ImageUploader = ({ onImageUpload, image }) => {
         />
         <button
           onClick={handleButtonClick}
-          className="bg-blue-500 text-white px-4 py-2 rounded-lg"
+          className="bg-blue-500 text-white  px-5 py-2 rounded-lg"
         >
           Agregar imagen
         </button>
