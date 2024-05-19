@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import React from 'react';
 
 const Checkout = () => {
@@ -94,7 +95,9 @@ const Checkout = () => {
               </table>
             </div>
             <div className='flex justify-center'>
-              <button className="mt-4 px-4 py-2 bg-red-500 text-white rounded-md">Completar Orden</button>
+              <button className="mt-4 px-4 py-2 bg-red-500 text-white rounded-md">
+                <Link to="/PedidoCompleto">Completar Orden</Link>
+                </button>
             </div>
           </article>
         </section>
