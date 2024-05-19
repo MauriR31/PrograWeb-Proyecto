@@ -9,7 +9,11 @@ import AdUsuariosRegistrados from './vistas/Administrador/Usuarios/UsuariosRegis
 import AdUsReDetalle from './vistas/Administrador/Usuarios/Detalle.jsx';
 import AdListOrdenes from './vistas/Administrador/Ordenes/Ordenes.jsx';
 import AdListOrdDetalle from './vistas/Administrador/Ordenes/Detalle.jsx';
-
+import AdSeries from './vistas/Administrador/Series/Series.jsx';
+import AdAgregarSeries from './vistas/Administrador/Series/AgregarSerie.jsx';
+import AdAgregarProducto from './vistas/Administrador/Series/AgregarProducto.jsx';
+import AdCambiarPassword from './vistas/Usuarios/CambiarPassword.jsx';
+import AdDatosRegistro from './vistas/Usuarios/DatosRegistro.jsx';
 const router = createBrowserRouter([
   {
     path: "/",
@@ -31,6 +35,26 @@ const router = createBrowserRouter([
   {
     path: "/Admin/OrdenLog/Detail/:id",
     element: <AdListOrdDetalle />,
+  },
+  {
+    path: "/Admin/series",
+    element: <AdSeries />,
+  },
+  {
+    path: "/Admin/series/AgregarSeries",
+    element: <AdAgregarSeries />,
+  },
+  {
+    path: "/Admin/series/AgregarSeries/AgregarProducto",
+    element: <AdAgregarProducto />,
+  },
+  {
+    path: "/Usuario/CambiarPassword",
+    element: <AdCambiarPassword />,
+  },
+  {
+    path: "/Usuario/DatosRegistro",
+    element: <AdDatosRegistro />,
   },
 ]);
 

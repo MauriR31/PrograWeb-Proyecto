@@ -183,6 +183,7 @@ function UsuariosRegistrados() {
               <p className="flex-none w-20">Estado</p>
               <p className="flex-none w-40">Acciones</p>
             </article>
+
             {/* Cuerpo de la lista de usuarios registrados */}
             {usuariosEnPagina.map(usuario => (
               <article key={usuario.id} className="flex bg-white p-2">
@@ -192,7 +193,10 @@ function UsuariosRegistrados() {
                 <p className="flex-auto w-96">{usuario.correo}</p>
                 <p className="flex-none w-28">{usuario.fechaRegistro}</p>
                 <p className="flex-none w-20">{usuario.estado}</p>
+
+                
                 {/* Columna de Acciones */}
+
                 <p className="flex-none w-40">
                 <Link to={`/Admin/UsersLog/Detail/${usuario.id}`} className="px-2 py-1 bg-blue-500 text-white rounded-md mr-2">Ver</Link>
                   {usuario.estado === 'Activo' ? (
