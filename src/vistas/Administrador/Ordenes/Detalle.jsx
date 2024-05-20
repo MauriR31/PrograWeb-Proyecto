@@ -8,7 +8,7 @@ function Detalle() {
        detalle: [
         {id:0, cantidad:2, nombre:"libro", precio:45.00, total:90.00}, 
         {id:1, cantidad:3, nombre:"cuaderno", precio:34.00, total:102.00}],
-       pago: {id:0, nombre:"Pago QR"}, envio: {id:0, nombre:"aero", precio:10.00}, total:192.00, impuesto:0.18
+       pago: {id:0, nombre:"Pago QR"}, envio: {id:1, nombre:"aero", precio:10.00}, subtotal:192.00, impuesto:0.18, total:226.56
     },
     { id: 2, user: 104, fechaOrden: '2024-05-22', total: 'S/63.26', productos: 2, estado: 'Entregado' },
     { id: 3, user: 103, fechaOrden: '2024-05-09', total: 'S/61.34', productos: 3, estado: 'Pendiente' },
@@ -40,11 +40,16 @@ function Detalle() {
           </article>
           <article className="flex-1 py-4 pl-7 border rounded-md bg-white">
             <p className="text-lg font-semibold">Pago</p>
-            <ul className="list-disc pl-5">
-              <li>Pago con código QR</li>
-              <li>Pago con tarjeta de crédito</li>
-            </ul>
-            <p>(OPCIONAL) Tarjeta de Crédito que termina en ****8859</p>
+            {ordenes[0].pago.id === 0 ? (
+              <ul className="list-disc pl-5">
+                <li>{ordenes[0].pago.nombre}</li>
+              </ul>
+            ) : (
+              <ul className="list-disc pl-5">
+                <li>{ordenes[0].pago.nombre}</li>
+                <p>Tarjeta de Crédito que termina en ****8859</p>
+              </ul>
+            )}
           </article>
         </section>
 
@@ -54,10 +59,15 @@ function Detalle() {
 
         <section className="mb-6">
           <article className="flex-1 py-4 pl-7 border rounded-md bg-white">
-            <ul className="list-disc pl-5 grid justify-center">
-              <li>Económico Aéreo - S/10.00</li>
-              <li>Envío prioritario (5 a 10 días) - S/17.00</li>
-            </ul>
+            {ordenes[0].envio.id === 0 ? (
+              <ul className="list-disc pl-5 grid justify-center">
+                <li>Económico Aéreo - S/10.00</li>
+              </ul>
+            ) : (
+              <ul className="list-disc pl-5 grid justify-center">
+                <li>Envío prioritario (5 a 10 días) - S/17.00</li>
+              </ul>
+            )}
           </article>
         </section>
 
@@ -79,19 +89,19 @@ function Detalle() {
               <table className="w-96 divide-y divide-gray-200">
                 <tr className="text-center">
                   <td className="py-2">Subtotal:</td>
-                  <td className="py-2">(valor de producto)</td>
+                  <td className="py-2">{ordenes[0].subtotal}</td>
                 </tr>
                 <tr className="text-center">
                   <td className="py-2">Envío:</td>
-                  <td className="py-2">(Precio envío)</td>
+                  <td className="py-2">{ordenes[0].envio.precio}</td>
                 </tr>
                 <tr className="text-center">
                   <td className="py-2">Impuestos:</td>
-                  <td className="py-2">(del 18%)</td>
+                  <td className="py-2">{ordenes[0].impuesto*ordenes[0].subtotal}</td>
                 </tr>
                 <tr className="text-center">
                   <td className="py-2">Total:</td>
-                  <td className="py-2">(Precio venta)</td>
+                  <td className="py-2">{ordenes[0].total}</td>
                 </tr>
               </table>
             </div>
