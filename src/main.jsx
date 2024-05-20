@@ -10,6 +10,8 @@ import Registrarse from './vistas/Login/Registrarse.jsx';
 import Login from './vistas/Login/Login.jsx';
 import RecuperarPassword from './vistas/Login/RecuperarPassword.jsx';
 import MainUsuario from './vistas/Pagina/Principal/MainUsuario.jsx';
+import { MenuProvider } from '@mui/base';
+import { DatosProvider } from './context/Datos.jsx';
 
 const router = createBrowserRouter([
   {
@@ -39,8 +41,11 @@ const router = createBrowserRouter([
   }
 ]);
 
-ReactDOM.createRoot(document.getElementById('root')).render(
+ReactDOM.createRoot(document.getElementById('root')).render(  
   <React.StrictMode>
-    <RouterProvider router = {router} />
+    <DatosProvider>
+      <RouterProvider router = {router} />
+    </DatosProvider>
   </React.StrictMode>,
+  
 )

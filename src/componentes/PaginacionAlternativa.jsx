@@ -1,0 +1,41 @@
+import Pagination from '@mui/material/Pagination';
+import Stack from '@mui/material/Stack';
+import { useDatos } from '../context/Datos';
+import "./Usuario/MainUsuario.css"
+function PaginacionAlternativa() {
+
+  const paginacion = useDatos()
+
+  const handleChange = (event, value) => {
+    paginacion.setPage(value)
+  }
+
+  const numpage = CalcularPaginas()
+
+  function CalcularPaginas(){ 
+    if(paginacion.datos.length >= 3){
+      if(paginacion.datos.length % 3 == 1){
+        return Math.round(paginacion.datos.length / 3) + 1
+      }
+      else{
+        return Math.round(paginacion.datos.length / 3)
+      }
+    }
+    else{
+      return 1
+    }  
+  }  
+
+  return(
+    <>
+      <div className="barraPag">
+        <Stack >        
+          <Pagination count={numpage} 
+            shape="rounded" size="large" color="primary" page={paginacion.page} onChange={handleChange} showFirstButton showLastButton 
+          />
+        </Stack>
+      </div> 
+    </>
+  )
+}
+export default PaginacionAlternativa

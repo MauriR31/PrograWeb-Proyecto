@@ -7,8 +7,7 @@ aside,#Ordenes{
 }
 #Ordenes{ 
   background-color: white;
-  height: 400px;
-  flex-grow: 1;
+  height: 410px;    
 }
 
 aside h5{
@@ -25,25 +24,32 @@ aside li{
 
 #Ordenes table{
   width:100%;
-  border-collapse: collapse;  
-   
+  border-collapse: collapse;    
+  
 }
 
 #Ordenes th{  
-  background-color: lightgray;   
+  background-color: darkgrey;   
   font-weight: normal;
+}
+
+#Ordenes tr:nth-child(odd){
+  background-color:lightgray;
+}
+
+#Ordenes tr:hover{
+  background-color: azure;
 }
 
 .LadoIzq,.LadoDer{
   text-align: left;
   padding: 15px;
-  border: 1px solid;
-  
+  border: 1px solid;  
 }
 
 .LadoIzq ol{
   padding-left: 15px;
-  width: 800px;
+  width: 800px;   
 }
 
 .LadoIzq li{  
@@ -58,9 +64,9 @@ aside li{
   border: 1px solid  
 }
 
-.barraPag{
-  display: flex;  
+
+.barraPag{  
+  display: flex;
   flex-direction: row-reverse;  
 }
-
 
