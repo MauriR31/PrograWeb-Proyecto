@@ -1,4 +1,4 @@
-.inicio{
+/* .inicio{
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -8,20 +8,20 @@
 }
 .inicio p{
   margin: 30px;
-}
-.inicio input{
-  width: 350px;
-  height: 50px;
-  
-}
+} */
 
-.inicio button{
+/* .inicio input{
+  width: 350px;
+  height: 50px;  
+} */
+
+/* .inicio button{
   margin: 35px;
   width: 250px;
   height: 50px;
   background-color: black;
   color: white;
-}
+} */
 
 .inicio button:hover{
   background-color: lightgray;

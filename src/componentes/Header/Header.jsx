@@ -1,9 +1,8 @@
-import "./Header.css"
 function Header(){
   return(
     <>
-      <header>
-        <h4>TIENDA</h4>
+      <header className="h-12">
+        <h4 className="font-bold pt-2 pl-2 text-xl" >TIENDA</h4>
       </header>
     </>
   )

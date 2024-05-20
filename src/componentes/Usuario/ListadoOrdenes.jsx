@@ -2,7 +2,6 @@ import FilaOrdenes from "./FilaOrdenes"
 import "./MainUsuario.css"
 import { useDatos } from "../../context/Datos";
 import { useState } from "react";
-import { ordenes } from "../../data/ArregloOrdenes";
 
 function ListadoOrdenes() {  
 
