@@ -1,0 +1,128 @@
+.ContenedorPrincipal {
+  margin: 0 auto;
+}
+
+.ContenedorMain {
+  padding: 10px;
+}
+
+.ContenedorProducto {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.ContenedorTituloSubtitulo {
+  grid-column: span 2;
+}
+
+@media (min-width: 768px) {
+  .ContenedorProducto {
+    grid-template-columns: 1fr 1fr;
+    display: grid;
+  }
+}
+
+.ImagenProducto {
+  background-color: #e5e7eb;
+  height: 16rem;
+}
+
+.TituloProducto {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.SubtituloProducto {
+  color: #6b7280;
+  margin-top: 0.5rem;
+}
+
+.InfoProducto {
+  border: 1px solid #e5e7eb;
+  padding: 1rem;
+  margin-top: 1rem;
+}
+
+.StatusProducto {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.Disponibilidad {
+  font-size: 1.125rem;
+}
+
+.Precio {
+  font-size: 1.875rem;
+  font-weight: bold;
+}
+
+.BotonAñadirAlCarrito {
+  background-color: #000;
+  color: #fff;
+  padding: 0.5rem 1rem;
+  margin-top: 1rem;
+  width: 100%;
+  text-align: center;
+  border: none;
+  cursor: pointer;
+}
+
+.ContenedorCantidad {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 1rem;
+}
+
+.LabelCantidad {
+  font-size: 1.125rem;
+}
+
+.ControlesCantidad {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.BotonCantidad {
+  background-color: #d1d5db;
+  padding: 0.25rem 0.5rem;
+  border: none;
+  cursor: pointer;
+}
+
+.LinkEnvio {
+  color: #3b82f6;
+  margin-top: 0.5rem;
+  text-align: center;
+  display: block;
+}
+
+.SeccionDescripcion {
+  margin-top: 2rem;
+}
+
+.TituloSeccion {
+  font-size: 1.25rem;
+  font-weight: bold;
+}
+
+.DescripcionSeccion {
+  margin-top: 0.5rem;
+  color: #374151;
+}
+
+.SeccionCaracteristicas {
+  margin-top: 1rem;
+}
+
+.ListaCaracteristicas {
+  list-style-type: disc;
+  padding-left: 1rem;
+  margin-top: 0.5rem;
+  color: #374151;
+}

@@ -1,0 +1,43 @@
+footer {
+  display: flex;
+  background-color: lightgray;
+  height: 240px;
+}
+footer span {
+  margin-right: auto;
+  margin-left: auto;
+  margin-top: 4rem;
+}
+footer ol {
+  list-style: none;
+}
+footer li {
+  margin-bottom: 15px;
+  font-size: 12px;
+}
+
+#Tienda {
+  font-size: 25px;
+  font-weight: bolder;
+  margin-top: 0px;
+}
+
+.resaltado {
+  font-weight: bolder;
+  margin-bottom: 18px;
+  font-size: 1em;
+}
+
+footer img {
+  width: 50px;
+  height: 50px;
+  margin-right: 15px;
+  margin-top: 15px;
+  border-radius: 9px;
+}
+
+.DivPersonalizado {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

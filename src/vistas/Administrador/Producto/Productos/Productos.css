@@ -1,0 +1,88 @@
+.PanelListaProductos {
+  flex: 1;
+  flex-direction: column;
+  display: flex;
+}
+
+.ProductosPaginacion {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 1rem;
+}
+
+.ProductosPaginacion button {
+  padding: 0.5rem 1rem;
+  background-color: #d1d5db;
+  border-radius: 0.25rem;
+}
+
+.ProductosLinksAccion {
+  color: #3b82f6;
+}
+
+.ProductosLinksAccion button {
+  color: #ef4444;
+  margin-left: 0.5rem;
+}
+
+.ProductosTabla {
+  width: 100%;
+  table-layout: auto;
+}
+
+.ProductosTabla thead {
+  background-color: #e5e7eb;
+}
+
+.ProductosTabla th,
+.ProductosTabla td {
+  padding: 0.5rem;
+  border: 1px solid #d1d5db;
+}
+
+.ProductosTabla th {
+  text-align: left;
+}
+
+.ProductosInput {
+  padding: 0.5rem;
+  border: 1px solid #d1d5db;
+  border-radius: 0.25rem;
+  width: 100%;
+}
+
+.ProductosContenedor {
+  background-color: white;
+  padding: 1rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  border-radius: 0.5rem;
+}
+
+.ProductosMain {
+  flex: 1;
+  padding: 1.5rem;
+  background-color: #f7fafc;
+}
+
+.ProductosAgregarProducto {
+  padding: 0.5rem 1rem;
+  background-color: #3b82f6;
+  color: white;
+  border-radius: 0.25rem;
+  margin-right: 1rem;
+}
+
+.ProductosHeader {
+  background-color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-left: 2rem;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  margin-bottom: 1rem;
+  margin-top: 1rem;
+  border-radius: 0.5rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1), 0 1px 2px rgba(0, 0, 0, 0.06);
+}
