@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom"
 import { useParams } from 'react-router-dom';
 import BarraCuenta from "../../../componentes/BarraCuenta";
 import PaginaError from "../../../componentes/PaginaError";
@@ -283,7 +284,9 @@ function Detalle() {
                                 <p className="flex-auto w-56">{orden.total}</p>
                                 <p className="flex-auto w-96">{orden.productos}</p>
                                 <p className="flex-none w-28">{orden.estado}</p>
-                                <p className="flex-none w-20"><a href="/Admin/UsersLog/Detail" class="px-2 py-1 bg-blue-500 text-white rounded-md mr-2">Ver</a></p>
+                                <p className="flex-none w-20">
+                                    <Link to={`/Admin/OrdenLog/Detail/${orden.id}`} class="px-2 py-1 bg-blue-500 text-white rounded-md mr-2">Ver</Link>
+                                </p>
                                 
                             </article>
                         ))}
