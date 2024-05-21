@@ -105,6 +105,23 @@ const router = createBrowserRouter([
     element: <PaCaPedidoCompleto />,
   },
 
+  // Parte de Mauricio
+  {
+    path: "/login",
+    element: <Login />,
+  },
+  {
+    path: "/registro",
+    element: <Registrarse/>,
+  },
+  {
+    path: "/recuperarPassword",
+    element: <RecuperarPassword />,
+  },
+  {
+    path: "/usuarios/main",
+    element: <Main/>,
+  },
 
   // Parte de Nicolas
   {
