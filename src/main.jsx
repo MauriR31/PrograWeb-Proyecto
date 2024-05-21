@@ -3,6 +3,10 @@ import ReactDOM from 'react-dom/client'
 import App from './App.jsx'
 import './index.css'
 import {createBrowserRouter, RouterProvider, Route, Link} from "react-router-dom";
+//el useContext
+import { DatosProvider } from './context/Datos.jsx';
+
+// Paginas primarias
 import Principal from './vistas/Pagina/Principal/Principal.jsx';
 import PaginaError from './componentes/PaginaError.jsx';
 
@@ -30,6 +34,13 @@ import AdAgregarSeries from './vistas/Administrador/Series/AgregarSerie.jsx'
 import AdAgregarProducto from './vistas/Administrador/Series/AgregarProducto.jsx';
 import UCambiarPassword from './vistas/Usuarios/CambiarPassword.jsx';
 import UDatosRegistro from './vistas/Usuarios/DatosRegistro.jsx';
+
+
+//Parte de Mauricio
+import Login from './vistas/Login/Login.jsx';
+import Registrarse from './vistas/Login/Registrarse.jsx';
+import RecuperarPassword from './vistas/Login/RecuperarPassword.jsx'
+import Main from './vistas/Usuarios/Main/Main.jsx';
 
 
 const router = createBrowserRouter([
@@ -118,8 +129,10 @@ const router = createBrowserRouter([
   },
 ]);
 
-ReactDOM.createRoot(document.getElementById('root')).render(
+ReactDOM.createRoot(document.getElementById('root')).render(  
   <React.StrictMode>
-    <RouterProvider router = {router} />
+    <DatosProvider>
+      <RouterProvider router = {router} />
+    </DatosProvider>
   </React.StrictMode>,
 )
