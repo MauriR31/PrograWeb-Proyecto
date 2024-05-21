@@ -2,11 +2,18 @@ import React, { useState } from 'react';
 import { Link } from "react-router-dom"
 import BarraCuenta from '../../../componentes/BarraCuenta'
 import BarraPaginacion from '../../../componentes/BarraPaginacion';
+import HCerrarSesion from '../../../componentes/Header/HCerrarSesion';
+import FooterPa from '../../../componentes/Footer';
+
 /** @type {import('tailwindcss').Config} */
 
 function UsuariosRegistrados() {
+  // Variables globales
+  // Cantidad de usuarios a mostrar por página
+  const usuariosPorPagina = 10;
+
   // Ejemplo de array de usuarios
-  const usuarios = [
+  let datosUsuarios = [
     { id: 1, nombre: 'Juan Eustaquio', apellido: 'Pérez Guerrero', correo: 'juan@example.com', fechaRegistro: '2024-05-12', estado: 'Activo' },
     { id: 2, nombre: 'María', apellido: 'García', correo: 'maria@example.com', fechaRegistro: '2024-05-10', estado: 'Inactivo' },
     { id: 3, nombre: 'Juan Eustaquio', apellido: 'Pérez Guerrero', correo: 'juan@example.com', fechaRegistro: '2024-05-12', estado: 'Activo' },
@@ -113,17 +120,28 @@ function UsuariosRegistrados() {
     { id: 104, nombre: 'Juan Eustaquio', apellido: 'Rivero Guerrero', correo: 'juan@gmail.com', fechaRegistro: '2024-05-12', estado: 'Activo' },
     // Agrega más usuarios aquí
   ];
-  
-  // Establecimiento la separacion de los usuarios en base a una cantidad y la obtencion de parametros de paginacion
+
+  // Estado de la informacion del usuario
+  const [usuarios, setUsuarios] = useState(datosUsuarios)
   // Estado para el índice de la página actual
   const [paginaActual, setPaginaActual] = useState(1);
-  // Cantidad de usuarios a mostrar por página
-  const usuariosPorPagina = 10;
-
+  // Estado para la busqueda de usuarios
   const [buscarUsuario, setbuscarUsuario] = useState('');
+
+
+  // Función para actualizar los usuarios
+  const cambiarEstadoUsuario = (index) => {
+    setUsuarios(prevUsuarios =>
+        prevUsuarios.map(usuario =>
+            usuario.id === index ? { ...usuario, estado: usuario.estado === 'Activo' ? 'Inactivo' : 'Activo' } : usuario
+        )
+    );
+  };
+  
+  // Funcion que cuando se realiza una nueva búsqueda, cambie el estado y vulve a la primera página
   const handleSearchChange = (e) => {
     setbuscarUsuario(e.target.value);
-    setPaginaActual(1); // Cuando se realiza una nueva búsqueda, volvemos a la primera página
+    setPaginaActual(1);
   };
   
   // Filtrar usuarios basados en el término de búsqueda
@@ -155,6 +173,9 @@ function UsuariosRegistrados() {
 
   return (
     <>
+      <header>
+        <HCerrarSesion />
+      </header>
       <div className="flex">
         <BarraCuenta />
         <main id="MainUsuariosRegistradosAdmin" className="flex flex-col w-5/6">
@@ -184,25 +205,28 @@ function UsuariosRegistrados() {
               <p className="flex-none w-40">Acciones</p>
             </article>
             {/* Cuerpo de la lista de usuarios registrados */}
-            {usuariosEnPagina.map(usuario => (
-              <article key={usuario.id} className="flex bg-white p-2">
-                <p className="flex-none w-12">{usuario.id}</p>
-                <p className="flex-auto w-60">{usuario.nombre}</p>
-                <p className="flex-auto w-60">{usuario.apellido}</p>
-                <p className="flex-auto w-96">{usuario.correo}</p>
-                <p className="flex-none w-28">{usuario.fechaRegistro}</p>
-                <p className="flex-none w-20">{usuario.estado}</p>
-                {/* Columna de Acciones */}
-                <p className="flex-none w-40">
-                <Link to={`/Admin/UsersLog/Detail/${usuario.id}`} className="px-2 py-1 bg-blue-500 text-white rounded-md mr-2">Ver</Link>
-                  {usuario.estado === 'Activo' ? (
-                    <button className="px-2 py-1 bg-green-500 text-white rounded-md">Activado</button>
-                  ) : (
-                    <button className="px-2 py-1 bg-red-500 text-white rounded-md">Desactivado</button>
-                  )}
-                </p>
-              </article>
-            ))}
+            <div className='h-[450px]'>
+              {usuariosEnPagina.map(usuario => (
+                <article key={usuario.id} className="flex bg-white p-2">
+                  <p className="flex-none w-12">{usuario.id}</p>
+                  <p className="flex-auto w-60">{usuario.nombre}</p>
+                  <p className="flex-auto w-60">{usuario.apellido}</p>
+                  <p className="flex-auto w-96">{usuario.correo}</p>
+                  <p className="flex-none w-28">{usuario.fechaRegistro}</p>
+                  <p className="flex-none w-20">{usuario.estado}</p>
+                  {/* Columna de Acciones */}
+                  <p className="flex-none w-40">
+                    <Link to={`/Admin/UsersLog/Detail/${usuario.id}`} className="px-2 py-1 bg-blue-500 text-white rounded-md mr-2">Ver</Link>
+                    <button
+                      className={`px-2 py-1 rounded-md ${usuario.estado === 'Activo' ? 'bg-red-500' : 'bg-green-500'} text-white`}
+                      onClick={() => cambiarEstadoUsuario(usuario.id)}
+                    >
+                      {usuario.estado === 'Activo' ? 'Desactivar' : 'Activar'}
+                    </button>
+                  </p>
+                </article>
+              ))}
+            </div>
           </section>
 
           {/* Barra de paginación */}
@@ -214,7 +238,10 @@ function UsuariosRegistrados() {
             />
           </section>
         </main>
-      </div>  
+      </div>
+      <footer>
+        <FooterPa />
+      </footer>
     </>
   );
 }

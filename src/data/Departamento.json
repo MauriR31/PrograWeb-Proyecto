@@ -1,0 +1,28 @@
+[
+    { "id": "01", "pais_id": "01", "name": "Amazonas" },
+    { "id": "02", "pais_id": "01", "name": "Ancash" },
+    { "id": "03", "pais_id": "01", "name": "Apurimac" },
+    { "id": "04", "pais_id": "01", "name": "Arequipa" },
+    { "id": "05", "pais_id": "01", "name": "Ayacucho" },
+    { "id": "06", "pais_id": "01", "name": "Cajamarca" },
+    { "id": "07", "pais_id": "01", "name": "Callao" },
+    { "id": "08", "pais_id": "01", "name": "Cusco" },
+    { "id": "09", "pais_id": "01", "name": "Huancavelica" },
+    { "id": "10", "pais_id": "01", "name": "Huanuco" },
+    { "id": "11", "pais_id": "01", "name": "Ica" },
+    { "id": "12", "pais_id": "01", "name": "Junin" },
+    { "id": "13", "pais_id": "01", "name": "La Libertad" },
+    { "id": "14", "pais_id": "01", "name": "Lambayeque" },
+    { "id": "15", "pais_id": "01", "name": "Lima" },
+    { "id": "16", "pais_id": "01", "name": "Loreto" },
+    { "id": "17", "pais_id": "01", "name": "Madre de Dios" },
+    { "id": "18", "pais_id": "01", "name": "Moquegua" },
+    { "id": "19", "pais_id": "01", "name": "Pasco" },
+    { "id": "20", "pais_id": "01", "name": "Piura" },
+    { "id": "21", "pais_id": "01", "name": "Puno" },
+    { "id": "22", "pais_id": "01", "name": "San Martin" },
+    { "id": "23", "pais_id": "01", "name": "Tacna" },
+    { "id": "24", "pais_id": "01", "name": "Tumbes" },
+    { "id": "25", "pais_id": "01", "name": "Ucayali" }
+  ]
+  
