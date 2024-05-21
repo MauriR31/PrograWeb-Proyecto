@@ -45,12 +45,12 @@ function TablaOrdenes() {
   const ordenesPagina = datosPagina.datos.slice(inicio,fin)  
   return(
     <>    
-    <section id="Ordenes">
-      <table className="flex flex-col flex-grow rounded-md bg-slate-50">
-        <thead >
-          <tr>
-            <th className="">Ordenes Recientes</th>
-            <th className="" colSpan="2" onClick={handleOrdenar}>Ordenar por fecha {ordenar} </th>
+    
+      <table className=" bg-slate-50 ">
+        <thead>
+          <tr className="bg-slate-500 ">
+            <th className="text-xl font-normal text-left p-2 pl-8 ">Ordenes Recientes</th>
+            <th className="text-xl font-normal text-right p-2 pr-8" colSpan="2" onClick={handleOrdenar}>Ordenar por fecha {ordenar} </th>
           </tr>
         </thead>
         <tbody >
@@ -60,7 +60,7 @@ function TablaOrdenes() {
         }        
         </tbody>
       </table>                  
-    </section>      
+        
     </>
   )
 }
