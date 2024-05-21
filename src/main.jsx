@@ -23,6 +23,14 @@ import DetalleProducto from './vistas/Pagina/Principal/DetalleProducto.jsx';
 import PaCarrito from './vistas/Pagina/Carrito/Carrito.jsx';
 import PaCaCheckout from './vistas/Pagina/Carrito/Checkout.jsx';
 import PaCaPedidoCompleto from './vistas/Pagina/Carrito/PedidoCompleto.jsx';
+ 
+//Parte de Nicolas
+import AdSeries from './vistas/Administrador/Series/Series.jsx';
+import AdAgregarSeries from './vistas/Administrador/Series/AgregarSerie.jsx'
+import AdAgregarProducto from './vistas/Administrador/Series/AgregarProducto.jsx';
+import UCambiarPassword from './vistas/Usuarios/CambiarPassword.jsx';
+import UDatosRegistro from './vistas/Usuarios/DatosRegistro.jsx';
+
 
 const router = createBrowserRouter([
   {
@@ -84,6 +92,29 @@ const router = createBrowserRouter([
   {
     path: "/carrito/PedidoCompleto",
     element: <PaCaPedidoCompleto />,
+  },
+
+
+  // Parte de Nicolas
+  {
+    path: "/series",
+    element: <AdSeries />,
+  },
+  {
+    path: "/series/AgregarSeries",
+    element: <AdAgregarSeries />,
+  },
+  {
+    path: "/series/AgregarSeries/AgregarProducto",
+    element: <AdAgregarProducto />,
+  },
+  {
+    path: "/Usuario/CambiarPassword",
+    element: <UCambiarPassword />,
+  },
+  {
+    path: "/Usuario/DatosRegistro",
+    element: <UDatosRegistro />,
   },
 ]);
 
