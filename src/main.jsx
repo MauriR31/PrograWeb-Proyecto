@@ -5,10 +5,19 @@ import './index.css'
 import {createBrowserRouter, RouterProvider, Route, Link} from "react-router-dom";
 import Principal from './vistas/Pagina/Principal/Principal.jsx';
 import PaginaError from './componentes/PaginaError.jsx';
+
+// Parte de Vicuña
 import AdUsuariosRegistrados from './vistas/Administrador/Usuarios/UsuariosRegistrados.jsx';
 import AdUsReDetalle from './vistas/Administrador/Usuarios/Detalle.jsx';
 import AdListOrdenes from './vistas/Administrador/Ordenes/Ordenes.jsx';
 import AdListOrdDetalle from './vistas/Administrador/Ordenes/Detalle.jsx';
+
+// Parte de Valdivia
+import Nuevos from './vistas/Pagina/Principal/Nuevos.jsx';
+import MasVendidos from './vistas/Pagina/Principal/MasVendidos.jsx';
+import Ofertas from './vistas/Pagina/Principal/Ofertas.jsx';
+import Busqueda from './vistas/Pagina/Principal/Busqueda.jsx';
+import DetalleProducto from './vistas/Pagina/Principal/DetalleProducto.jsx';
 
 const router = createBrowserRouter([
   {
@@ -16,6 +25,31 @@ const router = createBrowserRouter([
     element: <Principal />,
     errorElement: <PaginaError />,
   },
+
+  // Parte de Valdivia
+  {
+    path: "/Nuevos",
+    element: <Nuevos />,
+  },
+  {
+    path: "/MasVendidos",
+    element: <MasVendidos />,
+  },
+
+  {
+    path: "/Ofertas",
+    element: <Ofertas />,
+  },
+  {
+    path: "/Busqueda",
+    element: <Busqueda />,
+  },
+  {
+    path: "/DetalleProducto",
+    element: <DetalleProducto/>,
+  },
+
+  // Parte de cliff
   {
     path: "/Admin/UsersLog",
     element: <AdUsuariosRegistrados />,
