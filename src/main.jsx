@@ -19,6 +19,11 @@ import Ofertas from './vistas/Pagina/Principal/Ofertas.jsx';
 import Busqueda from './vistas/Pagina/Principal/Busqueda.jsx';
 import DetalleProducto from './vistas/Pagina/Principal/DetalleProducto.jsx';
 
+// Parte de Carlo
+import PaCarrito from './vistas/Pagina/Carrito/Carrito.jsx';
+import PaCaCheckout from './vistas/Pagina/Carrito/Checkout.jsx';
+import PaCaPedidoCompleto from './vistas/Pagina/Carrito/PedidoCompleto.jsx';
+
 const router = createBrowserRouter([
   {
     path: "/",
@@ -65,6 +70,20 @@ const router = createBrowserRouter([
   {
     path: "/Admin/OrdenLog/Detail/:id",
     element: <AdListOrdDetalle />,
+  },
+
+  // Parte de Carlo
+  {
+    path: "/carrito",
+    element: <PaCarrito />,
+  },
+  {
+    path: "/carrito/checkout",
+    element: <PaCaCheckout />,
+  },
+  {
+    path: "/carrito/PedidoCompleto",
+    element: <PaCaPedidoCompleto />,
   },
 ]);
 
