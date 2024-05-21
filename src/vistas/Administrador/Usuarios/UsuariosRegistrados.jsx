@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from "react-router-dom"
 import BarraCuenta from '../../../componentes/BarraCuenta'
 import BarraPaginacion from '../../../componentes/BarraPaginacion';
@@ -122,12 +122,38 @@ function UsuariosRegistrados() {
   ];
 
   // Estado de la informacion del usuario
-  const [usuarios, setUsuarios] = useState(datosUsuarios)
+  const [usuarios, setUsuarios] = useState([])
   // Estado para el índice de la página actual
   const [paginaActual, setPaginaActual] = useState(1);
   // Estado para la busqueda de usuarios
   const [buscarUsuario, setbuscarUsuario] = useState('');
 
+  useEffect(() => {
+    const usuariosData = JSON.parse(localStorage.getItem('usuarios'));
+    const personasData = JSON.parse(localStorage.getItem('personas'));
+  
+    if (usuariosData && personasData) {
+      // Crear una nueva lista combinando información de personas y usuarios
+      const nuevaLista = usuariosData.map(usuario => {
+        // Buscar la persona correspondiente al usuario
+        const persona = personasData.find(persona => String(persona.id) === String(usuario.id));
+  
+        // Combinar información de persona y usuario
+        return {
+          id: usuario.id,
+          nombre: persona.nombre,
+          apellido: persona.apellido,
+          correo: usuario.correo,
+          fechaRegistro: usuario.fechaRegistro,
+          estado: usuario.estado
+        };
+      }
+    );
+  
+      // Si necesitas establecer esta nueva lista en el estado, hazlo aquí
+      setUsuarios(nuevaLista);
+    }
+  }, []);
 
   // Función para actualizar los usuarios
   const cambiarEstadoUsuario = (index) => {
