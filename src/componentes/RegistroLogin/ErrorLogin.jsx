@@ -2,7 +2,7 @@ import "../../componentes/RegistroLogin/ContenidoRegistroLogin.css"
 function ErrorLogin () { 
   return(    
     <>
-    <div id="ErrorUser">
+    <div className=" mt-4 text-red-600">
       <p>*Email o password incorrectos</p>
     </div>
     </>
