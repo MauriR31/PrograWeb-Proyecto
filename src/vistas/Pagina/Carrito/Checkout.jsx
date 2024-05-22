@@ -1,11 +1,33 @@
 import { Link } from 'react-router-dom';
-import React from 'react';
+import React, {useState} from 'react';
+import Footer from '../../../componentes/Footer.jsx';
+import HVacio from '../../../componentes/Header/HVacio.jsx';
+
 
 const Checkout = () => {
+  const [metodoPago, setMetodoPago] = useState(null);
+  const [metodoEnvio, setMetodoEnvio] = useState(null);
+  const [precioEnvio, setPrecioEnvio] = useState(0);
+
+  const handleRadioChange = (e) => {
+    setMetodoPago(e.target.value);
+  };
+
+  const handleEnvioChange = (e) => {
+    const metodo = e.target.value;
+    setMetodoEnvio(metodo);
+    if(metodo == 'economico') {
+      setPrecioEnvio(10);
+    }
+    else if (metodo === 'prioritario') {
+      setPrecioEnvio(17);
+    }
+  };
+
   return (
     <>
       <header>
-        {/* Insertar el header apropiado */}
+      <HVacio />
       </header>
       <main className="p-4 bg-gray-50">
         {/* Seccion de la parte superior */}
@@ -32,18 +54,30 @@ const Checkout = () => {
           </article>
           <article className="flex-1 py-4 pl-7 border rounded-md bg-white">
             <p className="text-lg font-semibold">Pago</p>
-            <ul className="list-disc pl-5">
-              <li>Pago con código QR</li>
-              <li>Pago con tarjeta de crédito</li>
-            </ul>
-            <div className='flex flex-col mr-20'>
+            <div className="list-disc pl-5">
+              <input className="" id="radio1" type="radio" name="metodoPago" value="qr" checked={metodoPago === 'qr'} onChange={handleRadioChange} />
+              <label className="hover:cursor-pointer" htmlFor="radio1">Pago con código QR</label>
+            </div>
+            <div className="list-disc pl-5">
+              <input className="" id="radio2" type="radio" name='metodoPago' value="tarjeta" checked={metodoPago === "tarjeta"} onChange={handleRadioChange} />
+              <label className="hover:cursor-pointer" htmlFor="radio2">Pago con tarjeta de crédito</label> 
+            </div>
+            {metodoPago === "qr" && (
+              <div className='mt-4'>
+                <img src="\src\assets\qr.png" alt="codQR" className='w-20 h-20 mx-auto' />
+              </div>
+            )}
+            {metodoPago === 'tarjeta' &&(
+            <div className='flex flex-col mr-20' mt-4>
               <input type="text" placeholder='Número de Tarjeta' className="border-2 border-black rounded mb-3 w-full"/>
               <input type="text" placeholder='Titular de Tarjeta' className="border-2 border-black rounded mb-3 w-full"/>
+              <div className='flex flex-row gap-3'>
+                <input type="text" placeholder='Vencimiento' className="border-2 border-black rounded mb-3 flex-1"/>
+                <input type="text" placeholder='CCV' className="border-2 border-black rounded mb-3 flex-1 mr-2"/>
+              </div>
             </div>
-            <div className='flex flex-row gap-3'>
-              <input type="text" placeholder='Vencimiento' className="border-2 border-black rounded mb-3 flex-1"/>
-              <input type="text" placeholder='CCV' className="border-2 border-black rounded mb-3 flex-1 mr-2"/>
-            </div>
+            )}
+            
           </article>
         </section>
         
@@ -53,10 +87,14 @@ const Checkout = () => {
         
         <section className="mb-6">
           <article className="flex-1 py-4 pl-7 border rounded-md bg-white">
-            <ul className="list-disc pl-5 grid justify-center">
-              <li>Económico Aéreo - S/10.00</li>
-              <li>Envío prioritario (5 a 10 días) - S/17.00</li>
-            </ul>
+            <div className="list-disc pl-5">
+              <input className="" id="envioEconomico" type="radio" name="metodoEnvio" value="economico" checked={metodoEnvio === 'economico'} onChange={handleEnvioChange} />
+              <label className="hover:cursor-pointer" htmlFor="envioEconomico">Económico Aéreo - S/10.00</label>
+            </div>
+            <div className="list-disc pl-5">
+              <input className="" id="envioPrioritario" type="radio" name='metodoEnvio' value="prioritario" checked={metodoEnvio === "prioritario"} onChange={handleEnvioChange} />
+              <label className="hover:cursor-pointer" htmlFor="envioPrioritario">Envío prioritario (5 a 10 días) - S/17.00</label>
+            </div>
           </article>
         </section>
         
@@ -82,7 +120,7 @@ const Checkout = () => {
                 </tr>
                 <tr className="text-center">
                   <td className="py-2">Envío:</td>
-                  <td className="py-2">(Precio envío)</td>
+                  <td className="py-2">{`S/${precioEnvio.toFixed(2)}`}</td>
                 </tr>
                 <tr className="text-center">
                   <td className="py-2">Impuestos:</td>
@@ -96,14 +134,14 @@ const Checkout = () => {
             </div>
             <div className='flex justify-center'>
               <button className="mt-4 px-4 py-2 bg-red-500 text-white rounded-md">
-                <Link to="/PedidoCompleto">Completar Orden</Link>
+                <Link to="/carrito/PedidoCompleto">Completar Orden</Link>
                 </button>
             </div>
           </article>
         </section>
       </main>
       <footer>
-        {/* Insertar el footer apropiado */}
+        <Footer />
       </footer>
     </>
   );

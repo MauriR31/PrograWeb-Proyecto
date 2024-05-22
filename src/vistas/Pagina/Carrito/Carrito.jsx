@@ -1,5 +1,8 @@
 import { Link } from "react-router-dom";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import HCompleto from '../../../componentes/Header/HCompleto.jsx';
+import Footer from '../../../componentes/Footer.jsx';
+
 
 const pedidosIniciales = [
     {
@@ -47,6 +50,16 @@ const pedidosIniciales = [
 const Carrito = () => {
     const [pedidos, setPedidos] = useState(pedidosIniciales);
     const [guardadoParaDespues, setGuardadoParaDespues] = useState([]);
+    const [cantidadTotal, setCantidadTotal] = useState(0);
+
+    const actualizarCantidadTotal = () => {
+        const totalItems = pedidos.reduce((acc, pedido) => acc + pedido.cantidad, 0);
+        setCantidadTotal(totalItems);
+    }
+
+    useEffect(() => {
+        actualizarCantidadTotal();
+    }, [pedidos]);
 
     const cambiarCantidadP = (id, nuevaCantidad) => {
         setPedidos(pedidos.map(pedido => {
@@ -58,27 +71,33 @@ const Carrito = () => {
         }));
     };
 
-    const eliminarPedido = (id) => {
-        setPedidos(pedidos.filter(pedido => pedido.id !== id));
+    const eliminarPedido = (id, lista = 'pedidos') => {
+        if (lista === 'pedidos') {
+            setPedidos(pedidos.filter(pedido => pedido.id !== id));
+        } else if (lista === 'guardadoParaDespues') {
+            setGuardadoParaDespues(guardadoParaDespues.filter(pedido => pedido.id !== id));
+        }
     };
 
     const guardarParaDespues = (id) => {
         const pedidoGuardado = pedidos.find(pedido => pedido.id === id);
         setGuardadoParaDespues([...guardadoParaDespues, pedidoGuardado]);
-        eliminarPedido(id);
+        eliminarPedido(id, 'pedidos');
     };
 
     const moverAlCarrito = (id) => {
         const pedidoAMover = guardadoParaDespues.find(pedido => pedido.id === id);
         setPedidos([...pedidos, pedidoAMover]);
-        setGuardadoParaDespues(guardadoParaDespues.filter(pedido => pedido.id !== id));
+        eliminarPedido(id, 'guardadoParaDespues');
     };
 
     const total = pedidos.reduce((acc, pedido) => acc + pedido.subtotal, 0);
 
     return (
+        <>
+        <HCompleto />
         <div className="bg-gray-100 ml-5">
-            <h1 className="text-xl font-normal mb-2">{pedidos.length} Items en tu Carrito de Compras</h1>
+            <h1 className="text-xl font-normal mb-2">{cantidadTotal} Items en tu Carrito de Compras</h1>
             <h2 className="text-base font-bold bg-gray-400 border-2 mb-2 p-1 pl-2 rounded-lg ">Items Disponibles para Envío</h2>
             {pedidos.map((pedido) => (
                 <section key={pedido.id} className="flex bg-white p-5 border-b-3 border-l-2 mb-2 border-gray-300">
@@ -87,7 +106,7 @@ const Carrito = () => {
                         <div className="mr-8">
                             <h3 className="text-base font-bold mb-7 w-112">{pedido.nombre}</h3>
                             <nav className="flex">
-                                <h4 className="underline mr-5 text-gray-500" onClick={() => eliminarPedido(pedido.id)}>Eliminar</h4>
+                                <h4 className="underline mr-5 text-gray-500" onClick={() => eliminarPedido(pedido.id, 'pedidos')}>Eliminar</h4>
                                 <h4 className="underline mr-5 text-gray-500">|</h4>
                                 <h4 className="underline mr-5 text-gray-500" onClick={() => guardarParaDespues(pedido.id)}>Guardar para después</h4>
                             </nav>
@@ -121,7 +140,7 @@ const Carrito = () => {
                 <p className="font-bold">Total: S/ {total.toFixed(2)}</p>
                 <br />
                 <button className="bg-black text-white text-base font-light p-4 rounded w-40 ml-auto block">
-                    <Link to="/Checkout">Checkout</Link>
+                    <Link to="/carrito/checkout">Checkout</Link>
                     </button>
             </div>
             <br /><br />
@@ -133,7 +152,7 @@ const Carrito = () => {
                         <div className="mr-8">
                             <h3 className="text-base font-bold mb-7 w-112">{pedido.nombre}</h3>
                             <nav className="flex">
-                                <h4 className="underline mr-5 text-gray-500" onClick={() => eliminarPedido(pedido.id)}>Eliminar</h4>
+                                <h4 className="underline mr-5 text-gray-500" onClick={() => eliminarPedido(pedido.id, 'guardadoParaDespues')}>Eliminar</h4>
                                 <h4 className="underline mr-5 text-gray-500">|</h4>
                                 <h4 className="underline mr-5 text-gray-500" onClick={() => moverAlCarrito(pedido.id)}>Mover al carrito</h4>
                             </nav>
@@ -155,6 +174,8 @@ const Carrito = () => {
                 </section>
             ))}
         </div>
+        <Footer />
+        </>
     );
 };
 

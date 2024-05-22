@@ -1,7 +1,12 @@
+import { Link } from 'react-router-dom';
 import React from "react";
+import Footer from '../../../componentes/Footer.jsx';
+import HVacio from '../../../componentes/Header/HVacio.jsx';
 
 const PedidoCompleto = () => {
     return (
+        <>
+        <HVacio />
         <div className="w-full min-h-screen bg-gray-100">
             <h1 className="text-center mb-12 pt-10 text-2xl">¡Muchas gracias por tu pedido!</h1>
             <h2 className="text-center mb-12 text-xl">Puedes ver el detalle y estado de tu pedido ingresando a <a href="" className="underline">tu cuenta</a>.</h2>
@@ -37,6 +42,8 @@ const PedidoCompleto = () => {
                 </div>
             </section>
         </div>
+        <Footer />
+        </>
     )
 }
 
