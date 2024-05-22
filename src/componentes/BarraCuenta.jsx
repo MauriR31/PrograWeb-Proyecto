@@ -9,22 +9,43 @@ function BarraCuenta() {
       <div className="flex-1 overflow-y-auto">
         <ul className="flex flex-col p-4">
           <li className="py-2 pl-2">
-            <a href="/dashboard" className="text-white hover:text-gray-300">Dashboard</a>
+            <a href="/dashboard" className="text-white hover:text-gray-300">
+              Dashboard
+            </a>
           </li>
           <li className="py-2 pl-2">
-            <a href="/Admin/UsersLog" className="text-white hover:text-gray-300">Usuarios registrados</a>
+            <a
+              href="/Admin/UsersLog"
+              className="text-white hover:text-gray-300"
+            >
+              Usuarios registrados
+            </a>
           </li>
           <li className="py-2 pl-2">
-            <a href="/productos" className="text-white hover:text-gray-300">Productos</a>
+            <a href="/productos" className="text-white hover:text-gray-300">
+              Productos
+            </a>
           </li>
           <li className="py-2 pl-2">
-            <a href="/Admin/OrdenLog" className="text-white hover:text-gray-300">Órdenes</a>
+            <a
+              href="/Admin/OrdenLog"
+              className="text-white hover:text-gray-300"
+            >
+              Órdenes
+            </a>
           </li>
           <li className="py-2 pl-2">
-            <a href="/productos-vendidos" className="text-white hover:text-gray-300">Productos más vendidos</a>
+            <a
+              href="/productos-vendidos"
+              className="text-white hover:text-gray-300"
+            >
+              Productos más vendidos
+            </a>
           </li>
           <li className="py-2 pl-2">
-            <a href="/series" className="text-white hover:text-gray-300">Series</a>
+            <a href="/series" className="text-white hover:text-gray-300">
+              Series
+            </a>
           </li>
         </ul>
       </div>
@@ -32,4 +53,4 @@ function BarraCuenta() {
   );
 }
 
-export default BarraCuenta
+export default BarraCuenta;

@@ -1,47 +1,53 @@
-import React from 'react'
-import ReactDOM from 'react-dom/client'
-import App from './App.jsx'
-import './index.css'
-import {createBrowserRouter, RouterProvider, Route, Link} from "react-router-dom";
+import React from "react";
+import ReactDOM from "react-dom/client";
+import App from "./App.jsx";
+import "./index.css";
+import {
+  createBrowserRouter,
+  RouterProvider,
+  Route,
+  Link,
+} from "react-router-dom";
 //el useContext
-import { DatosProvider } from './context/Datos.jsx';
+import { DatosProvider } from "./context/Datos.jsx";
 
 // Paginas primarias
-import Principal from './vistas/Pagina/Principal/Principal.jsx';
-import PaginaError from './componentes/PaginaError.jsx';
+import Principal from "./vistas/Pagina/Principal/Principal.jsx";
+import PaginaError from "./componentes/PaginaError.jsx";
 
 // Parte de Vicuña
-import AdUsuariosRegistrados from './vistas/Administrador/Usuarios/UsuariosRegistrados.jsx';
-import AdUsReDetalle from './vistas/Administrador/Usuarios/Detalle.jsx';
-import AdListOrdenes from './vistas/Administrador/Ordenes/Ordenes.jsx';
-import AdListOrdDetalle from './vistas/Administrador/Ordenes/Detalle.jsx';
+import AdUsuariosRegistrados from "./vistas/Administrador/Usuarios/UsuariosRegistrados.jsx";
+import AdUsReDetalle from "./vistas/Administrador/Usuarios/Detalle.jsx";
+import AdListOrdenes from "./vistas/Administrador/Ordenes/Ordenes.jsx";
+import AdListOrdDetalle from "./vistas/Administrador/Ordenes/Detalle.jsx";
 
 // Parte de Valdivia
-import Nuevos from './vistas/Pagina/Principal/Nuevos.jsx';
-import MasVendidos from './vistas/Pagina/Principal/MasVendidos.jsx';
-import Ofertas from './vistas/Pagina/Principal/Ofertas.jsx';
-import Busqueda from './vistas/Pagina/Principal/Busqueda.jsx';
-import DetalleProducto from './vistas/Pagina/Principal/DetalleProducto.jsx';
+import Nuevos from "./vistas/Pagina/Principal/Nuevos.jsx";
+import MasVendidos from "./vistas/Pagina/Principal/MasVendidos.jsx";
+import Ofertas from "./vistas/Pagina/Principal/Ofertas.jsx";
+import Busqueda from "./vistas/Pagina/Principal/Busqueda.jsx";
+import DetalleProducto from "./vistas/Pagina/Principal/DetalleProducto.jsx";
 
 // Parte de Carlo
-import PaCarrito from './vistas/Pagina/Carrito/Carrito.jsx';
-import PaCaCheckout from './vistas/Pagina/Carrito/Checkout.jsx';
-import PaCaPedidoCompleto from './vistas/Pagina/Carrito/PedidoCompleto.jsx';
- 
-//Parte de Nicolas
-import AdSeries from './vistas/Administrador/Series/Series.jsx';
-import AdAgregarSeries from './vistas/Administrador/Series/AgregarSerie.jsx'
-import AdAgregarProducto from './vistas/Administrador/Series/AgregarProducto.jsx';
-import UCambiarPassword from './vistas/Usuarios/CambiarPassword.jsx';
-import UDatosRegistro from './vistas/Usuarios/DatosRegistro.jsx';
+import PaCarrito from "./vistas/Pagina/Carrito/Carrito.jsx";
+import PaCaCheckout from "./vistas/Pagina/Carrito/Checkout.jsx";
+import PaCaPedidoCompleto from "./vistas/Pagina/Carrito/PedidoCompleto.jsx";
 
+//Parte de Nicolas
+import AdSeries from "./vistas/Administrador/Series/Series.jsx";
+import AdAgregarSeries from "./vistas/Administrador/Series/AgregarSerie.jsx";
+import AdAgregarProducto from "./vistas/Administrador/Series/AgregarProducto.jsx";
+import UCambiarPassword from "./vistas/Usuarios/CambiarPassword.jsx";
+import UDatosRegistro from "./vistas/Usuarios/DatosRegistro.jsx";
 
 //Parte de Mauricio
-import Login from './vistas/Login/Login.jsx';
-import Registrarse from './vistas/Login/Registrarse.jsx';
-import RecuperarPassword from './vistas/Login/RecuperarPassword.jsx'
-import Main from './vistas/Usuarios/Main/Main.jsx';
+import Login from "./vistas/Login/Login.jsx";
+import Registrarse from "./vistas/Login/Registrarse.jsx";
+import RecuperarPassword from "./vistas/Login/RecuperarPassword.jsx";
+import Main from "./vistas/Usuarios/Main/Main.jsx";
 
+//Parte de Erick
+import DIMDashboard from "./vistas/Administrador/Dashboard.jsx";
 
 const router = createBrowserRouter([
   {
@@ -70,7 +76,7 @@ const router = createBrowserRouter([
   },
   {
     path: "/DetalleProducto",
-    element: <DetalleProducto/>,
+    element: <DetalleProducto />,
   },
 
   // Parte de cliff
@@ -112,7 +118,7 @@ const router = createBrowserRouter([
   },
   {
     path: "/registro",
-    element: <Registrarse/>,
+    element: <Registrarse />,
   },
   {
     path: "/recuperarPassword",
@@ -120,7 +126,7 @@ const router = createBrowserRouter([
   },
   {
     path: "/usuarios/main",
-    element: <Main/>,
+    element: <Main />,
   },
 
   // Parte de Nicolas
@@ -144,12 +150,19 @@ const router = createBrowserRouter([
     path: "/Usuario/DatosRegistro",
     element: <UDatosRegistro />,
   },
+
+  //Parte de Dmitri
+
+  {
+    path: "/Dashboard",
+    element: <DIMDashboard />,
+  },
 ]);
 
-ReactDOM.createRoot(document.getElementById('root')).render(  
+ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <DatosProvider>
-      <RouterProvider router = {router} />
+      <RouterProvider router={router} />
     </DatosProvider>
-  </React.StrictMode>,
-)
+  </React.StrictMode>
+);
