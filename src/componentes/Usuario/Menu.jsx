@@ -1,15 +1,16 @@
 import { useNavigate } from "react-router-dom"
 // Menu en la parte izquierda de la pagina main del usuario
 function Menu() {
+  //UseNavigate para manejar entre direcciones
   const navigate = useNavigate()
   function handleClickRecently () {
-    navigate('/')
+    navigate('/usuarios/main')
   }
   function handleClickRegister () {
-    navigate('/')
+    navigate('/Usuario/DatosRegistro')
   }
   function handleClickChangePassword () {
-    navigate('/')
+    navigate('/Usuario/CambiarPassword')
   }
   return(
     <>
@@ -17,11 +18,11 @@ function Menu() {
         <h5 className="font-bold ml-4 mt-6 m-4 text-2xl">Mi Cuenta</h5>
         <ol className="flex flex-col items-center">
           <li onClick={handleClickRecently}
-           className=" mb-2 text-lg hover:underline hover:text-stone-500">Ordenes Recientes</li>
+           className=" mb-2 text-lg hover:text-white"><button>Ordenes Recientes</button></li>
           <li onClick={handleClickRegister}
-          className=" mb-2 text-lg hover:underline hover:text-stone-500">Datos de Registro</li>
+          className=" mb-2 text-lg hover:text-white"><button>Datos de Registro</button></li>
           <li onClick={handleClickChangePassword}
-          className="text-lg hover:underline  hover:text-stone-500">Cambiar Password</li>
+          className="text-lg  hover:text-white"><button>Cambiar Password</button></li>
         </ol>
       </aside>
     </>
