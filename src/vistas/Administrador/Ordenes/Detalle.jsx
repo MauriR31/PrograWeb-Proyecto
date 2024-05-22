@@ -5,18 +5,21 @@ import PaginaError from "../../../componentes/PaginaError";
 function Detalle() {
   const { id } = useParams();
   const [detalleOrden, setDetalleOrdenes] = useState([]);
+  const [direccionEnvio, setDireccionEnvio] = useState([]);
+  const [pago, setPago] = useState([]);
+  const [envio, setEnvio] = useState([]);
+  const [productos, setProductos] = useState([]);
 
-  const ordenes = [
-    { id: 1, direccion: { avenida: "Santa Ana", numero: "456", refer: "asd asd", distrito: "Lince", provincia: "Lima Metropolitana", departamento: "Lima", pais: "Perú" },
-       usuario: {id:"104", nombre:"104", tarjeta:123456789}, 
-       detalle: [
-        {id:0, cantidad:2, nombre:"libro", precio:45.00, total:90.00}, 
-        {id:1, cantidad:3, nombre:"cuaderno", precio:34.00, total:102.00}],
-       pago: {id:0, nombre:"Pago QR"}, envio: {id:1, nombre:"aero", precio:10.00}, subtotal:192.00, impuesto:0.18, total:226.56
-    },
-    { id: 2, user: 104, fechaOrden: '2024-05-22', total: 'S/63.26', productos: 2, estado: 'Entregado' },
-    { id: 3, user: 103, fechaOrden: '2024-05-09', total: 'S/61.34', productos: 3, estado: 'Pendiente' },
-  ]
+  console.log("detalleOrden")
+  console.log(detalleOrden)
+  console.log("direccionEnvio")
+  console.log(direccionEnvio)
+  console.log("pago")
+  console.log(pago)
+  console.log("envio")
+  console.log(envio)
+  console.log("productos")
+  console.log(productos)
 
   useEffect(() => {
     const ordenesData = JSON.parse(localStorage.getItem('ordenes'));
@@ -25,44 +28,98 @@ function Detalle() {
       const detalle = ordenesData.find(orden => String(orden.numero) === String(id));
       if (detalle) {
         setDetalleOrdenes(detalle);
-        console.log(detalle);
       }
     }
   }, [id]);
   
+  useEffect(() => {
+    const direccionesData = JSON.parse(localStorage.getItem('direcciones'));
+    const distritosData = JSON.parse(localStorage.getItem('distritos'));
+    const provinciasData = JSON.parse(localStorage.getItem('provincias'));
+    const departamentosData = JSON.parse(localStorage.getItem('departamentos'));
+    const paisesData = JSON.parse(localStorage.getItem('paises'));
+  
+    if (direccionesData) {
+      const direccionUsuario = direccionesData.find(direccion => direccion.id === detalleOrden.usuarioDireccion_id);
+      if (direccionUsuario) {
+        const direcUDistrito = distritosData.find(distrito => distrito.id === direccionUsuario.distrito_id);
+        if(direcUDistrito) {
+          const direcUProvi = provinciasData.find(provincia => provincia.id === direcUDistrito.province_id);
+          const direcUDepar = departamentosData.find(departamento => departamento.id === direcUDistrito.department_id);
+          const direcUPais = paisesData.find(pais => pais.id === direcUDistrito.pais_id);
+          if(direcUProvi && direcUDepar && direcUPais) {
+            const direccion = {
+              avenida: direccionUsuario.avenida,
+              numero: direccionUsuario.numero,
+              refer: direccionUsuario.refer,
+              distrito: direcUDistrito.name,
+              provincia: direcUProvi.name,
+              departamento: direcUDepar. name,
+              pais: direcUPais.name
+            }
+            setDireccionEnvio(direccion);
+          }
+        }
+      }
+    }
+  }, [detalleOrden]);
 
+  useEffect(() => {
+    const enviosData = JSON.parse(localStorage.getItem('envios'));
+    
+    if (enviosData) {
+      const envioDetalle = enviosData.find(envio => envio.id === detalleOrden.envio_id);
+      if (envioDetalle) {
+        setEnvio(envioDetalle);
+      }
+    }
+  }, [detalleOrden]);
+
+  useEffect(() => {
+    const pagosData = JSON.parse(localStorage.getItem('pagos'));
+    
+    if (pagosData) {
+      const pagoDetalle = pagosData.find(pago => pago.id === detalleOrden.pago_id);
+      if (pagoDetalle) {
+        setPago(pagoDetalle);
+      }
+    }
+  }, [detalleOrden]);
+
+  useEffect(() => {
+    const detalleData = JSON.parse(localStorage.getItem('detalles'));
+    const productosData = JSON.parse(localStorage.getItem('productos'));
+  
+    if (detalleData && productosData && detalleOrden) {
+      // Filtrar los detalles que corresponden a la orden especificada
+      const detallesOrden = detalleData.filter(detalle => detalle.orden_id === detalleOrden.id);
+  
+      // Mapear los detalles a los productos correspondientes
+      const productosPorOrden = detallesOrden.map(detalle => {
+        const producto = productosData.find(producto => producto.id === String(detalle.producto_id));
+  
+        // Si el producto existe, construir un objeto con los atributos necesarios
+        if (producto) {
+          return {
+            id: producto.id,
+            title: producto.title,
+            orden_id: detalle.orden_id,
+            cantidad: detalle.cantidad,
+            precioTotal: detalle.precioTotal
+          };
+        } else {
+          return null;
+        }
+      }).filter(producto => producto !== null); // Filtramos los nulos por si no se encontró algún producto
+  
+      setProductos(productosPorOrden);
+    }
+  }, [detalleOrden]);
 
   // Condicionalidad para la existencia del detalle de la orden
   if (detalleOrden.length === 0) {
     return <PaginaError />;
   }
-
-  // useEffect(() => {
-  //   const usuariosData = JSON.parse(localStorage.getItem('usuarios'));
-  //   const ordenesData = JSON.parse(localStorage.getItem('ordenes'));
-  
-  //   if (usuariosData && ordenesData) {
-  //     // Crear una nueva lista combinando información de personas y usuarios
-  //     const nuevaLista = ordenesData.map(usuario => {
-  //       // Buscar la persona correspondiente al usuario
-  //       const usuario = personasData.find(persona => String(persona.id) === String(usuario.persona_id));
-  
-  //       // Combinar información de persona y usuario
-  //       return {
-  //         id: usuario.id,
-  //         nombre: persona.nombre,
-  //         apellido: persona.apellido,
-  //         correo: usuario.correo,
-  //         fechaRegistro: usuario.fechaRegistro,
-  //         estado: usuario.estado
-  //       };
-  //     }
-  //   ).filter(usuario => usuario !== null); // Filtrar los usuarios nulos
-  //     console.log(nuevaLista)
-  //     setDetalleOrdenes(nuevaLista);
-  //   }
-  // }, id);
-
 
   return (
     <>
@@ -84,23 +141,23 @@ function Detalle() {
         <section className="mb-6 flex flex-wrap gap-4">
           <article className="flex-1 py-4 pl-7 border rounded-md bg-white">
             <p className="text-lg font-semibold">Dirección de Envío</p>
-            <p className="pl-10">{ordenes[0].direccion.avenida}, {ordenes[0].direccion.numero}, {ordenes[0].direccion.refer}</p>
-            <p className="pl-10">{ordenes[0].direccion.distrito}, {ordenes[0].direccion.provincia}</p>
-            <p className="pl-10">{ordenes[0].direccion.departamento}</p>
-            <p className="pl-10">{ordenes[0].direccion.pais}</p>
+            <p className="pl-10">{direccionEnvio.avenida}, {direccionEnvio.numero}, {direccionEnvio.refer}</p>
+            <p className="pl-10">{direccionEnvio.distrito}, {direccionEnvio.provincia}</p>
+            <p className="pl-10">{direccionEnvio.departamento}</p>
+            <p className="pl-10">{direccionEnvio.pais}</p>
           </article>
           <article className="flex-1 py-4 pl-7 border rounded-md bg-white">
             <p className="text-lg font-semibold">Pago</p>
-            {ordenes[0].pago.id === 0 ? (
-              <ul className="list-disc pl-5">
-                <li>{ordenes[0].pago.nombre}</li>
-              </ul>
-            ) : (
-              <ul className="list-disc pl-5">
-                <li>{ordenes[0].pago.nombre}</li>
-                <p>Tarjeta de Crédito que termina en ****8859</p>
-              </ul>
-            )}
+            <ul className="list-disc pl-5">
+              {pago.id === 1 || pago.id === 4 ? (
+                  <li>{pago.name}</li>
+              ) : ( 
+                <>
+                  <li>{pago.name}</li>
+                  <p>{pago.name + " que termina en ****8859"}</p>
+                </>
+              )}
+            </ul>
           </article>
         </section>
 
@@ -110,15 +167,9 @@ function Detalle() {
 
         <section className="mb-6">
           <article className="flex-1 py-4 pl-7 border rounded-md bg-white">
-            {ordenes[0].envio.id === 0 ? (
-              <ul className="list-disc pl-5 grid justify-center">
-                <li>Económico Aéreo - S/10.00</li>
-              </ul>
-            ) : (
-              <ul className="list-disc pl-5 grid justify-center">
-                <li>Envío prioritario (5 a 10 días) - S/17.00</li>
-              </ul>
-            )}
+            <ul className="list-disc pl-5 grid justify-center">
+              <li>{envio.name} - S/{envio.precio.toFixed(2)}</li>
+            </ul>
           </article>
         </section>
 
@@ -127,10 +178,12 @@ function Detalle() {
             <p className="text-lg font-semibold">Items en Pedido:</p>
             <table className="min-w-full divide-y divide-gray-200">
               <tbody className="divide-y divide-gray-200">
-                <tr>
-                  <td className="py-2">(cantidad)x (Nombre de producto)</td>
-                  <td className="py-2">(precio)</td>
-                </tr>
+                {productos.map((producto, index) => (
+                  <tr key={index}>
+                    <td className="py-2">{producto.cantidad}x {producto.title}</td>
+                    <td className="py-2">S/{producto.precioTotal.toFixed(2)}</td>
+                  </tr>
+                ))}
               </tbody>
             </table>
           </article>
@@ -140,19 +193,19 @@ function Detalle() {
               <table className="w-96 divide-y divide-gray-200">
                 <tr className="text-center">
                   <td className="py-2">Subtotal:</td>
-                  <td className="py-2">{detalleOrden.subtotal}</td>
+                  <td className="py-2">S/{detalleOrden.subtotal.toFixed(2)}</td>
                 </tr>
                 <tr className="text-center">
                   <td className="py-2">Envío:</td>
-                  <td className="py-2">{ordenes[0].envio.precio}</td>
+                  <td className="py-2">S/{envio.precio.toFixed(2)}</td>
                 </tr>
                 <tr className="text-center">
                   <td className="py-2">Impuestos:</td>
-                  <td className="py-2">{detalleOrden.impuesto}</td>
+                  <td className="py-2">S/{detalleOrden.impuesto.toFixed(2)}</td>
                 </tr>
                 <tr className="text-center">
                   <td className="py-2">Total:</td>
-                  <td className="py-2">{detalleOrden.total}</td>
+                  <td className="py-2">S/{detalleOrden.total.toFixed(2)}</td>
                 </tr>
               </table>
             </div>
