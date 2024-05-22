@@ -1,6 +1,10 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react';
+import { useParams } from "react-router-dom";
+import PaginaError from "../../../componentes/PaginaError";
 
 function Detalle() {
+  const { id } = useParams();
+  const [detalleOrden, setDetalleOrdenes] = useState([]);
 
   const ordenes = [
     { id: 1, direccion: { avenida: "Santa Ana", numero: "456", refer: "asd asd", distrito: "Lince", provincia: "Lima Metropolitana", departamento: "Lima", pais: "Perú" },
@@ -13,6 +17,53 @@ function Detalle() {
     { id: 2, user: 104, fechaOrden: '2024-05-22', total: 'S/63.26', productos: 2, estado: 'Entregado' },
     { id: 3, user: 103, fechaOrden: '2024-05-09', total: 'S/61.34', productos: 3, estado: 'Pendiente' },
   ]
+
+  useEffect(() => {
+    const ordenesData = JSON.parse(localStorage.getItem('ordenes'));
+  
+    if (ordenesData) {
+      const detalle = ordenesData.find(orden => String(orden.numero) === String(id));
+      if (detalle) {
+        setDetalleOrdenes(detalle);
+        console.log(detalle);
+      }
+    }
+  }, [id]);
+  
+
+
+  // Condicionalidad para la existencia del detalle de la orden
+  if (detalleOrden.length === 0) {
+    return <PaginaError />;
+  }
+
+  // useEffect(() => {
+  //   const usuariosData = JSON.parse(localStorage.getItem('usuarios'));
+  //   const ordenesData = JSON.parse(localStorage.getItem('ordenes'));
+  
+  //   if (usuariosData && ordenesData) {
+  //     // Crear una nueva lista combinando información de personas y usuarios
+  //     const nuevaLista = ordenesData.map(usuario => {
+  //       // Buscar la persona correspondiente al usuario
+  //       const usuario = personasData.find(persona => String(persona.id) === String(usuario.persona_id));
+  
+  //       // Combinar información de persona y usuario
+  //       return {
+  //         id: usuario.id,
+  //         nombre: persona.nombre,
+  //         apellido: persona.apellido,
+  //         correo: usuario.correo,
+  //         fechaRegistro: usuario.fechaRegistro,
+  //         estado: usuario.estado
+  //       };
+  //     }
+  //   ).filter(usuario => usuario !== null); // Filtrar los usuarios nulos
+  //     console.log(nuevaLista)
+  //     setDetalleOrdenes(nuevaLista);
+  //   }
+  // }, id);
+
+
   return (
     <>
       <header>
@@ -21,7 +72,7 @@ function Detalle() {
       <main className="p-4 bg-gray-50">
         {/* Seccion de la parte superior */}
         <section className="mb-4">
-          <h1 className="text-2xl font-bold">Detalles de Orden Nro {ordenes[0].id}</h1>
+          <h1 className="text-2xl font-bold">Detalles de Orden Nro {detalleOrden.numero}</h1>
         </section>
 
         {/* Seccion de la parte de los datos de compra */}
@@ -89,7 +140,7 @@ function Detalle() {
               <table className="w-96 divide-y divide-gray-200">
                 <tr className="text-center">
                   <td className="py-2">Subtotal:</td>
-                  <td className="py-2">{ordenes[0].subtotal}</td>
+                  <td className="py-2">{detalleOrden.subtotal}</td>
                 </tr>
                 <tr className="text-center">
                   <td className="py-2">Envío:</td>
@@ -97,11 +148,11 @@ function Detalle() {
                 </tr>
                 <tr className="text-center">
                   <td className="py-2">Impuestos:</td>
-                  <td className="py-2">{ordenes[0].impuesto*ordenes[0].subtotal}</td>
+                  <td className="py-2">{detalleOrden.impuesto}</td>
                 </tr>
                 <tr className="text-center">
                   <td className="py-2">Total:</td>
-                  <td className="py-2">{ordenes[0].total}</td>
+                  <td className="py-2">{detalleOrden.total}</td>
                 </tr>
               </table>
             </div>

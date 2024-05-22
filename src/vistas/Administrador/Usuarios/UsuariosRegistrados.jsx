@@ -40,7 +40,6 @@ function UsuariosRegistrados() {
         };
       }
     );
-    // Si necesitas establecer esta nueva lista en el estado, hazlo aquí
     setUsuarios(nuevaLista);
     }
   }, []);

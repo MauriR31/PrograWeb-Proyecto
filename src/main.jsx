@@ -1,15 +1,3 @@
-<<<<<<< HEAD
-import React from "react";
-import ReactDOM from "react-dom/client";
-import App from "./App.jsx";
-import "./index.css";
-import {
-  createBrowserRouter,
-  RouterProvider,
-  Route,
-  Link,
-} from "react-router-dom";
-=======
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 import App from './App.jsx'
@@ -33,7 +21,6 @@ import UsuarioData from './data/Usuario.json';
 import UsuarioDireccionData from './data/UsuarioDireccion.json';
 
 
->>>>>>> 06922567feaca9e20d1b5f2dd5c7be48ebaa6473
 //el useContext
 import { DatosProvider } from "./context/Datos.jsx";
 
@@ -185,9 +172,6 @@ const router = createBrowserRouter([
   },
 ]);
 
-<<<<<<< HEAD
-ReactDOM.createRoot(document.getElementById("root")).render(
-=======
   // Guardar datos en el Local Storage solo si no existen
   const guardarEnLocalStorage = (clave, datos) => {
     if (!localStorage.getItem(clave)) {
@@ -212,7 +196,6 @@ ReactDOM.createRoot(document.getElementById("root")).render(
   guardarEnLocalStorage("usuarioDireccion", UsuarioDireccionData);
 
 ReactDOM.createRoot(document.getElementById('root')).render(
->>>>>>> 06922567feaca9e20d1b5f2dd5c7be48ebaa6473
   <React.StrictMode>
     <DatosProvider>
       <RouterProvider router={router} />
