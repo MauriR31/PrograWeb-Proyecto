@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import React from "react";
 import ReactDOM from "react-dom/client";
 import App from "./App.jsx";
@@ -8,6 +9,31 @@ import {
   Route,
   Link,
 } from "react-router-dom";
+=======
+import React from 'react'
+import ReactDOM from 'react-dom/client'
+import App from './App.jsx'
+import './index.css'
+import {createBrowserRouter, RouterProvider, Route, Link} from "react-router-dom";
+
+// Importar los datos JSON
+import DepartamentoData from './data/Departamento.json';
+import DetalleData from './data/Detalle.json';
+import DireccionData from './data/Direccion.json';
+import DistritoData from './data/Distrito.json';
+import EnvioData from './data/Envio.json';
+import MedioPagoData from './data/MedioPago.json';
+import OrdenData from './data/Orden.json';
+import PagoData from './data/Pago.json';
+import PaisData from './data/Pais.json';
+import PersonaData from './data/Persona.json';
+import ProductoData from './data/Producto.json';
+import ProvinciaData from './data/Provincia.json';
+import UsuarioData from './data/Usuario.json';
+import UsuarioDireccionData from './data/UsuarioDireccion.json';
+
+
+>>>>>>> 06922567feaca9e20d1b5f2dd5c7be48ebaa6473
 //el useContext
 import { DatosProvider } from "./context/Datos.jsx";
 
@@ -159,7 +185,34 @@ const router = createBrowserRouter([
   },
 ]);
 
+<<<<<<< HEAD
 ReactDOM.createRoot(document.getElementById("root")).render(
+=======
+  // Guardar datos en el Local Storage solo si no existen
+  const guardarEnLocalStorage = (clave, datos) => {
+    if (!localStorage.getItem(clave)) {
+        localStorage.setItem(clave, JSON.stringify(datos));
+    }
+  };  
+
+  // Cargar los datos JSON al localStorage si no están ya almacenados
+  guardarEnLocalStorage("departamentos", DepartamentoData);
+  guardarEnLocalStorage("detalles", DetalleData);
+  guardarEnLocalStorage("direcciones", DireccionData);
+  guardarEnLocalStorage("distritos", DistritoData);
+  guardarEnLocalStorage("envios", EnvioData);
+  guardarEnLocalStorage("mediosPago", MedioPagoData);
+  guardarEnLocalStorage("ordenes", OrdenData);
+  guardarEnLocalStorage("pagos", PagoData);
+  guardarEnLocalStorage("paises", PaisData);
+  guardarEnLocalStorage("personas", PersonaData);
+  guardarEnLocalStorage("productos", ProductoData);
+  guardarEnLocalStorage("provincias", ProvinciaData);
+  guardarEnLocalStorage("usuarios", UsuarioData);
+  guardarEnLocalStorage("usuarioDireccion", UsuarioDireccionData);
+
+ReactDOM.createRoot(document.getElementById('root')).render(
+>>>>>>> 06922567feaca9e20d1b5f2dd5c7be48ebaa6473
   <React.StrictMode>
     <DatosProvider>
       <RouterProvider router={router} />

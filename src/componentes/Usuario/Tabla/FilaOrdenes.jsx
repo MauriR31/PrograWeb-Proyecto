@@ -5,16 +5,18 @@ function FilaOrdenes(props) {
   const meses = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", 
                 "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"]
   return(
-    <tr className="flex">
-        <td className=" ">
+    <tr className="bg-slate-200 h-28 border-2 even:bg-slate-50">
+        <td className="pl-8 w-[43.75rem]">
           <ol>
-            <li>Orden { props.items } items</li>
-            <li>Fecha:{ props.fecha.getDay() } de { meses[ props.fecha.getMonth() ] } del { props.fecha.getFullYear() }</li>
-            <li>Enviado a:{ props.destino }</li>
+            <li className="text-sm mb-1">Orden { props.items } items</li>
+            <li className="text-sm mb-1">Fecha:{ props.fecha.getDay() } de { meses[ props.fecha.getMonth() ] } del { props.fecha.getFullYear() }</li>
+            <li className="text-sm mb-1">Enviado a:{ props.destino }</li>
           </ol>
         </td>
-        <td className="">Orden Nro:{ props.numeroOrden }</td>    
-        <td className=""><Link to={`/Admin/UsersLog/Detail/${props.id}`}>Ver detalle</Link></td>                         
+        <td className="text-right ">Orden Nro:{ props.numeroOrden }</td>    
+        <td className="text-right pr-8" >
+          <Link to={`/Admin/OrdenLog/Detail/${props.id}`}
+            className="hover:underline hover:text-red-600">Ver detalle</Link></td>                         
     </tr>
   )
 }

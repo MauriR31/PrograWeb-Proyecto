@@ -27,11 +27,11 @@ function TablaOrdenes() {
   }  
   function handleOrdenar() {
     if(ordenar === ''){
-      setOrdenar('(mas antiguas primero)')
+      setOrdenar('(mas antiguas primero) ↑')
       ascendente()
     }
-    else if(ordenar === '(mas antiguas primero)'){
-      setOrdenar('(mas recientes primero)')  
+    else if(ordenar === '(mas antiguas primero) ↑') {
+      setOrdenar('(mas recientes primero) ↓')  
       descendente()   
     }
     else{
@@ -44,23 +44,25 @@ function TablaOrdenes() {
   const inicio = fin-3
   const ordenesPagina = datosPagina.datos.slice(inicio,fin)  
   return(
-    <>    
-    <section id="Ordenes">
-      <table className="flex flex-col flex-grow rounded-md bg-slate-50">
-        <thead >
-          <tr>
-            <th className="">Ordenes Recientes</th>
-            <th className="" colSpan="2" onClick={handleOrdenar}>Ordenar por fecha {ordenar} </th>
-          </tr>
-        </thead>
-        <tbody >
-        {              
-          //Iterar sobre cada elemento del arreglo y llamando al componenete FilaOrdenes    
-          ordenesPagina.map( (orden) => <FilaOrdenes key={orden.id} {...orden} /> )          
-        }        
-        </tbody>
-      </table>                  
-    </section>      
+    <> 
+      <section className=" h-96 bg-slate-50" >    
+        <table className=" w-full ">
+          <thead>
+            <tr className="bg-slate-500">
+              <th className="text-xl font-normal text-left p-2 pl-8 rounded-s">Ordenes Recientes</th>
+              <th className="text-xl font-normal text-right p-2 pr-8 rounded-e" 
+              colSpan="2" onClick={handleOrdenar}><button className="hover:text-white">Ordenar por fecha {ordenar}</button></th>
+            </tr>
+          </thead>
+          <tbody >
+          {              
+            //Iterar sobre cada elemento del arreglo y llamando al componenete FilaOrdenes    
+            ordenesPagina.map( (orden) => <FilaOrdenes key={orden.id} {...orden} /> )          
+          }        
+          </tbody>
+        </table>  
+      </section>                  
+        
     </>
   )
 }

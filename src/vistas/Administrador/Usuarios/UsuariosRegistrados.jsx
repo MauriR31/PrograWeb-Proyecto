@@ -1,129 +1,72 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from "react-router-dom"
 import BarraCuenta from '../../../componentes/BarraCuenta'
 import BarraPaginacion from '../../../componentes/BarraPaginacion';
+import HCerrarSesion from '../../../componentes/Header/HCerrarSesion';
+import FooterPa from '../../../componentes/Footer';
+
 /** @type {import('tailwindcss').Config} */
 
 function UsuariosRegistrados() {
-  // Ejemplo de array de usuarios
-  const usuarios = [
-    { id: 1, nombre: 'Juan Eustaquio', apellido: 'Pérez Guerrero', correo: 'juan@example.com', fechaRegistro: '2024-05-12', estado: 'Activo' },
-    { id: 2, nombre: 'María', apellido: 'García', correo: 'maria@example.com', fechaRegistro: '2024-05-10', estado: 'Inactivo' },
-    { id: 3, nombre: 'Juan Eustaquio', apellido: 'Pérez Guerrero', correo: 'juan@example.com', fechaRegistro: '2024-05-12', estado: 'Activo' },
-    { id: 4, nombre: 'María', apellido: 'García', correo: 'maria@example.com', fechaRegistro: '2024-05-10', estado: 'Inactivo' },
-    { id: 5, nombre: 'Juan Eustaquio', apellido: 'Pérez Guerrero', correo: 'juan@example.com', fechaRegistro: '2024-05-12', estado: 'Activo' },
-    { id: 6, nombre: 'María', apellido: 'García', correo: 'maria@example.com', fechaRegistro: '2024-05-10', estado: 'Inactivo' },
-    { id: 7, nombre: 'Juan Eustaquio', apellido: 'Pérez Guerrero', correo: 'juan@example.com', fechaRegistro: '2024-05-12', estado: 'Activo' },
-    { id: 8, nombre: 'María', apellido: 'García', correo: 'maria@example.com', fechaRegistro: '2024-05-10', estado: 'Inactivo' },
-    { id: 9, nombre: 'Juan Eustaquio', apellido: 'Pérez Guerrero', correo: 'juan@example.com', fechaRegistro: '2024-05-12', estado: 'Activo' },
-    { id: 10, nombre: 'María', apellido: 'García', correo: 'maria@example.com', fechaRegistro: '2024-05-10', estado: 'Inactivo' },
-    { id: 11, nombre: 'Juan Eustaquio', apellido: 'Pérez Guerrero', correo: 'juan@example.com', fechaRegistro: '2024-05-12', estado: 'Activo' },
-    { id: 12, nombre: 'María', apellido: 'García', correo: 'maria@example.com', fechaRegistro: '2024-05-10', estado: 'Inactivo' },
-    { id: 13, nombre: 'Juan Eustaquio', apellido: 'Pérez Guerrero', correo: 'juan@example.com', fechaRegistro: '2024-05-12', estado: 'Activo' },
-    { id: 14, nombre: 'María', apellido: 'García', correo: 'maria@example.com', fechaRegistro: '2024-05-10', estado: 'Inactivo' },
-    { id: 15, nombre: 'Juan Eustaquio', apellido: 'Pérez Guerrero', correo: 'juan@example.com', fechaRegistro: '2024-05-12', estado: 'Activo' },
-    { id: 16, nombre: 'María', apellido: 'García', correo: 'maria@example.com', fechaRegistro: '2024-05-10', estado: 'Inactivo' },
-    { id: 17, nombre: 'Juan Eustaquio', apellido: 'Pérez Guerrero', correo: 'juan@example.com', fechaRegistro: '2024-05-12', estado: 'Activo' },
-    { id: 18, nombre: 'María', apellido: 'García', correo: 'maria@example.com', fechaRegistro: '2024-05-10', estado: 'Inactivo' },
-    { id: 19, nombre: 'Juan Eustaquio', apellido: 'Pérez Guerrero', correo: 'juan@example.com', fechaRegistro: '2024-05-12', estado: 'Activo' },
-    { id: 20, nombre: 'María', apellido: 'García', correo: 'maria@example.com', fechaRegistro: '2024-05-10', estado: 'Inactivo' },
-    { id: 21, nombre: 'Juan Eustaquio', apellido: 'Pérez Guerrero', correo: 'juan@example.com', fechaRegistro: '2024-05-12', estado: 'Activo' },
-    { id: 22, nombre: 'María', apellido: 'García', correo: 'maria@example.com', fechaRegistro: '2024-05-10', estado: 'Inactivo' },
-    { id: 23, nombre: 'Juan Eustaquio', apellido: 'Pérez Guerrero', correo: 'juan@example.com', fechaRegistro: '2024-05-12', estado: 'Activo' },
-    { id: 24, nombre: 'María', apellido: 'García', correo: 'maria@example.com', fechaRegistro: '2024-05-10', estado: 'Inactivo' },
-    { id: 25, nombre: 'Juan Eustaquio', apellido: 'Pérez Guerrero', correo: 'juan@example.com', fechaRegistro: '2024-05-12', estado: 'Activo' },
-    { id: 26, nombre: 'María', apellido: 'García', correo: 'maria@example.com', fechaRegistro: '2024-05-10', estado: 'Inactivo' },
-    { id: 27, nombre: 'Juan Eustaquio', apellido: 'Pérez Guerrero', correo: 'juan@example.com', fechaRegistro: '2024-05-12', estado: 'Activo' },
-    { id: 28, nombre: 'María', apellido: 'García', correo: 'maria@example.com', fechaRegistro: '2024-05-10', estado: 'Inactivo' },
-    { id: 29, nombre: 'María', apellido: 'García', correo: 'maria@example.com', fechaRegistro: '2024-05-10', estado: 'Inactivo' },
-    { id: 30, nombre: 'Juan Eustaquio', apellido: 'Pérez Guerrero', correo: 'juan@example.com', fechaRegistro: '2024-05-12', estado: 'Activo' },
-    { id: 31, nombre: 'Juan Eustaquio', apellido: 'Pérez Guerrero', correo: 'juan@example.com', fechaRegistro: '2024-05-12', estado: 'Activo' },
-    { id: 32, nombre: 'María', apellido: 'García', correo: 'maria@example.com', fechaRegistro: '2024-05-10', estado: 'Inactivo' },
-    { id: 33, nombre: 'Juan Eustaquio', apellido: 'Pérez Guerrero', correo: 'juan@example.com', fechaRegistro: '2024-05-12', estado: 'Activo' },
-    { id: 34, nombre: 'María', apellido: 'García', correo: 'maria@example.com', fechaRegistro: '2024-05-10', estado: 'Inactivo' },
-    { id: 35, nombre: 'Juan Eustaquio', apellido: 'Pérez Guerrero', correo: 'juan@example.com', fechaRegistro: '2024-05-12', estado: 'Activo' },
-    { id: 36, nombre: 'María', apellido: 'García', correo: 'maria@example.com', fechaRegistro: '2024-05-10', estado: 'Inactivo' },
-    { id: 37, nombre: 'Juan Eustaquio', apellido: 'Pérez Guerrero', correo: 'juan@example.com', fechaRegistro: '2024-05-12', estado: 'Activo' },
-    { id: 38, nombre: 'María', apellido: 'García', correo: 'maria@example.com', fechaRegistro: '2024-05-10', estado: 'Inactivo' },
-    { id: 39, nombre: 'Juan Eustaquio', apellido: 'Pérez Guerrero', correo: 'juan@example.com', fechaRegistro: '2024-05-12', estado: 'Activo' },
-    { id: 40, nombre: 'María', apellido: 'García', correo: 'maria@example.com', fechaRegistro: '2024-05-10', estado: 'Inactivo' },
-    { id: 41, nombre: 'Juan Eustaquio', apellido: 'Pérez Guerrero', correo: 'juan@example.com', fechaRegistro: '2024-05-12', estado: 'Activo' },
-    { id: 42, nombre: 'María', apellido: 'García', correo: 'maria@example.com', fechaRegistro: '2024-05-10', estado: 'Inactivo' },
-    { id: 43, nombre: 'Juan Eustaquio', apellido: 'Pérez Guerrero', correo: 'juan@example.com', fechaRegistro: '2024-05-12', estado: 'Activo' },
-    { id: 44, nombre: 'María', apellido: 'García', correo: 'maria@example.com', fechaRegistro: '2024-05-10', estado: 'Inactivo' },
-    { id: 45, nombre: 'Juan Eustaquio', apellido: 'Pérez Guerrero', correo: 'juan@example.com', fechaRegistro: '2024-05-12', estado: 'Activo' },
-    { id: 46, nombre: 'María', apellido: 'García', correo: 'maria@example.com', fechaRegistro: '2024-05-10', estado: 'Inactivo' },
-    { id: 47, nombre: 'Juan Eustaquio', apellido: 'Pérez Guerrero', correo: 'juan@example.com', fechaRegistro: '2024-05-12', estado: 'Activo' },
-    { id: 48, nombre: 'María', apellido: 'García', correo: 'maria@example.com', fechaRegistro: '2024-05-10', estado: 'Inactivo' },
-    { id: 49, nombre: 'María', apellido: 'García', correo: 'maria@example.com', fechaRegistro: '2024-05-10', estado: 'Inactivo' },
-    { id: 50, nombre: 'Juan Eustaquio', apellido: 'Pérez Guerrero', correo: 'juan@example.com', fechaRegistro: '2024-05-12', estado: 'Activo' },
-    { id: 51, nombre: 'Juan Eustaquio', apellido: 'Pérez Guerrero', correo: 'juan@example.com', fechaRegistro: '2024-05-12', estado: 'Activo' },
-    { id: 52, nombre: 'María', apellido: 'García', correo: 'maria@example.com', fechaRegistro: '2024-05-10', estado: 'Inactivo' },
-    { id: 53, nombre: 'Juan Eustaquio', apellido: 'Pérez Guerrero', correo: 'juan@example.com', fechaRegistro: '2024-05-12', estado: 'Activo' },
-    { id: 54, nombre: 'María', apellido: 'García', correo: 'maria@example.com', fechaRegistro: '2024-05-10', estado: 'Inactivo' },
-    { id: 55, nombre: 'Juan Eustaquio', apellido: 'Pérez Guerrero', correo: 'juan@example.com', fechaRegistro: '2024-05-12', estado: 'Activo' },
-    { id: 56, nombre: 'María', apellido: 'García', correo: 'maria@example.com', fechaRegistro: '2024-05-10', estado: 'Inactivo' },
-    { id: 57, nombre: 'Juan Eustaquio', apellido: 'Pérez Guerrero', correo: 'juan@example.com', fechaRegistro: '2024-05-12', estado: 'Activo' },
-    { id: 58, nombre: 'María', apellido: 'García', correo: 'maria@example.com', fechaRegistro: '2024-05-10', estado: 'Inactivo' },
-    { id: 59, nombre: 'Juan Eustaquio', apellido: 'Pérez Guerrero', correo: 'juan@example.com', fechaRegistro: '2024-05-12', estado: 'Activo' },
-    { id: 60, nombre: 'María', apellido: 'García', correo: 'maria@example.com', fechaRegistro: '2024-05-10', estado: 'Inactivo' },
-    { id: 61, nombre: 'Juan Eustaquio', apellido: 'Pérez Guerrero', correo: 'juan@example.com', fechaRegistro: '2024-05-12', estado: 'Activo' },
-    { id: 62, nombre: 'María', apellido: 'García', correo: 'maria@example.com', fechaRegistro: '2024-05-10', estado: 'Inactivo' },
-    { id: 63, nombre: 'Juan Eustaquio', apellido: 'Pérez Guerrero', correo: 'juan@example.com', fechaRegistro: '2024-05-12', estado: 'Activo' },
-    { id: 64, nombre: 'María', apellido: 'García', correo: 'maria@example.com', fechaRegistro: '2024-05-10', estado: 'Inactivo' },
-    { id: 65, nombre: 'Juan Eustaquio', apellido: 'Pérez Guerrero', correo: 'juan@example.com', fechaRegistro: '2024-05-12', estado: 'Activo' },
-    { id: 66, nombre: 'María', apellido: 'García', correo: 'maria@example.com', fechaRegistro: '2024-05-10', estado: 'Inactivo' },
-    { id: 67, nombre: 'Juan Eustaquio', apellido: 'Pérez Guerrero', correo: 'juan@example.com', fechaRegistro: '2024-05-12', estado: 'Activo' },
-    { id: 68, nombre: 'María', apellido: 'García', correo: 'maria@example.com', fechaRegistro: '2024-05-10', estado: 'Inactivo' },
-    { id: 69, nombre: 'María', apellido: 'García', correo: 'maria@example.com', fechaRegistro: '2024-05-10', estado: 'Inactivo' },
-    { id: 70, nombre: 'Juan Eustaquio', apellido: 'Pérez Guerrero', correo: 'juan@example.com', fechaRegistro: '2024-05-12', estado: 'Activo' },
-    { id: 71, nombre: 'Juan Eustaquio', apellido: 'Pérez Guerrero', correo: 'juan@example.com', fechaRegistro: '2024-05-12', estado: 'Activo' },
-    { id: 72, nombre: 'María', apellido: 'García', correo: 'maria@example.com', fechaRegistro: '2024-05-10', estado: 'Inactivo' },
-    { id: 73, nombre: 'Juan Eustaquio', apellido: 'Pérez Guerrero', correo: 'juan@example.com', fechaRegistro: '2024-05-12', estado: 'Activo' },
-    { id: 74, nombre: 'María', apellido: 'García', correo: 'maria@example.com', fechaRegistro: '2024-05-10', estado: 'Inactivo' },
-    { id: 75, nombre: 'Juan Eustaquio', apellido: 'Pérez Guerrero', correo: 'juan@example.com', fechaRegistro: '2024-05-12', estado: 'Activo' },
-    { id: 76, nombre: 'María', apellido: 'García', correo: 'maria@example.com', fechaRegistro: '2024-05-10', estado: 'Inactivo' },
-    { id: 77, nombre: 'Juan Eustaquio', apellido: 'Pérez Guerrero', correo: 'juan@example.com', fechaRegistro: '2024-05-12', estado: 'Activo' },
-    { id: 78, nombre: 'María', apellido: 'García', correo: 'maria@example.com', fechaRegistro: '2024-05-10', estado: 'Inactivo' },
-    { id: 79, nombre: 'Juan Eustaquio', apellido: 'Pérez Guerrero', correo: 'juan@example.com', fechaRegistro: '2024-05-12', estado: 'Activo' },
-    { id: 80, nombre: 'María', apellido: 'García', correo: 'maria@example.com', fechaRegistro: '2024-05-10', estado: 'Inactivo' },
-    { id: 81, nombre: 'Juan Eustaquio', apellido: 'Pérez Guerrero', correo: 'juan@example.com', fechaRegistro: '2024-05-12', estado: 'Activo' },
-    { id: 82, nombre: 'María', apellido: 'García', correo: 'maria@example.com', fechaRegistro: '2024-05-10', estado: 'Inactivo' },
-    { id: 83, nombre: 'Juan Eustaquio', apellido: 'Pérez Guerrero', correo: 'juan@example.com', fechaRegistro: '2024-05-12', estado: 'Activo' },
-    { id: 84, nombre: 'María', apellido: 'García', correo: 'maria@example.com', fechaRegistro: '2024-05-10', estado: 'Inactivo' },
-    { id: 85, nombre: 'Juan Eustaquio', apellido: 'Pérez Guerrero', correo: 'juan@example.com', fechaRegistro: '2024-05-12', estado: 'Activo' },
-    { id: 86, nombre: 'María', apellido: 'García', correo: 'maria@example.com', fechaRegistro: '2024-05-10', estado: 'Inactivo' },
-    { id: 87, nombre: 'Juan Eustaquio', apellido: 'Pérez Guerrero', correo: 'juan@example.com', fechaRegistro: '2024-05-12', estado: 'Activo' },
-    { id: 88, nombre: 'María', apellido: 'García', correo: 'maria@example.com', fechaRegistro: '2024-05-10', estado: 'Inactivo' },
-    { id: 89, nombre: 'María', apellido: 'García', correo: 'maria@example.com', fechaRegistro: '2024-05-10', estado: 'Inactivo' },
-    { id: 90, nombre: 'Juan Eustaquio', apellido: 'Pérez Guerrero', correo: 'juan@example.com', fechaRegistro: '2024-05-12', estado: 'Activo' },
-    { id: 91, nombre: 'Juan Eustaquio', apellido: 'Pérez Guerrero', correo: 'juan@example.com', fechaRegistro: '2024-05-12', estado: 'Activo' },
-    { id: 92, nombre: 'María', apellido: 'García', correo: 'maria@example.com', fechaRegistro: '2024-05-10', estado: 'Inactivo' },
-    { id: 93, nombre: 'Juan Eustaquio', apellido: 'Pérez Guerrero', correo: 'juan@example.com', fechaRegistro: '2024-05-12', estado: 'Activo' },
-    { id: 94, nombre: 'María', apellido: 'García', correo: 'maria@example.com', fechaRegistro: '2024-05-10', estado: 'Inactivo' },
-    { id: 95, nombre: 'Juan Eustaquio', apellido: 'Pérez Guerrero', correo: 'juan@example.com', fechaRegistro: '2024-05-12', estado: 'Activo' },
-    { id: 96, nombre: 'María', apellido: 'García', correo: 'maria@example.com', fechaRegistro: '2024-05-10', estado: 'Inactivo' },
-    { id: 97, nombre: 'Juan Eustaquio', apellido: 'Pérez Guerrero', correo: 'juan@example.com', fechaRegistro: '2024-05-12', estado: 'Activo' },
-    { id: 98, nombre: 'María', apellido: 'García', correo: 'maria@example.com', fechaRegistro: '2024-05-10', estado: 'Inactivo' },
-    { id: 99, nombre: 'Juan Eustaquio', apellido: 'Pérez Guerrero', correo: 'juan@example.com', fechaRegistro: '2024-05-12', estado: 'Activo' },
-    { id: 100, nombre: 'María', apellido: 'García', correo: 'maria@example.com', fechaRegistro: '2024-05-10', estado: 'Inactivo' },
-    { id: 101, nombre: 'Juan Eustaquio', apellido: 'Pérez Guerrero', correo: 'juan@example.com', fechaRegistro: '2024-05-12', estado: 'Activo' },
-    { id: 102, nombre: 'Juan Eustaquio', apellido: 'Pérez Guerrero', correo: 'juan@example.com', fechaRegistro: '2024-05-12', estado: 'Activo' },
-    { id: 103, nombre: 'Diego Eustaquio', apellido: 'Pérez Guerrero', correo: 'juan@example.com', fechaRegistro: '2024-05-12', estado: 'Activo' },
-    { id: 104, nombre: 'Juan Eustaquio', apellido: 'Rivero Guerrero', correo: 'juan@gmail.com', fechaRegistro: '2024-05-12', estado: 'Activo' },
-    // Agrega más usuarios aquí
-  ];
-  
-  // Establecimiento la separacion de los usuarios en base a una cantidad y la obtencion de parametros de paginacion
-  // Estado para el índice de la página actual
-  const [paginaActual, setPaginaActual] = useState(1);
+  // Variables globales
   // Cantidad de usuarios a mostrar por página
   const usuariosPorPagina = 10;
 
+  // Estado de la informacion del usuario
+  const [usuarios, setUsuarios] = useState([])
+  // Estado para el índice de la página actual
+  const [paginaActual, setPaginaActual] = useState(1);
+  // Estado para la busqueda de usuarios
   const [buscarUsuario, setbuscarUsuario] = useState('');
+
+  useEffect(() => {
+    const usuariosData = JSON.parse(localStorage.getItem('usuarios'));
+    const personasData = JSON.parse(localStorage.getItem('personas'));
+
+    if (usuariosData && personasData) {
+      // Crear una nueva lista combinando información de personas y usuarios
+      const nuevaLista = usuariosData.map(usuario => {
+        // Buscar la persona correspondiente al usuario
+        const persona = personasData.find(persona => String(persona.id) === String(usuario.persona_id));
+  
+        // Combinar información de persona y usuario
+        return {
+          id: usuario.id,
+          nombre: persona.nombre,
+          apellido: persona.apellido,
+          correo: usuario.correo,
+          fechaRegistro: usuario.fechaRegistro,
+          estado: usuario.estado
+        };
+      }
+    );
+    // Si necesitas establecer esta nueva lista en el estado, hazlo aquí
+    setUsuarios(nuevaLista);
+    }
+  }, []);
+
+  // Función para actualizar los usuarios
+  const cambiarEstadoUsuario = (index) => {
+    setUsuarios(prevUsuarios =>
+        prevUsuarios.map(usuario =>
+            usuario.id === index ? { ...usuario, estado: usuario.estado === 'Activo' ? 'Inactivo' : 'Activo' } : usuario
+        )
+    );
+    // Actualizar el estado en el Local Storage
+    const usuariosLocalStorage = JSON.parse(localStorage.getItem('usuarios'));
+    const usuariosActualizados = usuariosLocalStorage.map(usuario => {
+        if (usuario.id === index) {
+            return { ...usuario, estado: usuario.estado === 'Activo' ? 'Inactivo' : 'Activo' };
+        }
+        return usuario;
+    });
+    localStorage.setItem('usuarios', JSON.stringify(usuariosActualizados));
+  };
+  
+  // Funcion que cuando se realiza una nueva búsqueda, cambie el estado y vulve a la primera página
   const handleSearchChange = (e) => {
     setbuscarUsuario(e.target.value);
-    setPaginaActual(1); // Cuando se realiza una nueva búsqueda, volvemos a la primera página
+    setPaginaActual(1);
   };
   
   // Filtrar usuarios basados en el término de búsqueda
@@ -155,6 +98,9 @@ function UsuariosRegistrados() {
 
   return (
     <>
+      <header>
+        <HCerrarSesion />
+      </header>
       <div className="flex">
         <BarraCuenta />
         <main id="MainUsuariosRegistradosAdmin" className="flex flex-col w-5/6">
@@ -184,25 +130,28 @@ function UsuariosRegistrados() {
               <p className="flex-none w-40">Acciones</p>
             </article>
             {/* Cuerpo de la lista de usuarios registrados */}
-            {usuariosEnPagina.map(usuario => (
-              <article key={usuario.id} className="flex bg-white p-2">
-                <p className="flex-none w-12">{usuario.id}</p>
-                <p className="flex-auto w-60">{usuario.nombre}</p>
-                <p className="flex-auto w-60">{usuario.apellido}</p>
-                <p className="flex-auto w-96">{usuario.correo}</p>
-                <p className="flex-none w-28">{usuario.fechaRegistro}</p>
-                <p className="flex-none w-20">{usuario.estado}</p>
-                {/* Columna de Acciones */}
-                <p className="flex-none w-40">
-                <Link to={`/Admin/UsersLog/Detail/${usuario.id}`} className="px-2 py-1 bg-blue-500 text-white rounded-md mr-2">Ver</Link>
-                  {usuario.estado === 'Activo' ? (
-                    <button className="px-2 py-1 bg-green-500 text-white rounded-md">Activado</button>
-                  ) : (
-                    <button className="px-2 py-1 bg-red-500 text-white rounded-md">Desactivado</button>
-                  )}
-                </p>
-              </article>
-            ))}
+            <div className='h-[450px]'>
+              {usuariosEnPagina.map(usuario => (
+                <article key={usuario.id} className="flex bg-white p-2">
+                  <p className="flex-none w-12">{usuario.id}</p>
+                  <p className="flex-auto w-60">{usuario.nombre}</p>
+                  <p className="flex-auto w-60">{usuario.apellido}</p>
+                  <p className="flex-auto w-96">{usuario.correo}</p>
+                  <p className="flex-none w-28">{usuario.fechaRegistro}</p>
+                  <p className="flex-none w-20">{usuario.estado}</p>
+                  {/* Columna de Acciones */}
+                  <p className="flex-none w-40">
+                    <Link to={`/Admin/UsersLog/Detail/${usuario.id}`} className="px-2 py-1 bg-blue-500 text-white rounded-md mr-2">Ver</Link>
+                    <button
+                      className={`px-2 py-1 rounded-md ${usuario.estado === 'Activo' ? 'bg-red-500' : 'bg-green-500'} text-white`}
+                      onClick={() => cambiarEstadoUsuario(usuario.id)}
+                    >
+                      {usuario.estado === 'Activo' ? 'Desactivar' : 'Activar'}
+                    </button>
+                  </p>
+                </article>
+              ))}
+            </div>
           </section>
 
           {/* Barra de paginación */}
@@ -214,7 +163,10 @@ function UsuariosRegistrados() {
             />
           </section>
         </main>
-      </div>  
+      </div>
+      <footer>
+        <FooterPa />
+      </footer>
     </>
   );
 }

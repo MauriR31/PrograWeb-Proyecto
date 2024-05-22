@@ -27,7 +27,7 @@ function ProductTable() {
             <a href="#" className="text-gray-600 hover:text-gray-800">Ayuda</a>
           </div>
 
-          <Link to="/mi-cuenta" className="Cuenta bg-gray-700 text-white py-2 px-4 rounded-lg text-sm hover:bg-gray-800 mr-1">Mi Cuenta</Link>
+          <Link to="/login" className="Cuenta bg-gray-700 text-white py-2 px-4 rounded-lg text-sm hover:bg-gray-800 mr-1">Mi Cuenta</Link>
         </nav>
       </div>
     </header>

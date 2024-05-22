@@ -1,0 +1,18 @@
+[
+    {
+      "id": "1",
+      "name": "QR"
+    },
+    {
+      "id": "2",
+      "name": "Tarjeta de Credito"
+    },
+    {
+        "id": "3",
+        "name": "Tarjeta de Debito"
+    },
+    {
+        "id": "4",
+        "name": "Tarjeta de Regalo"
+    }
+]

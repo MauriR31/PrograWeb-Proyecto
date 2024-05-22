@@ -29,7 +29,7 @@ function PaginacionUI() {
 
   return(
     <>
-      <div className="barraPag">
+      <div className="flex flex-row-reverse">
         <Stack >        
           <Pagination count={numpage} 
             shape="rounded" size="large" color="primary" page={paginacion.page} onChange={handleChange} showFirstButton showLastButton 

@@ -12,6 +12,7 @@ export default {
       },
       width: {
         '350px':'21.875rem',
+        '700px':'43.75rem',
       }
     },
   },

@@ -2,10 +2,14 @@ import React from "react";
 
 const Footer = () => {
   return (
+<<<<<<< HEAD
     <footer
       className="bg-gray-800 text-white py-8"
       style={{ marginTop: "40px" }}
     >
+=======
+    <footer className="bg-gray-800 text-white py-8" style={{}}>
+>>>>>>> 06922567feaca9e20d1b5f2dd5c7be48ebaa6473
       <div className="container mx-auto flex flex-wrap justify-between">
         <div
           className="w-full sm:w-1/2 md:w-1/4 lg:w-1/6 mb-6 sm:mb-0 px-2"
