@@ -3,6 +3,8 @@ import { Link } from "react-router-dom";
 import { useParams } from "react-router-dom";
 import BarraCuenta from "../../../componentes/BarraCuenta";
 import PaginaError from "../../../componentes/PaginaError";
+import HVacio from "../../../componentes/Header/HVacio";
+import Footer from "../../../componentes/Footer";
 
 function Detalle() {
   const { id } = useParams();
@@ -89,6 +91,7 @@ function Detalle() {
 
   return (
     <>
+      <HVacio />
       <div className="flex">
         <BarraCuenta />
         <main className="flex flex-col w-5/6">
@@ -143,6 +146,7 @@ function Detalle() {
           </section>
         </main>
       </div>
+      <Footer />
     </>
   );
 }

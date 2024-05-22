@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { Link } from "react-router-dom"
 import BarraCuenta from '../../../componentes/BarraCuenta'
 import BarraPaginacion from '../../../componentes/BarraPaginacion';
+import HVacio from '../../../componentes/Header/HVacio';
+import Footer from '../../../componentes/Footer';
 /** @type {import('tailwindcss').Config} */
 
 function Ordenes() {
@@ -85,6 +87,7 @@ function Ordenes() {
 
   return (
     <>
+      <HVacio />
       <div className="flex">
         <BarraCuenta />
         <main className="flex flex-col w-5/6">
@@ -140,6 +143,7 @@ function Ordenes() {
           </section>
         </main>
       </div>
+      <Footer />
     </>
   );
 }
