@@ -12,7 +12,7 @@ function ContenidoLogin() {
       navigate("/usuarios/main")
     }
     else if(user === "admin" && password === "admin") {
-      navigate("/Admin/UsersLog")
+      navigate("/dashboard")
     }
     else{      
       setmensajeIncorrecto(<ErrorLogin />)               
