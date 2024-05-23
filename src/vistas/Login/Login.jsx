@@ -1,12 +1,11 @@
 import ContenidoLogin from "../../componentes/ContenidoLogin/ContenidoLogin.jsx"
 import Footer from "../../componentes/Footer.jsx"
+import HVacio from "../../componentes/Header/HVacio.jsx"
 function Login(){  
-  
   return(
-    <>  
-      {/*Falta el header
-      */}
-      <ContenidoLogin />  
+    <>      
+      <HVacio /> 
+      <ContenidoLogin /> 
       <Footer />
     </>
   )

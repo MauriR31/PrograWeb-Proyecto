@@ -6,14 +6,20 @@ export default {
   ],
   theme: {
     extend: {
-      height: {
-        '560px':'35rem',
-        '430px':'26.875rem',
+      spacing: {
+        '128': '32rem',
+      },
+      height: {    
+        '658px':'41.125rem',
+        '496px':'31rem',
       },
       width: {
         '350px':'21.875rem',
         '700px':'43.75rem',
-      }
+      },
+      colors: {
+        'azul-custom':'#0c2941',
+      },
     },
   },
   plugins: [],

@@ -19,8 +19,8 @@ function ProductTable() {
 
         <nav className="ml-0 lg:ml-auto flex items-center">
           <a href="#" className="Carrito mr-10">
-            <img src="https://icons.veryicon.com/png/o/miscellaneous/forestry-in-yiliang/shop-car.png"
-              alt="Carrito de Compras" className="w-8 h-8" />
+              <Link to="/carrito"><img src="https://icons.veryicon.com/png/o/miscellaneous/forestry-in-yiliang/shop-car.png"
+              alt="Carrito de Compras" className="w-8 h-8" /></Link>
           </a>
 
           <div className="help hidden lg:block mr-8">

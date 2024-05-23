@@ -2,7 +2,7 @@ import React from "react";
 
 const Footer = () => {
   return (
-    <footer className="bg-gray-800 text-white py-8" style={{}}>
+    <footer className="text-white py-8" style={{ backgroundColor:'#0c2941' }}>
       <div className="container mx-auto flex flex-wrap justify-between">
         <div
           className="w-full sm:w-1/2 md:w-1/4 lg:w-1/6 mb-6 sm:mb-0 px-2"
@@ -82,8 +82,8 @@ const Footer = () => {
           <h3 className="text-lg font-bold mb-4">Redes Sociales</h3>
           <ul className="flex">
             <li className="mr-4" style={{ marginTop: "22px" }}>
-              <a href="#">
-                <span class="[&>svg]:h-5 [&>svg]:w-5">
+              <a href="https://www.facebook.com/?locale=es_LA">
+                <span className="[&>svg]:h-5 [&>svg]:w-5">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     fill="currentColor"
@@ -99,8 +99,8 @@ const Footer = () => {
               className="mr-4"
               style={{ marginTop: "22px", marginLeft: "20px" }}
             >
-              <a href="#">
-                <span class="[&>svg]:h-5 [&>svg]:w-5">
+              <a href="https://www.instagram.com/">
+                <span className="[&>svg]:h-5 [&>svg]:w-5">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     fill="currentColor"
@@ -116,8 +116,8 @@ const Footer = () => {
               className="mr-4"
               style={{ marginTop: "22px", marginLeft: "20px" }}
             >
-              <a href="#">
-                <span class="[&>svg]:h-5 [&>svg]:w-5">
+              <a href="https://x.com/?lang=es">
+                <span className="[&>svg]:h-5 [&>svg]:w-5">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     fill="currentColor"
@@ -130,8 +130,8 @@ const Footer = () => {
             </li>
 
             <li style={{ marginTop: "22px", marginLeft: "20px" }}>
-              <a href="#">
-                <span class="[&>svg]:h-5 [&>svg]:w-5">
+              <a href="https://www.youtube.com/">
+                <span className="[&>svg]:h-5 [&>svg]:w-5">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     fill="currentColor"
