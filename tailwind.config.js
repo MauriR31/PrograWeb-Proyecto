@@ -6,9 +6,9 @@ export default {
   ],
   theme: {
     extend: {
-      height: {
-        '560px':'35rem',
-        '430px':'26.875rem',
+      height: {    
+        '658px':'41.125rem',
+        '496px':'31rem',
       },
       width: {
         '350px':'21.875rem',

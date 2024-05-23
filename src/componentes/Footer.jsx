@@ -83,7 +83,7 @@ const Footer = () => {
           <ul className="flex">
             <li className="mr-4" style={{ marginTop: "22px" }}>
               <a href="#">
-                <span class="[&>svg]:h-5 [&>svg]:w-5">
+                <span className="[&>svg]:h-5 [&>svg]:w-5">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     fill="currentColor"
@@ -100,7 +100,7 @@ const Footer = () => {
               style={{ marginTop: "22px", marginLeft: "20px" }}
             >
               <a href="#">
-                <span class="[&>svg]:h-5 [&>svg]:w-5">
+                <span className="[&>svg]:h-5 [&>svg]:w-5">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     fill="currentColor"
@@ -117,7 +117,7 @@ const Footer = () => {
               style={{ marginTop: "22px", marginLeft: "20px" }}
             >
               <a href="#">
-                <span class="[&>svg]:h-5 [&>svg]:w-5">
+                <span className="[&>svg]:h-5 [&>svg]:w-5">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     fill="currentColor"
@@ -131,7 +131,7 @@ const Footer = () => {
 
             <li style={{ marginTop: "22px", marginLeft: "20px" }}>
               <a href="#">
-                <span class="[&>svg]:h-5 [&>svg]:w-5">
+                <span className="[&>svg]:h-5 [&>svg]:w-5">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     fill="currentColor"

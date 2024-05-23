@@ -2,50 +2,69 @@
 import FilaOrdenes from "./FilaOrdenes";
 //UseContext
 import { useDatos } from "../../../context/Datos";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 function TablaOrdenes() {  
   const datosPagina = useDatos()
-  const [ordenar, setOrdenar] = useState('')   
-  console.log(datosPagina.datos)
+
+  //Guarda el el filtro de orden al refrescar
+  const guardarOrden = () =>{
+    const localStorageOrden = localStorage.getItem('ordenar')
+    return localStorageOrden ? JSON.parse(localStorageOrden) : ''
+  }  
+
+  const [ordenar, setOrdenar] = useState(guardarOrden) 
+    
+  useEffect(() => {      
+    localStorage.setItem('ordenar', JSON.stringify(ordenar))    
+  },[ordenar])
+
+
+  //Copia del arreglo original para no modificarlo
+  const copia = datosPagina.datos.map(copy => copy)  
+
   function original(){
-    datosPagina.datos.sort( (k1, k2) => {
+    copia.sort( (k1, k2) => {
       if (k1.id < k2.id) return -1     
-    })
-  }
+    })       
+  }  
+  
   //Ordenar por fecha mas reciente
   function ascendente () {
-    datosPagina.datos.sort( (f1, f2) => {
+    copia.sort( (f1, f2) => {
       if (f1.fecha < f2.fecha) return -1   
     })
   }
   //Ordenar por fecha mas antigua
   function descendente() {
-    datosPagina.datos.sort( (f1, f2) => {
+    copia.sort( (f1, f2) => {
       if (f1.fecha > f2.fecha) return -1          
     })
   }  
   function handleOrdenar() {
-    if(ordenar === ''){
-      setOrdenar('(mas antiguas primero) ↑')
-      ascendente()
+    if(ordenar === ''){      
+      setOrdenar('(mas antiguas primero) ↑')  
+      ascendente() 
+      datosPagina.setDatos(copia)   
     }
-    else if(ordenar === '(mas antiguas primero) ↑') {
+    else if(ordenar === '(mas antiguas primero) ↑') {      
       setOrdenar('(mas recientes primero) ↓')  
-      descendente()   
+      descendente()     
+      datosPagina.setDatos(copia) 
     }
-    else{
-      setOrdenar('')   
-      original() 
+    else{      
+      setOrdenar('') 
+      original()  
+      datosPagina.setDatos(copia)     
     }
   }
-  console.log(ordenar)
-  const fin= datosPagina.page * 3
-  const inicio = fin-3
+  const filasxtabla = 4
+  const fin= datosPagina.page * filasxtabla
+  const inicio = fin-filasxtabla
   const ordenesPagina = datosPagina.datos.slice(inicio,fin)  
   return(
     <> 
-      <section className=" h-96 bg-slate-50" >    
+      <section className=" h-[31rem] bg-slate-50" >    
         <table className=" w-full ">
           <thead>
             <tr className="bg-slate-500">
