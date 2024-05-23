@@ -36,11 +36,11 @@ import AdListOrdenes from "./vistas/Administrador/Ordenes/Ordenes.jsx";
 import AdListOrdDetalle from "./vistas/Administrador/Ordenes/Detalle.jsx";
 
 // Parte de Valdivia
-import Nuevos from "./vistas/Pagina/Principal/Nuevos.jsx";
-import MasVendidos from "./vistas/Pagina/Principal/MasVendidos.jsx";
-import Ofertas from "./vistas/Pagina/Principal/Ofertas.jsx";
-import Busqueda from "./vistas/Pagina/Principal/Busqueda.jsx";
-import DetalleProducto from "./vistas/Pagina/Principal/DetalleProducto.jsx";
+import Nuevos from './vistas/Pagina/Principal/Nuevos/Nuevos.jsx';
+import MasVendidos from './vistas/Pagina/Principal/MasVendidos/MasVendidos.jsx';
+import Ofertas from './vistas/Pagina/Principal/Ofertas/Ofertas.jsx';
+import Busqueda from './vistas/Pagina/Principal/Busqueda.jsx';
+import DetalleProducto from './vistas/Pagina/Principal/DetalleProducto.jsx';
 
 // Parte de Carlo
 import PaCarrito from "./vistas/Pagina/Carrito/Carrito.jsx";

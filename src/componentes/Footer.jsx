@@ -19,17 +19,17 @@ const Footer = () => {
           <h3 className="text-lg font-bold mb-4">Cuenta</h3>
           <ul>
             <li style={{ marginTop: "22px" }}>
-              <a href="#" className="text-gray-400 hover:text-white">
+              <a href="/login" className="text-gray-400 hover:text-white">
                 Login
               </a>
             </li>
             <li style={{ marginTop: "22px" }}>
-              <a href="#" className="text-gray-400 hover:text-white">
+              <a href="/registro" className="text-gray-400 hover:text-white">
                 Registro
               </a>
             </li>
             <li style={{ marginTop: "22px" }}>
-              <a href="#" className="text-gray-400 hover:text-white">
+              <a href="/carrito" className="text-gray-400 hover:text-white">
                 Carrito
               </a>
             </li>
@@ -40,12 +40,12 @@ const Footer = () => {
           <h3 className="text-lg font-bold mb-4">Productos</h3>
           <ul>
             <li style={{ marginTop: "22px" }}>
-              <a href="#" className="text-gray-400 hover:text-white">
+              <a href="/" className="text-gray-400 hover:text-white">
                 Inicio
               </a>
             </li>
             <li style={{ marginTop: "22px" }}>
-              <a href="#" className="text-gray-400 hover:text-white">
+              <a href="/acercade" className="text-gray-400 hover:text-white">
                 Acerca de
               </a>
             </li>

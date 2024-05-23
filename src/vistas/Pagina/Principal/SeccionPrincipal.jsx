@@ -1,16 +1,32 @@
 import React, { useState } from 'react';
-import { colecciones, images } from '../Principal/BD_Productos'; // Importa colecciones e images desde BD_Productos
-
+import { useNavigate } from 'react-router-dom';
+import { colecciones, images } from '../Principal/BD_Productos';
 
 const SeccionPrincipal = () => {
-  const [selectedProduct, setSelectedProduct] = useState(null);
+  const [searchTerm, setSearchTerm] = useState('');
+  const [showWarning, setShowWarning] = useState(false);
+  const navigate = useNavigate();
 
-  const handleProductSelection = (product) => {
-   
-    const selectedRow = images.find((row) => row.some((image) => image.id === product.id));
-    setSelectedProduct(selectedRow);
+  const handleSearchChange = (e) => {
+    setSearchTerm(e.target.value.trim());
+    // Ocultar la advertencia cuando el usuario empiece a escribir
+    setShowWarning(false);
   };
-  
+
+  const handleSearch = () => {
+    if (searchTerm) {
+      // Redirigir a /Busqueda con el término de búsqueda
+      navigate('/Busqueda', { state: { searchTerm } });
+    } else {
+      // Si no hay término de búsqueda, mostrar una advertencia
+      setShowWarning(true);
+    }
+  };   
+
+  const handleProductSelection = (image) => {
+    console.log("ID del producto:", image.idProducto); // Imprime el ID del producto en la consola
+    navigate('/DetalleProducto', { state: { productId: image.idProducto } });
+  };
 
   const ProductTable = () => {
     return (
@@ -21,9 +37,9 @@ const SeccionPrincipal = () => {
               <tr>
                 {colecciones.map((coleccion, index) => (
                   <td key={index} className="px-20 py-8 text-center" style={{ maxHeight: '250px' }}>
-                    <a href="#" onClick={() => handleProductSelection(coleccion)}>
+                    <button onClick={() => handleProductSelection(coleccion)}>
                       <img src={coleccion.imageUrl} alt={coleccion.altText} className="w-72 h-auto transition duration-300 transform hover:scale-110" />
-                    </a>
+                    </button>
                     <h3 className="mt-4 text-lg font-semibold" style={{ width: '300px' }}>{coleccion.title}</h3>
                   </td>
                 ))}
@@ -45,14 +61,14 @@ const SeccionPrincipal = () => {
                 <tr key={rowIndex}>
                   {row.map((image, cellIndex) => (
                     <td key={cellIndex} className="px-20 py-50 text-center">
-                      <a href="DetalleProducto" onClick={() => handleProductSelection(image)}>
+                      <button onClick={() => handleProductSelection(image)}>
                         <img
                           src={image.imageUrl}
                           alt={image.altText}
                           className="transition duration-400 transform hover:scale-110"
                           style={{ width: '290px', height: '140px', alignContent: 'center', marginTop: '30px' }}
                         />
-                      </a>
+                      </button>
                       <div className="mt-4">
                         <h3 className="text-base font-semibold">
                           {image.title}
@@ -72,9 +88,24 @@ const SeccionPrincipal = () => {
     );
   };
 
-  // Exportar el producto seleccionado a otro componente JSX
   return (
     <>
+      <main className='mainBarraBusqueda'>
+        <div className="flex items-center space-x-2 p-2 bg-white rounded mx-auto" style={{ maxWidth: '800px', marginTop: '40px', marginBottom: '30px', cursor: 'text' }}>
+          <input
+            type="text"
+            value={searchTerm}
+            onChange={handleSearchChange}
+            className="flex-grow p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500 mr-6 cursor-text"
+            placeholder="Buscar..."
+          />
+          <button onClick={handleSearch} disabled={!searchTerm} className={`px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 ${searchTerm ? 'cursor-pointer' : 'cursor-not-allowed'}`}>
+            Buscar
+          </button>
+        </div>
+        {/* Mostrar el mensaje de advertencia si no hay término de búsqueda */}
+        {showWarning && <p style={{ color: 'red' }}>Por favor, ingrese un término de búsqueda.</p>}
+      </main>
       <ProductTable />
       <ImageTable />
     </>
