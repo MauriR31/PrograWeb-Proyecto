@@ -36,7 +36,7 @@ const Checkout = () => {
         </section>
          
         {/* Seccion de la parte de los datos de compra */}
-        <section className="bg-gray-200 p-2 mb-4 rounded-md pl-8 border-gray-500">
+        <section className="bg-gray-800 p-2 mb-4 rounded-md pl-8 border-gray-500 text-white">
           <p className="text-lg font-semibold">Datos de compra</p>
         </section>
 
@@ -81,7 +81,7 @@ const Checkout = () => {
           </article>
         </section>
         
-        <section className="bg-gray-200 p-2 mb-4 rounded-md pl-8 border-gray-500">
+        <section className="bg-gray-800 p-2 mb-4 rounded-md pl-8 border-gray-500 text-white">
           <p className="text-lg font-semibold">Método de Envío</p>
         </section>
         
