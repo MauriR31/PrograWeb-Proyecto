@@ -23,6 +23,7 @@ import UsuarioDireccionData from './data/UsuarioDireccion.json';
 
 //el useContext
 import { DatosProvider } from "./context/Datos.jsx";
+import { FormularioProvider } from './context/Formulario.jsx';
 
 // Paginas primarias
 import Principal from "./vistas/Pagina/Principal/Principal.jsx";
@@ -198,7 +199,9 @@ const router = createBrowserRouter([
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <DatosProvider>
-      <RouterProvider router={router} />
+      <FormularioProvider>
+        <RouterProvider router={router} />
+      </FormularioProvider>
     </DatosProvider>
   </React.StrictMode>
 );

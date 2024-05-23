@@ -18,7 +18,7 @@ export const DatosProvider = ({ children }) => {
   } 
 
   //no cambiar ordenes ya que con eso inicia
-  const [datos, setDatos] = useState(ordenes)
+  const [datos, setDatos] = useState(guardarOrdenes)
   const [page,setPage] = useState(guardarPagina)
     
   useEffect(() => {      

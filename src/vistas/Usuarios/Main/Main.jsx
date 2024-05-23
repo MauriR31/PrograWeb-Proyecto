@@ -10,7 +10,7 @@ function Main() {
       <HCerrarSesion/>
       <div className="flex h-[41.125rem] bg-slate-100">
         <Menu />
-        <div className="flex flex-col flex-grow mt-8 mb-20 mx-2 rounded-md bg-slate-300">
+        <div className="flex flex-col flex-grow mt-8 mb-20 mx-2 rounded-md bg-gray-200">
           <TablaOrdenes /> 
           <PaginacionUI />   
         </div>                 

@@ -1,11 +1,5 @@
 export const ordenes = [
   {
-    id:10000000001,
-    items: 3,
-    fecha: new Date("2024/01/03"),
-    destino: "Lima",      
-  },
-  {
     id:10000000002,
     items: 4,
     fecha: new Date("2019/05/15"),
@@ -49,6 +43,12 @@ export const ordenes = [
   },
   {
     id:10000000009,
+    items: 13,
+    fecha: new Date("2025/01/10"),
+    destino: "Lima",      
+  },
+  {
+    id:10000000010,
     items: 13,
     fecha: new Date("2025/01/10"),
     destino: "Lima",      

@@ -14,15 +14,15 @@ function Menu() {
   }
   return(
     <>
-      <aside className=" bg-slate-400 rounded my-8 mx-2 w-52">
-        <h5 className="font-bold ml-4 mt-6 m-4 text-2xl">Mi Cuenta</h5>
+      <aside className=" bg-[#0c2941] rounded my-8 mx-2 w-52">
+        <h5 className="font-bold ml-4 mt-6 m-4 text-2xl text-white">Mi Cuenta</h5>
         <ol className="flex flex-col items-center">
           <li onClick={handleClickRecently}
-           className=" mb-2 text-lg hover:text-white"><button>Ordenes Recientes</button></li>
+           className=" mb-2 text-lg text-gray-400 hover:text-white"><button>Ordenes Recientes</button></li>
           <li onClick={handleClickRegister}
-          className=" mb-2 text-lg hover:text-white"><button>Datos de Registro</button></li>
+          className=" mb-2 text-lg text-gray-400 hover:text-white"><button>Datos de Registro</button></li>
           <li onClick={handleClickChangePassword}
-          className="text-lg  hover:text-white"><button>Cambiar Password</button></li>
+          className="text-lg text-gray-400 hover:text-white"><button>Cambiar Password</button></li>
         </ol>
       </aside>
     </>

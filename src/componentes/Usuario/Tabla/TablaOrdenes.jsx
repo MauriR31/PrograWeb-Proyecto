@@ -67,10 +67,10 @@ function TablaOrdenes() {
       <section className=" h-[31rem] bg-slate-50" >    
         <table className=" w-full ">
           <thead>
-            <tr className="bg-slate-500">
-              <th className="text-xl font-normal text-left p-2 pl-8 rounded-s">Ordenes Recientes</th>
-              <th className="text-xl font-normal text-right p-2 pr-8 rounded-e" 
-              colSpan="2" onClick={handleOrdenar}><button className="hover:text-white">Ordenar por fecha {ordenar}</button></th>
+            <tr className="bg-[#0c2941]">
+              <th className="text-white text-xl font-normal text-left p-2 pl-8 rounded-s">Ordenes Recientes</th>
+              <th className="text-white text-xl font-normal text-right p-2 pr-8 rounded-e" 
+              colSpan="2" onClick={handleOrdenar}><button className="hover:underline">Ordenar por fecha {ordenar}</button></th>
             </tr>
           </thead>
           <tbody >

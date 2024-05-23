@@ -13,7 +13,7 @@ function FilaOrdenes({id,items,fecha,destino}) {
   }  
   
   return(
-    <tr className=" bg-slate-200 h-28 border-y-4 even:bg-slate-50">
+    <tr className=" bg-gray-200  h-28 border-y-4 even:bg-slate-50">
         <td className="pl-8 w-[43.75rem]">
           <ol>
             <li className="text-sm mb-1">Orden x{ items } items</li>
