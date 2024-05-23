@@ -17,7 +17,7 @@ function ContenidoLogin() {
     else if( formulario.correo === "admin" && formulario.password === "admin") {
       formulario.setMensajeError('')
       formulario.setCorreo('')
-      formulario.setMensajeError('')
+      formulario.setPassword('')
       navigate("/dashboard")
     }
     else{      
