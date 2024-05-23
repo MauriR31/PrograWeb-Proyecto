@@ -1,5 +1,5 @@
 import { useState } from "react";
-import Encabezado from "../../componentes/Header/HVacio.jsx";
+import Encabezado from "../../componentes/Header/HCerrarSesion.jsx";
 import Footer from "../../componentes/Footer.jsx";
 import Sidebar from "../../componentes/BarraCuenta.jsx";
 import Barra from "../../componentes/Administrador/BarraDashboard.jsx";
@@ -23,7 +23,7 @@ const Dashboard = () => {
   return (
     <div>
       <Encabezado />
-      <main className="flex p-6 bg-black">
+      <main className="flex bg-black">
         <Sidebar />
         <div className="flex-1 flex flex-col ml-4">
           <Barra setShowCalendar={setShowCalendar} />

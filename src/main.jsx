@@ -61,6 +61,9 @@ import Main from "./vistas/Usuarios/Main/Main.jsx";
 
 //Parte de Erick
 import DIMDashboard from "./vistas/Administrador/Dashboard.jsx";
+import DIMProductos from "./vistas/Administrador/Producto/Productos.jsx";
+import DIMAgregarProductos from "./vistas/Administrador/Producto/Agregar.jsx";
+import DIMDetalleProductos from "./vistas/Administrador/Producto/DetalleProducto.jsx";
 
 const router = createBrowserRouter([
   {
@@ -164,11 +167,26 @@ const router = createBrowserRouter([
     element: <UDatosRegistro />,
   },
 
-  //Parte de Dmitri
+  //Parte de Erick
 
   {
     path: "/Dashboard",
     element: <DIMDashboard />,
+  },
+
+  {
+    path: "/Productos",
+    element: <DIMProductos />,
+  },
+
+  {
+    path: "/Productos/AgregarProductos",
+    element: <DIMAgregarProductos />,
+  },
+
+  {
+    path: "/Productos/AgregarProductos/DetalleProductos",
+    element: <DIMDetalleProductos />,
   },
 ]);
 
