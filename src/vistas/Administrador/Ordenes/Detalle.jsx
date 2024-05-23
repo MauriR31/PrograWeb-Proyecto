@@ -68,11 +68,25 @@ function Detalle() {
 
   useEffect(() => {
     const pagosData = JSON.parse(localStorage.getItem('pagos'));
+    const mediosPagosData = JSON.parse(localStorage.getItem('mediosPago'))
+    console.log(pagosData)
+    console.log(mediosPagosData)
     
     if (pagosData) {
       const pagoDetalle = pagosData.find(pago => pago.id === detalleOrden.pago_id);
+      console.log(pagoDetalle)
       if (pagoDetalle) {
-        setPago(pagoDetalle);
+        const medioDetalle = mediosPagosData.find(medio => medio.pago_id === pagoDetalle.id)
+        console.log(medioDetalle)
+        if (medioDetalle) {
+          const pagoMedio = {
+            id: pagoDetalle.id,
+            name: pagoDetalle.name,
+            numero: medioDetalle.numero,
+          }
+          console.log(pagoDetalle)
+          setPago(pagoMedio);
+        }
       }
     }
   }, [detalleOrden]);
@@ -132,19 +146,20 @@ function Detalle() {
       <header>
         <HVacio />
       </header>
-      <main className="p-4 bg-gray-50">
+      <div className="flex justify-center py-4">
+      <main className="flex flex-col max-w-6xl w-full">
         {/* Seccion de la parte superior */}
-        <section className="mb-4">
+        <section className="p-3 bg-lime-500 text-center rounded-lg mx-3 mb-4">
           <h1 className="text-2xl font-bold">Detalles de Orden Nro {detalleOrden.numero}</h1>
         </section>
 
         {/* Seccion de la parte de los datos de compra */}
-        <section className="bg-gray-200 p-2 mb-4 rounded-md pl-8 border-gray-500">
+        <section className="p-3 bg-white rounded-lg mx-3 mb-1">
           <p className="text-lg font-semibold">Datos de compra</p>
         </section>
 
         {/* Seccion de la parte de direccion y metodo de pago */}
-        <section className="mb-6 flex flex-wrap gap-4">
+        <section className="p-3 flex flex-wrap gap-4 mb-3">
           <article className="flex-1 py-4 pl-7 border rounded-md bg-white">
             <p className="text-lg font-semibold">Dirección de Envío</p>
             <p className="pl-10">{direccionEnvio.avenida}, {direccionEnvio.numero}, {direccionEnvio.refer}</p>
@@ -167,11 +182,11 @@ function Detalle() {
           </article>
         </section>
 
-        <section className="bg-gray-200 p-2 mb-4 rounded-md pl-8 border-gray-500">
+        <section className="p-3 bg-white rounded-lg mx-3 mb-1">
           <p className="text-lg font-semibold">Método de Envío</p>
         </section>
 
-        <section className="mb-6">
+        <section className="p-3 flex flex-wrap gap-4 mb-3">
           <article className="flex-1 py-4 pl-7 border rounded-md bg-white">
             <ul className="list-disc pl-5 grid justify-center">
               <li>{envio.name} - S/{envio.precio}</li>
@@ -179,7 +194,7 @@ function Detalle() {
           </article>
         </section>
 
-        <section className="flex flex-wrap gap-4">
+        <section className="p-3 flex flex-wrap gap-4 mb-3">
           <article className="flex-1 py-4 pl-7 border rounded-md bg-white">
             <p className="text-lg font-semibold">Items en Pedido:</p>
             <table className="min-w-full divide-y divide-gray-200">
@@ -226,6 +241,7 @@ function Detalle() {
           </article>
         </section>
       </main>
+      </div>
       <footer>
         <Footer />
       </footer>
