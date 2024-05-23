@@ -6,6 +6,9 @@ export default {
   ],
   theme: {
     extend: {
+      spacing: {
+        '128': '32rem',
+      },
       height: {    
         '658px':'41.125rem',
         '496px':'31rem',
