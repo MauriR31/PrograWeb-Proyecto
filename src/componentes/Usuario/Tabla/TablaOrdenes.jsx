@@ -1,8 +1,12 @@
+import Button from '@mui/material/Button'
+import RefreshIcon from '@mui/icons-material/Refresh'
+import { common } from '@mui/material/colors'
 //Tabla de ordenes que se van a mostrar de 3 en 3 por cada pagina
 import FilaOrdenes from "./FilaOrdenes";
 //UseContext
 import { useDatos } from "../../../context/Datos";
 import { useEffect, useState } from "react";
+import { ordenes } from '../../../data/Ordenes';
 
 function TablaOrdenes() {  
   const datosPagina = useDatos()
@@ -58,6 +62,12 @@ function TablaOrdenes() {
       datosPagina.setDatos(copia)     
     }
   }
+  function handleClickActualizar (){   
+    original()
+    datosPagina.setDatos(copia)
+    datosPagina.setPage(1)
+    setOrdenar('')
+  }
   const filasxtabla = 4
   const fin= datosPagina.page * filasxtabla
   const inicio = fin-filasxtabla
@@ -68,7 +78,8 @@ function TablaOrdenes() {
         <table className=" w-full ">
           <thead>
             <tr className="bg-[#0c2941]">
-              <th className="text-white text-xl font-normal text-left p-2 pl-8 rounded-s">Ordenes Recientes</th>
+              <th className="text-white text-xl font-normal text-left p-2 pl-8 rounded-s">Ordenes Recientes
+              <Button onClick={handleClickActualizar} startIcon={<RefreshIcon sx={{ color: '#fff' }}/>} /></th>              
               <th className="text-white text-xl font-normal text-right p-2 pr-8 rounded-e" 
               colSpan="2" onClick={handleOrdenar}><button className="hover:underline">Ordenar por fecha {ordenar}</button></th>
             </tr>

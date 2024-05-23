@@ -1,5 +1,6 @@
 import { getDay, getMonth, getYear } from "date-fns"
 import { Link } from "react-router-dom"
+import Button from '@mui/material/Button';
 
 function FilaOrdenes({id,items,fecha,destino}) {
   
@@ -18,13 +19,13 @@ function FilaOrdenes({id,items,fecha,destino}) {
           <ol>
             <li className="text-sm mb-1">Orden x{ items } items</li>
             <li className="text-sm mb-1">Fecha: { convertirFecha(fecha) } </li>
-            <li className="text-sm mb-1">Enviado a:{ destino }</li>
+            <li className="text-sm mb-1">Enviado a: { destino }</li>
           </ol>
         </td>
         <td className="text-right ">Orden Nro:{ id }</td>    
         <td className="text-right pr-8" >
-          <Link to={`/Admin/OrdenLog/Detail/${id}`}
-            className="hover:underline hover:text-red-600">Ver detalle</Link></td>                         
+          <Link to={`/Admin/OrdenLog/Detail/${id}`}>
+            <Button variant="contained" color="secondary" size="large">Ver detalle</Button></Link></td>                         
     </tr>
   )
 }
