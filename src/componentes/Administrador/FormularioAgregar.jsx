@@ -43,7 +43,7 @@ const FormularioAgregar = () => {
     <div>
       <main className="space-y-4 flex">
         <div className="w-1/3 p-4 flex flex-col items-center">
-          <div className="w-full h-48 border rounded-md flex items-center justify-center mb-4">
+          <div className="w-full h-48 border-blue-500 border-4 border-dashed rounded-md flex items-center justify-center mb-4">
             {formData.imagen ? (
               <img
                 src={formData.imagen}

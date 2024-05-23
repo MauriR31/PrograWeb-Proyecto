@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import Encabezado from "../../../componentes/Header/HCerrarSesion";
 import Footer from "../../../componentes/Footer";
-import Sidebar from "../../../componentes/BarraCuenta";
+import BotonMenuPagina from "../../../componentes/ConvetirOAdaptar/BotonMenuPagina";
 import Barra from "../../../componentes/Administrador/BarraProductos";
 import BusquedaProductos from "../../../componentes/Administrador/BusquedaProductos";
 import TablaProductos from "../../../componentes/Administrador/TablaProductos";
@@ -54,10 +54,11 @@ const Productos = () => {
     localStorage.setItem("productos", JSON.stringify(productosActualizados));
   };
 
-  const filteredProducts = productos.filter((producto) =>
-    producto.title && producto.title.toLowerCase().includes(buscarProducto.toLowerCase())
+  const filteredProducts = productos.filter(
+    (producto) =>
+      producto.title &&
+      producto.title.toLowerCase().includes(buscarProducto.toLowerCase())
   );
-  
 
   const totalPaginas = Math.ceil(filteredProducts.length / productosPorPagina);
 
@@ -68,24 +69,28 @@ const Productos = () => {
   return (
     <div>
       <Encabezado />
-      <main className="flex bg-black">
-        <Sidebar />
-        <div className="flex-1 flex flex-col ml-4 mt-4 mr-4">
+      <main className="flex bg-gray-100 min-h-screen">
+        <BotonMenuPagina />
+        <div className="flex-1 flex flex-col p-6">
           <Barra />
-          <BusquedaProductos
-            buscarProducto={buscarProducto}
-            handleSearchChange={handleSearchChange}
-          />
+          <div className="my-4">
+            <BusquedaProductos
+              buscarProducto={buscarProducto}
+              handleSearchChange={handleSearchChange}
+            />
+          </div>
           <TablaProductos
             productos={filteredProducts}
             cambiarEstadoProducto={cambiarEstadoProducto}
             paginaActual={paginaActual}
           />
-          <BarraPaginacion
-            paginaActual={paginaActual}
-            totalPaginas={totalPaginas}
-            onChangePagina={irAPagina}
-          />
+          <div className="mt-4">
+            <BarraPaginacion
+              paginaActual={paginaActual}
+              totalPaginas={totalPaginas}
+              onChangePagina={irAPagina}
+            />
+          </div>
         </div>
       </main>
       <Footer />

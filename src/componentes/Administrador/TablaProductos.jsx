@@ -1,4 +1,5 @@
 import { useNavigate } from "react-router-dom";
+import EstadoIndicadorUsuario from "../../componentes/ConvetirOAdaptar/EstadoIndicadorUsuario";
 
 const productosPorPagina = 10;
 
@@ -45,7 +46,9 @@ const TablaProductos = ({ productos, cambiarEstadoProducto, paginaActual }) => {
                 <td className="py-2 px-4 border-b">
                   {producto.cantidad || "----"}
                 </td>
-                <td className="py-2 px-4 border-b">{producto.estado}</td>
+                <td className="py-2 px-4 border-b">
+                  <EstadoIndicadorUsuario estado={producto.estado} />
+                </td>
                 <td className="py-2 px-4 border-b">
                   <button
                     onClick={() => handleVerDetalle(producto)}

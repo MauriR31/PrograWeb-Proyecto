@@ -1,7 +1,7 @@
 import { useState } from "react";
 import Encabezado from "../../componentes/Header/HCerrarSesion.jsx";
 import Footer from "../../componentes/Footer.jsx";
-import Sidebar from "../../componentes/BarraCuenta.jsx";
+import BotonMenuPagina from "../../componentes/ConvetirOAdaptar/BotonMenuPagina.jsx"
 import Barra from "../../componentes/Administrador/BarraDashboard.jsx";
 import SeleccionadorFecha from "../../componentes/Administrador/Minicalendario.jsx";
 import TablasResumen from "../../componentes/Administrador/SummaryCards.jsx";
@@ -23,9 +23,9 @@ const Dashboard = () => {
   return (
     <div>
       <Encabezado />
-      <main className="flex bg-black">
-        <Sidebar />
-        <div className="flex-1 flex flex-col ml-4">
+      <main className="flex bg-gray-100">
+        <BotonMenuPagina />
+        <div className="flex-1 flex flex-col ml-4 my-11">
           <Barra setShowCalendar={setShowCalendar} />
           {showCalendar && (
             <SeleccionadorFecha
