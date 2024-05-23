@@ -104,7 +104,6 @@ function UsuariosRegistrados() {
       <header>
         <HCerrarSesion />
       </header>
-
       <div className="flex justify-center py-4">
         <BarraCuenta />
         <main className="flex flex-col max-w-6xl w-full">
@@ -112,7 +111,7 @@ function UsuariosRegistrados() {
           <section className="p-3 bg-white rounded-lg mx-3">
             <p className="text-xl font-bold">Usuarios registrados</p>
           </section>
-
+          
           {/* Segunda seccion */}
           <section className="p-3.5 flex my-3">
             <button className='block flex-none w-1/5'>
