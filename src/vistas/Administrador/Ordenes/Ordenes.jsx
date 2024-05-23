@@ -4,6 +4,10 @@ import BarraCuenta from '../../../componentes/BarraCuenta'
 import BarraPaginacion from '../../../componentes/BarraPaginacion';
 import HVacio from '../../../componentes/Header/HVacio';
 import Footer from '../../../componentes/Footer';
+import View_SVG from '../../../svg/View_SVG'
+import BarraPedidoEstado from '../../../componentes/ConvetirOAdaptar/BarraPedidoEstado';
+import ConversionFechaTexto from '../../../componentes/ConvetirOAdaptar/ConversionFechaTexto';
+
 /** @type {import('tailwindcss').Config} */
 
 function Ordenes() {
@@ -88,49 +92,65 @@ function Ordenes() {
   return (
     <>
       <HVacio />
-      <div className="flex">
+      <div className="flex justify-center py-4">
         <BarraCuenta />
-        <main className="flex flex-col w-5/6">
-          <section className="p-4">
+        <main className="flex flex-col max-w-6xl w-full">
+          {/* Primera seccion */}
+          <section className="p-3 bg-white rounded-lg mx-3">
             <p className="text-xl font-bold">Órdenes</p>
           </section>
-          <section className="p-4">
+
+          {/* Segunda seccion */}
+          <section className="p-3.5 flex my-3">
+            <button className='block flex-none w-1/5'>
+              Menu
+            </button>
             <input
               type="text"
               name="BuscarN-A-NO"
               id="BuscarN-A-NO"
               placeholder="Buscar por nombre o apellido de usuario o nro de orden..."
-              className="w-full px-4 py-2 rounded-md bg-gray-200 text-gray-800 focus:outline-none focus:bg-white"
+              className="max-w-3xl w-full px-4 py-2 rounded-3xl border-slate-950 border-2 bg-white text-gray-800 focus:outline-none"
               value={buscarOrden}
               onChange={handleSearchChange}
             />
           </section>
+
+          {/* Tercera seccion */}
           <section className="p-3.5 text-sm">
             {/* Cabecera de la lista de ordenes */}
-            <article className="flex bg-gray-300 p-2">
-              <p className="flex-none w-28">ID</p>
-              <p className="flex-auto w-96">Usuario</p>
-              <p className="flex-none w-24">Fecha Orden</p>
-              <p className="flex-none w-20">Total</p>
-              <p className="flex-auto w-96">Correo</p>
-              <p className="flex-none w-24">Estado</p>
-              <p className="flex-none w-20 text-center">Acciones</p>
+            <article className="flex font-bold text-base bg-green-200 p-2 items-center mb-2 px-4">
+              <p className="w-[12%]">ID</p>
+              <p className="w-[18%]">Usuario</p>
+              <p className="w-[14%]">Fecha Orden</p>
+              <p className="w-[10%]">Total</p>
+              <p className="w-3/12">Correo</p>
+              <p className="w-2/12">Estado</p>
+              <p className="w-1/12 flex justify-center">Acciones</p>
             </article>
             {/* Cuerpo de la lista de ordenes */}
-            {ordenesEnPagina.map(orden => (
-              <article key={orden.id} className="flex bg-white p-2">
-                <p className="flex-none w-28">{orden.id}</p>
-                <p className="flex-auto w-96">{orden.usuario}</p>
-                <p className="flex-none w-24">{orden.fechaOrden}</p>
-                <p className="flex-none w-20">{orden.total}</p>
-                <p className="flex-auto w-96">{orden.correo}</p>
-                <p className="flex-none w-24">{orden.estado}</p>
-                {/* Columna de Acciones */}
-                <p className="flex-none w-20 grid justify-center">
-                  <Link to={`/Admin/OrdenLog/Detail/${orden.id}`} className="px-2 py-1 bg-blue-500 text-white rounded-md mr-2">Ver</Link>
-                </p>
-              </article>
-            ))}
+            <div className='grid grid-cols-1 grid-rows-10'>
+              {ordenesEnPagina.map(orden => (
+                <article key={orden.id} className="flex bg-white py-2 px-4 hover:bg-slate-100 items-center mb-1 rounded-md">
+                  <p className="w-[12%]">{orden.id}</p>
+                  <p className="w-[18%]">{orden.usuario}</p>
+                  <p className="w-[14%]"><ConversionFechaTexto fechaOriginal={orden.fechaOrden} /></p>
+                  <p className="w-[10%]">S/{orden.total.toFixed(2)}</p>
+                  <p className="w-3/12">{orden.correo}</p>
+                  <p className="w-2/12">{orden.estado}
+                    <BarraPedidoEstado  estado={orden.estado} />
+                  </p>
+                  {/* Columna de Acciones */}
+                  <Link
+                    to={`/Admin/OrdenLog/Detail/${orden.id}`}
+                    class="w-1/12 flex justify-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                  >
+                    <View_SVG width="24px" height="24px" fill="LightGreen" />
+                  </Link>
+                </article>
+              ))}
+            </div>
+            
           </section>
 
           {/* Barra de paginación */}

@@ -1,7 +1,8 @@
 import React, { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
-import View_SVG from '../../../svg/View_SVG'
-import Option_SVG from '../../../svg/Option_SVG'
+import View_SVG from '../../svg/View_SVG'
+import Option_SVG from '../../svg/Option_SVG'
+
 function BotonMenuOpciones({ usuario, cambiarEstadoUsuario }) {
   const [menuAbierto, setMenuAbierto] = useState(false);
   const refMenu = useRef(null);
@@ -23,7 +24,7 @@ function BotonMenuOpciones({ usuario, cambiarEstadoUsuario }) {
   };
 
   return (
-    <div className="relative inline-block text-left" ref={refMenu}>
+    <div className="relative flex justify-center" ref={refMenu}>
       <div>
         <button
           onClick={toggleMenu}
@@ -40,7 +41,7 @@ function BotonMenuOpciones({ usuario, cambiarEstadoUsuario }) {
           <div className="py-1">
             <Link
               to={`/Admin/UsersLog/Detail/${usuario.id}`}
-              className="flex items-center w-full px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+              className="flex justify-center w-full px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
             >
               <View_SVG width="24px" height="24px" fill="LightGreen" />
               Ver
