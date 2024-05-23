@@ -9,7 +9,7 @@ const PedidoCompleto = () => {
         <HVacio />
         <div className="w-full min-h-screen bg-gray-100">
             <h1 className="text-center mb-12 pt-10 text-2xl">¡Muchas gracias por tu pedido!</h1>
-            <h2 className="text-center mb-12 text-xl">Puedes ver el detalle y estado de tu pedido ingresando a <a href="" className="underline">tu cuenta</a>.</h2>
+            <h2 className="text-center mb-12 text-xl">Puedes ver el detalle y estado de tu pedido ingresando a <a href="" className="underline"><Link to="/login">tu cuenta</Link></a>.</h2>
 
             <section className="mb-10">
                 <p className="text-2xl mb-4 ml-5">También te podría interesar...</p>
