@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useParams } from "react-router-dom";
-import BarraCuenta from "../../../componentes/BarraCuenta";
 import PaginaError from "../../../componentes/PaginaError";
 import HVacio from "../../../componentes/Header/HVacio";
 import Footer from "../../../componentes/Footer";
 import View_SVG from '../../../svg/View_SVG'
 import BarraPedidoEstado from "../../../componentes/ConvetirOAdaptar/BarraPedidoEstado";
+import BotonMenuPagina from '../../../componentes/ConvetirOAdaptar/BotonMenuPagina';
 
 function Detalle() {
   const { id } = useParams();
@@ -95,7 +95,6 @@ function Detalle() {
     <>
       <HVacio />
       <div className="flex justify-center py-4">
-        <BarraCuenta />
         <main className="flex flex-col max-w-6xl w-full">
           {/* Primera seccion */}
           <section className="p-3 bg-white rounded-lg mx-3 mb-2">
@@ -105,7 +104,7 @@ function Detalle() {
           {/* Segunda seccion */}
           <section className="p-3.5 flex place-items-center justify-evenly bg-lime-200 mx-3 mb-2 rounded-lg">
             <button className='block'>
-              Menu
+              <BotonMenuPagina />
             </button>
             <ul className="flex  justify-around bg-green-800 p-2 text-white items-center font-bold max-w-4xl w-full px-4 py-2 rounded-xl">
               <p className="">ID: {usuario.id}</p>

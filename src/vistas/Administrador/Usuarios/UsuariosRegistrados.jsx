@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from "react-router-dom"
-import BarraCuenta from '../../../componentes/BarraCuenta'
 import BarraPaginacion from '../../../componentes/BarraPaginacion';
 import HCerrarSesion from '../../../componentes/Header/HCerrarSesion';
 import FooterPa from '../../../componentes/Footer';
@@ -105,7 +104,6 @@ function UsuariosRegistrados() {
         <HCerrarSesion />
       </header>
       <div className="flex justify-center py-4">
-        <BarraCuenta />
         <main className="flex flex-col max-w-6xl w-full">
           {/* Primera seccion */}
           <section className="p-3 bg-white rounded-lg mx-3">

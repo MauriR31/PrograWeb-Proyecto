@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from "react-router-dom"
-import BarraCuenta from '../../../componentes/BarraCuenta'
 import BarraPaginacion from '../../../componentes/BarraPaginacion';
 import HVacio from '../../../componentes/Header/HVacio';
 import Footer from '../../../componentes/Footer';
 import View_SVG from '../../../svg/View_SVG'
 import BarraPedidoEstado from '../../../componentes/ConvetirOAdaptar/BarraPedidoEstado';
 import ConversionFechaTexto from '../../../componentes/ConvetirOAdaptar/ConversionFechaTexto';
+import BotonMenuPagina from '../../../componentes/ConvetirOAdaptar/BotonMenuPagina';
 
 /** @type {import('tailwindcss').Config} */
 
@@ -93,7 +93,6 @@ function Ordenes() {
     <>
       <HVacio />
       <div className="flex justify-center py-4">
-        <BarraCuenta />
         <main className="flex flex-col max-w-6xl w-full">
           {/* Primera seccion */}
           <section className="p-3 bg-white rounded-lg mx-3">
@@ -103,7 +102,7 @@ function Ordenes() {
           {/* Segunda seccion */}
           <section className="p-3.5 flex my-3">
             <button className='block flex-none w-1/5'>
-              Menu
+              <BotonMenuPagina />
             </button>
             <input
               type="text"
