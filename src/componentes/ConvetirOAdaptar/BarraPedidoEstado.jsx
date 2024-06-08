@@ -5,16 +5,16 @@ const BarraPedidoEstado = ({ estado }) => {
   let progresoWidth = '';
 
   // Determina el color y el ancho de la barra según el estado
-  switch (estado) {
-    case 'Pendiente':
+  switch (parseInt(estado)) {
+    case 1:
       barraColor = 'bg-blue-500';
       progresoWidth = 'w-1/3';
       break;
-    case 'Por Enviar':
+    case 2:
       barraColor = 'bg-yellow-500';
       progresoWidth = 'w-2/3';
       break;
-    case 'Entregado':
+    case 3:
       barraColor = 'bg-green-500';
       progresoWidth = 'w-full';
       break;
