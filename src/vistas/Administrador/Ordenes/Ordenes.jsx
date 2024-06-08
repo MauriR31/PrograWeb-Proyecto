@@ -7,6 +7,7 @@ import View_SVG from '../../../svg/View_SVG'
 import BarraPedidoEstado from '../../../componentes/ConvetirOAdaptar/BarraPedidoEstado';
 import ConversionFechaTexto from '../../../componentes/ConvetirOAdaptar/ConversionFechaTexto';
 import BotonMenuPagina from '../../../componentes/ConvetirOAdaptar/BotonMenuPagina';
+import AOOrdenesAPI from "../../../api/Administrador/Ordenes/ordenes.js";  // API
 
 /** @type {import('tailwindcss').Config} */
 
@@ -18,40 +19,13 @@ function Ordenes() {
   const [buscarOrden, setbuscarOrden] = useState('');
   const [paginaActual, setPaginaActual] = useState(1);
 
+  const handleOnLoad = async () => {
+    const ordenesData = await AOOrdenesAPI.findAll();
+    setOrdenes(ordenesData);
+  };
 
   useEffect(() => {
-    const usuariosData = JSON.parse(localStorage.getItem('usuarios'));
-    const ordenesData = JSON.parse(localStorage.getItem('ordenes'));
-    const personasData = JSON.parse(localStorage.getItem('personas'));
-  
-    if (usuariosData && personasData && ordenesData) {
-      // Crear una nueva lista combinando información de personas y usuarios
-      const nuevaLista = ordenesData.flatMap(orden => {
-        // Buscar el usuario correspondiente a la orden
-        const usuario = usuariosData.find(usuario => String(usuario.id) === String(orden.usuario_id));
-        
-        // Si se encontró el usuario, buscar la persona correspondiente
-        if (usuario) {
-          const persona = personasData.find(persona => String(persona.id) === String(usuario.persona_id));
-  
-          // Si se encontró la persona, combinar la información
-          if (persona) {
-            return {
-              id: orden.numero,
-              usuario: persona.nombre + ", " + persona.apellido,
-              correo: usuario.correo,
-              fechaOrden: orden.fecha,
-              estado: orden.estado,
-              total: orden.total
-            };
-          }
-        } else {
-          return null;
-        }
-      }).filter(usuario => usuario !== null); // Filtrar los usuarios nulos
-      console.log(nuevaLista)
-      setOrdenes(nuevaLista);
-    }
+    handleOnLoad();
   }, []);
 
   const handleSearchChange = (e) => {
@@ -137,7 +111,7 @@ function Ordenes() {
                   <p className="w-[10%]">S/{orden.total.toFixed(2)}</p>
                   <p className="w-3/12">{orden.correo}</p>
                   <p className="w-2/12">{orden.estado}
-                    <BarraPedidoEstado  estado={orden.estado} />
+                    <BarraPedidoEstado  estado={orden.estado_id} />
                   </p>
                   {/* Columna de Acciones */}
                   <Link
