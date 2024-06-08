@@ -3,127 +3,27 @@ import { useParams } from "react-router-dom";
 import PaginaError from "../../../componentes/PaginaError";
 import HVacio from '../../../componentes/Header/HVacio';
 import Footer from '../../../componentes/Footer';
+import AODetalleAPI from "../../../api/Administrador/Ordenes/detalle.js";  // API
 
 function Detalle() {
   const { id } = useParams();
-  const [detalleOrden, setDetalleOrdenes] = useState([]);
-  const [direccionEnvio, setDireccionEnvio] = useState([]);
-  const [pago, setPago] = useState([]);
-  const [envio, setEnvio] = useState([]);
-  const [productos, setProductos] = useState([]);
+  const [detalleOrden, setDetalleOrden] = useState(null);
+
+  const handleOnLoad = async () => {
+    const ordenesData = await AODetalleAPI.findOne(id);
+    console.log(ordenesData)
+    setDetalleOrden(ordenesData);
+  };
 
   useEffect(() => {
-    const ordenesData = JSON.parse(localStorage.getItem('ordenes'));
-
-    if (ordenesData) {
-      const detalle = ordenesData.find(orden => String(orden.numero) === String(id));
-      if (detalle) {
-        setDetalleOrdenes(detalle);
-      }
-    }
+    handleOnLoad();
   }, [id]);
 
-  useEffect(() => {
-    const direccionesData = JSON.parse(localStorage.getItem('direcciones'));
-    const distritosData = JSON.parse(localStorage.getItem('distritos'));
-    const provinciasData = JSON.parse(localStorage.getItem('provincias'));
-    const departamentosData = JSON.parse(localStorage.getItem('departamentos'));
-    const paisesData = JSON.parse(localStorage.getItem('paises'));
+  if (detalleOrden === null) {
+    return <p>Cargando...</p>;
+  }
 
-    if (direccionesData) {
-      const direccionUsuario = direccionesData.find(direccion => direccion.id === detalleOrden.usuarioDireccion_id);
-      if (direccionUsuario) {
-        const direcUDistrito = distritosData.find(distrito => distrito.id === direccionUsuario.distrito_id);
-        if (direcUDistrito) {
-          const direcUProvi = provinciasData.find(provincia => provincia.id === direcUDistrito.province_id);
-          const direcUDepar = departamentosData.find(departamento => departamento.id === direcUDistrito.department_id);
-          const direcUPais = paisesData.find(pais => pais.id === direcUDistrito.pais_id);
-          if (direcUProvi && direcUDepar && direcUPais) {
-            const direccion = {
-              avenida: direccionUsuario.avenida,
-              numero: direccionUsuario.numero,
-              refer: direccionUsuario.refer,
-              distrito: direcUDistrito.name,
-              provincia: direcUProvi.name,
-              departamento: direcUDepar.name,
-              pais: direcUPais.name
-            }
-            setDireccionEnvio(direccion);
-          }
-        }
-      }
-    }
-  }, [detalleOrden]);
-
-  useEffect(() => {
-    const enviosData = JSON.parse(localStorage.getItem('envios'));
-
-    if (enviosData) {
-      const envioDetalle = enviosData.find(envio => envio.id === detalleOrden.envio_id);
-      if (envioDetalle) {
-        setEnvio(envioDetalle);
-      }
-    }
-  }, [detalleOrden]);
-
-  useEffect(() => {
-    const pagosData = JSON.parse(localStorage.getItem('pagos'));
-    const mediosPagosData = JSON.parse(localStorage.getItem('mediosPago'))
-
-    if (pagosData) {
-      const pagoDetalle = pagosData.find(pago => pago.id === detalleOrden.pago_id);
-      if (pagoDetalle) {
-        const medioDetalle = mediosPagosData.find(medio => String(medio.pago_id) === String(pagoDetalle.id))
-        if (medioDetalle) {
-          const pagoMedio = {
-            id: pagoDetalle.id,
-            name: pagoDetalle.name,
-            numero: medioDetalle.numero,
-          }
-          setPago(pagoMedio);
-        } else {
-          const pagoMedio = {
-            id: pagoDetalle.id,
-            name: pagoDetalle.name,
-          }
-          setPago(pagoMedio);
-        }
-      }
-    }
-  }, [detalleOrden]);
-
-  useEffect(() => {
-    const detalleData = JSON.parse(localStorage.getItem('detalles'));
-    const productosData = JSON.parse(localStorage.getItem('productos'));
-
-    if (detalleData && productosData && detalleOrden) {
-      // Filtrar los detalles que corresponden a la orden especificada
-      const detallesOrden = detalleData.filter(detalle => detalle.orden_id === detalleOrden.id);
-
-      // Mapear los detalles a los productos correspondientes
-      const productosPorOrden = detallesOrden.map(detalle => {
-        const producto = productosData.find(producto => producto.id === String(detalle.producto_id));
-
-        // Si el producto existe, construir un objeto con los atributos necesarios
-        if (producto) {
-          return {
-            id: producto.id,
-            title: producto.title,
-            orden_id: detalle.orden_id,
-            cantidad: detalle.cantidad,
-            precioTotal: detalle.precioTotal
-          };
-        } else {
-          return null;
-        }
-      }).filter(producto => producto !== null); // Filtramos los nulos por si no se encontró algún producto
-
-      setProductos(productosPorOrden);
-    }
-  }, [detalleOrden]);
-
-  // Condicionalidad para la existencia del detalle de la orden
-  if (detalleOrden.length === 0) {
+  if (detalleOrden.message === "No encontrado.") {
     return <PaginaError />;
   }
 
