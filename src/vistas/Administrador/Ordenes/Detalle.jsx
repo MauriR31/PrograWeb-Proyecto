@@ -8,11 +8,20 @@ import AODetalleAPI from "../../../api/Administrador/Ordenes/detalle.js";  // AP
 function Detalle() {
   const { id } = useParams();
   const [detalleOrden, setDetalleOrden] = useState(null);
+  const [direccion, setDireccion] = useState('');
+  const [envio, setEnvio] = useState('');
+  const [estado, setEstado] = useState('');
+  const [pago, setPago] = useState('');
+  const [productos, setProductos] = useState([]);
 
   const handleOnLoad = async () => {
     const ordenesData = await AODetalleAPI.findOne(id);
-    console.log(ordenesData)
     setDetalleOrden(ordenesData);
+    setDireccion(ordenesData.direccion)
+    setEnvio(ordenesData.envio)
+    setEstado(ordenesData.estado)
+    setPago(ordenesData.pago)
+    setProductos(ordenesData.productos)
   };
 
   useEffect(() => {
@@ -27,19 +36,9 @@ function Detalle() {
     return <PaginaError />;
   }
 
-  const handleEliminarOrden = () => {
-    const ordenesData = JSON.parse(localStorage.getItem('ordenes'));
-
-    if (ordenesData) {
-      // Filtrar las órdenes para eliminar la orden actual
-      const ordenesActualizadas = ordenesData.filter(orden => orden.numero !== id);
-
-      // Actualizar el localStorage con las órdenes actualizadas
-      localStorage.setItem('ordenes', JSON.stringify(ordenesActualizadas));
-
-      // Actualizar el estado de las órdenes
-      setDetalleOrdenes([]);
-    }
+  const handleEliminarOrden = async () => {
+    await AODetalleAPI.remove(detalleOrden.id);
+    handleOnLoad();
   };
 
   return (
@@ -63,10 +62,10 @@ function Detalle() {
           <section className="p-3 flex flex-wrap gap-4 mb-3">
             <article className="flex-1 py-4 pl-7 border rounded-md bg-white">
               <p className="text-lg font-semibold">Dirección de Envío</p>
-              <p className="pl-10">{direccionEnvio.avenida}, {direccionEnvio.numero}, {direccionEnvio.refer}</p>
-              <p className="pl-10">{direccionEnvio.distrito}, {direccionEnvio.provincia}</p>
-              <p className="pl-10">{direccionEnvio.departamento}</p>
-              <p className="pl-10">{direccionEnvio.pais}</p>
+              <p className="pl-10">{direccion.avenida}, {direccion.numero}, {direccion.refer}</p>
+              <p className="pl-10">{direccion.distrito}, {direccion.provincia}</p>
+              <p className="pl-10">{direccion.departamento}</p>
+              <p className="pl-10">{direccion.pais}</p>
             </article>
             <article className="flex-1 py-4 pl-7 border rounded-md bg-white">
               <p className="text-lg font-semibold">Pago</p>
@@ -90,7 +89,7 @@ function Detalle() {
           <section className="p-3 flex flex-wrap gap-4 mb-3">
             <article className="flex-1 py-4 pl-7 border rounded-md bg-white">
               <ul className="list-disc pl-5 grid justify-center">
-                <li>{envio.name} - S/{envio.precio}</li>
+                <li>{envio.nombre} - S/{envio.precio}</li>
               </ul>
             </article>
           </section>
@@ -109,14 +108,14 @@ function Detalle() {
                   {productos.map((producto, index) => (
                     <tr key={index}>
                       <td className="py-2">{producto.cantidad}x {producto.title}</td>
-                      <td className="py-2">S/{producto.precioTotal.toFixed(2)}</td>
+                      <td className="py-2">S/{producto.precioTotal}</td>
                     </tr>
                   ))}
                 </tbody>
                 <tfoot>
                   <tr>
                     <td className="py-2 font-semibold">Total:</td>
-                    <td className="py-2 font-semibold">S/{detalleOrden.subtotal.toFixed(2)}</td>
+                    <td className="py-2 font-semibold">S/{detalleOrden.subTotal}</td>
                   </tr>
                 </tfoot>
               </table>
@@ -127,7 +126,7 @@ function Detalle() {
                 <table className="w-96 divide-y divide-gray-200">
                   <tr className="text-center">
                     <td className="py-2">Subtotal:</td>
-                    <td className="py-2">S/{detalleOrden.subtotal.toFixed(2)}</td>
+                    <td className="py-2">S/{detalleOrden.subTotal}</td>
                   </tr>
                   <tr className="text-center">
                     <td className="py-2">Envío:</td>
@@ -135,11 +134,11 @@ function Detalle() {
                   </tr>
                   <tr className="text-center">
                     <td className="py-2">Impuestos:</td>
-                    <td className="py-2">S/{detalleOrden.impuesto.toFixed(2)}</td>
+                    <td className="py-2">S/{detalleOrden.impuesto}</td>
                   </tr>
                   <tr className="text-center">
                     <td className="py-2">Total:</td>
-                    <td className="py-2">S/{detalleOrden.total.toFixed(2)}</td>
+                    <td className="py-2">S/{detalleOrden.total}</td>
                   </tr>
                 </table>
               </div>
