@@ -1,29 +1,52 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
 function AgregarProducto({ onAgregarProducto }) {
   const [busqueda, setBusqueda] = useState('');
   const [productos, setProductos] = useState([]);
 
-  // Función para simular la búsqueda de productos por ID
-  const handleBuscar = () => {
-    // Lógica para buscar el producto por ID
-    // En este ejemplo, simulamos una búsqueda simple
-    const productoEncontrado = {
-      id: Math.floor(Math.random() * 1000), // ID aleatorio para simular el producto encontrado
-      descripcion: `Producto encontrado con ID: ${busqueda}` // Descripción basada en el ID ingresado
-    };
+  // Datos iniciales de productos
+  const productoEncontrado = [
+    { id: 1, desc: 'Colección de historias épicas publicada por Ediciones Fénix' },
+    { id: 2, desc: 'Colección de crónicas publicada por Editorial Estrella' },
+    { id: 3, desc: 'Colección de misterios publicada por Mundo Literario' },
+    { id: 4, desc: 'Colección de leyendas publicada por Ediciones Cosmos' },
+    { id: 5, desc: 'Colección de secretos publicada por Editorial Horizonte' },
+    { id: 6, desc: 'Colección de relatos publicada por Ediciones Fénix' },
+    { id: 7, desc: 'Colección de enigmas publicada por Mundo Literario' },
+    { id: 8, desc: 'Colección de héroes publicada por Editorial Estrella' },
+    { id: 9, desc: 'Colección de sombras publicada por Ediciones Cosmos' },
+    { id: 10, desc: 'Colección de viajes publicada por Editorial Horizonte' },
+    { id: 11, desc: 'Colección de cuentos publicada por Mundo Literario' },
+    { id: 12, desc: 'Colección de aventuras publicada por Ediciones Cosmos' },
+    { id: 13, desc: 'Colección de fantasías publicada por Ediciones Fénix' },
+    { id: 14, desc: 'Colección de relatos publicada por Editorial Estrella' },
+    { id: 15, desc: 'Colección de historias publicada por Mundo Literario' },
+    { id: 16, desc: 'Colección de leyendas publicada por Ediciones Cosmos' },
+    { id: 17, desc: 'Colección de crónicas publicada por Ediciones Fénix' },
+    { id: 18, desc: 'Colección de secretos publicada por Editorial Horizonte' },
+    { id: 19, desc: 'Colección de aventuras publicada por Mundo Literario' },
+    { id: 20, desc: 'Colección de relatos publicada por Editorial Estrella' }
+  ];
 
-    setProductos([productoEncontrado]);
+  localStorage.setItem('productos', JSON.stringify(productoEncontrado));
+  // Cargar productos al montar el componente
+  useEffect(() => {
+    setProductos(productoEncontrado);
+  }, []);
+
+  // Función para buscar productos por ID
+  const handleBuscar = () => {
+    const resultado = productoEncontrado.filter(producto =>
+      producto.id === parseInt(busqueda)
+    );
+    setProductos(resultado);
   };
 
-  // Función para agregar el producto seleccionado
   const handleAgregarProducto = (id) => {
-    // Lógica para agregar el producto seleccionado
     onAgregarProducto(id);
   };
-
-  // Resto del código
+  
 
   return (
     <div className="flex flex-col">
@@ -60,9 +83,10 @@ function AgregarProducto({ onAgregarProducto }) {
               {productos.map((producto) => (
                 <tr key={producto.id}>
                   <td className="border border-gray-400 p-2">{producto.id}</td>
-                  <td className="border border-gray-400 p-2">{producto.descripcion}</td>
+                  <td className="border border-gray-400 p-2">{producto.desc}</td>
                   <td className="border border-gray-400 p-2">
-                  <Link to="/series/AgregarSeries" className="bg-blue-500 text-white px-4 py-2 rounded-md mr-2">Agregar</Link>
+                    
+                    <Link to="/series/AgregarSeries" className="bg-blue-500 text-white px-4 py-2 rounded-md mr-2">Agregar</Link>
                   </td>
                 </tr>
               ))}
