@@ -8,6 +8,8 @@ import EstadoIndicadorUsuario from "../../../componentes/ConvetirOAdaptar/Estado
 import BotonMenuPagina from "../../../componentes/ConvetirOAdaptar/BotonMenuPagina";
 import AURegistradosAPI from "../../../api/Administrador/Usuarios/registrados.js"; // API
 
+import Button from "../../../componentes/Admin/Usuario/Boton.jsx"
+
 /** @type {import('tailwindcss').Config} */
 
 function UsuariosRegistrados() {
@@ -35,7 +37,7 @@ function UsuariosRegistrados() {
     if (userActulizar) {
       nuevoEstado = {
         id: index,
-        estado_id: userActulizar.estado === 'Activo' ? 2 : 1,
+        id_estado: userActulizar.estado === 'Activo' ? 2 : 1,
       };
     }
     await AURegistradosAPI.update(nuevoEstado);
@@ -128,7 +130,7 @@ function UsuariosRegistrados() {
                   <p className="w-1/3">{usuario.correo}</p>
                   <p className="w-1/6">
                     <ConversionFechaTexto
-                      fechaOriginal={usuario.fechaRegistro}
+                      fechaOriginal={usuario.fecha_registro}
                     />
                   </p>
                   <p className="w-1/12">
@@ -160,6 +162,53 @@ function UsuariosRegistrados() {
       <footer>
         <FooterPa />
       </footer>
+      <div>
+        <div> {/* Fila 1, columna 1 */}
+          {/* svg -> parte de la icono del usuario */}
+        </div>
+        <div> {/* Fila 1, Columna 2 */}
+          {/* Nombre completo
+          Correo
+          fecha de registro */}
+        </div>
+        <div> {/* Fila 2, columna 1 */}
+          {/* boton para cambiar de estado */}
+        </div>
+        <div>{/* Fila 2, columna 1 */}
+          {/* boton para ir a ver en detalle */}
+        </div>
+      </div>
+
+    <div className="border p-4 rounded-lg shadow-lg max-w-sm mx-auto">
+      <div className="flex items-center mb-4"> {/* Fila 1 */}
+        <div className="mr-4"> {/* Fila 1, Columna 1 */}
+          {/* svg -> parte del icono del usuario */}
+          <svg className="w-12 h-12 text-gray-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4a4 4 0 110 8 4 4 0 010-8zm0 10c-4.418 0-8 1.791-8 4v1h16v-1c0-2.209-3.582-4-8-4z" />
+          </svg>
+        </div>
+        <div> {/* Fila 1, Columna 2 */}
+          {/* Nombre completo, Correo, fecha de registro */}
+          <h2 className="text-xl font-bold">user.name</h2>
+          <p className="text-gray-600">user.email</p>
+          <p className="text-gray-400 text-sm">Registrado el: user.registeredDat</p>
+        </div>
+      </div>
+      <div className="flex mt-4 space-x-4"> {/* Fila 2 */}
+        <div className="flex-1"> {/* Fila 2, Columna 1 */}
+          {/* Botón para cambiar de estado */}
+          <Button color="bg-blue-500">
+            Cambiar Estado
+          </Button>
+        </div>
+        <div className="flex-1"> {/* Fila 2, Columna 2 */}
+          {/* Botón para ir a ver en detalle */}
+          <Button color="bg-green-500">
+            Ver Detalle
+          </Button>
+        </div>
+      </div>
+    </div>
     </>
   );
 }
