@@ -36,10 +36,10 @@ function Ordenes() {
   // Filtrar ordenes basados en el término de búsqueda
   const filtrarOrdenes = ordenes.filter((orden) => {
     // Verificar la igual de ids
-    const idMatch = orden.id === buscarOrden;
+    const idMatch = orden.id.toString().includes(buscarOrden);
 
     // Verificar si el término de búsqueda está incluido en el nombre o apellido
-    const nameMatch = orden.usuario.toLowerCase().includes(buscarOrden.toLowerCase());
+    const nameMatch = orden.nombre.toLowerCase().includes(buscarOrden.toLowerCase());
 
     // Retornar verdadero si se cumple alguna de las condiciones
     return idMatch || nameMatch;
@@ -106,13 +106,13 @@ function Ordenes() {
             <div className='grid grid-cols-1 grid-rows-10'>
               {ordenesEnPagina.map(orden => (
                 <article key={orden.id} className="flex bg-white py-2 px-4 hover:bg-slate-100 items-center mb-1 rounded-md">
-                  <p className="w-[12%]">{orden.numero}</p>
-                  <p className="w-[18%]">{orden.usuario}</p>
-                  <p className="w-[14%]"><ConversionFechaTexto fechaOriginal={orden.fechaOrden} /></p>
-                  <p className="w-[10%]">S/{orden.total.toFixed(2)}</p>
+                  <p className="w-[12%]">{orden.id}</p>
+                  <p className="w-[18%]">{orden.nombre}</p>
+                  <p className="w-[14%]"><ConversionFechaTexto fechaOriginal={orden.fecha} /></p>
+                  <p className="w-[10%]">S/{orden.total}</p>
                   <p className="w-3/12">{orden.correo}</p>
-                  <p className="w-2/12">{orden.estado}
-                    <BarraPedidoEstado  estado={orden.estado_id} />
+                  <p className="w-2/12">{orden.estadoorden}
+                    <BarraPedidoEstado  estado={orden.id_estado} />
                   </p>
                   {/* Columna de Acciones */}
                   <Link

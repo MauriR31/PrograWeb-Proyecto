@@ -7,37 +7,39 @@ import AODetalleAPI from "../../../api/Administrador/Ordenes/detalle.js";  // AP
 
 function Detalle() {
   const { id } = useParams();
-  const [detalleOrden, setDetalleOrden] = useState(null);
+  const [orden, setOrden] = useState(null);
+  const [detalle, setDetalle] = useState([]);
   const [direccion, setDireccion] = useState('');
   const [envio, setEnvio] = useState('');
   const [estado, setEstado] = useState('');
   const [pago, setPago] = useState('');
-  const [productos, setProductos] = useState([]);
+  const [message, setMessage] = useState('');
 
   const handleOnLoad = async () => {
     const ordenesData = await AODetalleAPI.findOne(id);
-    setDetalleOrden(ordenesData);
-    setDireccion(ordenesData.direccion)
-    setEnvio(ordenesData.envio)
-    setEstado(ordenesData.estado)
-    setPago(ordenesData.pago)
-    setProductos(ordenesData.productos)
+    setOrden(ordenesData.orden);
+    setDireccion(ordenesData.direccion);
+    setEstado(ordenesData.estado);
+    setEnvio(ordenesData.envio);
+    setPago(ordenesData.pago);
+    setDetalle(ordenesData.detalle);
+    setMessage(ordenesData.message);
   };
 
   useEffect(() => {
     handleOnLoad();
   }, [id]);
 
-  if (detalleOrden === null) {
+  if (orden === null) {
     return <p>Cargando...</p>;
   }
 
-  if (detalleOrden.message === "No encontrado.") {
+  if (message === `No se encontró una orden con el id ${id}`) {
     return <PaginaError />;
   }
 
   const handleEliminarOrden = async () => {
-    await AODetalleAPI.remove(detalleOrden.id);
+    await AODetalleAPI.remove(orden.id);
     handleOnLoad();
   };
 
@@ -50,7 +52,7 @@ function Detalle() {
         <main className="flex flex-col max-w-6xl w-full">
           {/* Seccion de la parte superior */}
           <section className="p-3 bg-lime-500 text-center rounded-lg mx-3 mb-4">
-            <h1 className="text-2xl font-bold">Detalles de Orden Nro {detalleOrden.numero}</h1>
+            <h1 className="text-2xl font-bold">Detalles de Orden Nro {orden.id}</h1>
           </section>
 
           {/* Seccion de la parte de los datos de compra */}
@@ -62,7 +64,7 @@ function Detalle() {
           <section className="p-3 flex flex-wrap gap-4 mb-3">
             <article className="flex-1 py-4 pl-7 border rounded-md bg-white">
               <p className="text-lg font-semibold">Dirección de Envío</p>
-              <p className="pl-10">{direccion.avenida}, {direccion.numero}, {direccion.refer}</p>
+              <p className="pl-10">{direccion.avenida}, {direccion.numero}, {direccion.referencia}</p>
               <p className="pl-10">{direccion.distrito}, {direccion.provincia}</p>
               <p className="pl-10">{direccion.departamento}</p>
               <p className="pl-10">{direccion.pais}</p>
@@ -70,12 +72,12 @@ function Detalle() {
             <article className="flex-1 py-4 pl-7 border rounded-md bg-white">
               <p className="text-lg font-semibold">Pago</p>
               <ul className="list-disc pl-5">
-                {pago.id === 1 || pago.id === 4 ? (
-                  <li>{pago.name}</li>
+                {pago.id_pago === 1 || pago.id_pago === 4 ? (
+                  <li>{pago.nombre_pago}</li>
                 ) : (
                   <>
-                    <li>{pago.name}</li>
-                    <p>{pago.name} que termina en ****{pago.numero ? pago.numero.slice(-4) : ''}</p>
+                    <li>{pago.nombre_pago}</li>
+                    <p>{pago.nombre_pago} que termina en ****{pago.numero ? pago.numero.slice(-4) : ''}</p>
                   </>
                 )}
               </ul>
@@ -105,17 +107,17 @@ function Detalle() {
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-gray-200">
-                  {productos.map((producto, index) => (
-                    <tr key={index}>
-                      <td className="py-2">{producto.cantidad}x {producto.title}</td>
-                      <td className="py-2">S/{producto.precioTotal}</td>
+                  {detalle.map((producto) => (
+                    <tr key={producto.id}>
+                      <td className="py-2">{producto.cantidad}x {producto.nombre}</td>
+                      <td className="py-2">S/{producto.precio_total}</td>
                     </tr>
                   ))}
                 </tbody>
                 <tfoot>
                   <tr>
                     <td className="py-2 font-semibold">Total:</td>
-                    <td className="py-2 font-semibold">S/{detalleOrden.subTotal}</td>
+                    <td className="py-2 font-semibold">S/{orden.sub_total}</td>
                   </tr>
                 </tfoot>
               </table>
@@ -126,7 +128,7 @@ function Detalle() {
                 <table className="w-96 divide-y divide-gray-200">
                   <tr className="text-center">
                     <td className="py-2">Subtotal:</td>
-                    <td className="py-2">S/{detalleOrden.subTotal}</td>
+                    <td className="py-2">S/{orden.sub_total}</td>
                   </tr>
                   <tr className="text-center">
                     <td className="py-2">Envío:</td>
@@ -134,11 +136,11 @@ function Detalle() {
                   </tr>
                   <tr className="text-center">
                     <td className="py-2">Impuestos:</td>
-                    <td className="py-2">S/{detalleOrden.impuesto}</td>
+                    <td className="py-2">S/{orden.impuesto}</td>
                   </tr>
                   <tr className="text-center">
                     <td className="py-2">Total:</td>
-                    <td className="py-2">S/{detalleOrden.total}</td>
+                    <td className="py-2">S/{orden.total}</td>
                   </tr>
                 </table>
               </div>

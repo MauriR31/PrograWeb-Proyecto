@@ -1,6 +1,6 @@
 import base from '../../base.js'
 
-const endpoint = 'Admin/OrdenLog/Detail'
+const endpoint = 'admin/ordenes/detalle'
 
 const findOne = async (id) => await base.get(`${endpoint}/${id}`)
 
