@@ -4,10 +4,10 @@ const EstadoIndicadorUsuario = ({ estado }) => {
   let icono;
   let color;
 
-  if (estado === "Activo") {
+  if (estado === "Inactivo") {
     icono = "✔";
     color = "text-green-500";
-  } else if (estado === "Inactivo") {
+  } else if (estado === "Activo") {
     icono = "✘";
     color = "text-red-500";
   } else {
