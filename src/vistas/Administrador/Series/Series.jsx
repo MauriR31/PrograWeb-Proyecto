@@ -2,8 +2,12 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import BarraCuenta from '../../../componentes/BarraCuenta';
 import BarraPaginacion from '../../../componentes/BarraPaginacion';
+import HVacio from '../../../componentes/Header/HVacio';
+import Footer from '../../../componentes/Footer';
 
 function Series() {
+
+
   // Función para obtener los valores de localStorage o establecer valores predeterminados
   const obtenerValorLocalStorage = (key, valorInicial) => {
     const valorGuardado = localStorage.getItem(key);
@@ -24,6 +28,8 @@ function Series() {
     localStorage.setItem('opcionBusquedaSeries', JSON.stringify(opcionBusqueda));
   }, [opcionBusqueda]);
 
+
+  
   const usuarios = [
     { id: 1, nombre: 'Historias Épicas de Avalon', desc: 'Colección de historias épicas publicada por Ediciones Fénix', fecha: '15/02/2023', nprod: 7, accion: <Link to="/series/AgregarSeries">Ver</Link> },
     { id: 2, nombre: 'Crónicas del Futuro', desc: 'Colección de crónicas publicada por Editorial Estrella', fecha: '28/02/2023', nprod: 12, accion: <Link to="/series/AgregarSeries">Ver</Link> },
@@ -117,24 +123,26 @@ function Series() {
   
 
   return (
-    <div className="flex">
+    <>
+    <HVacio/>
+    <div className="flex justify-center py-4" style={{ backgroundColor:'#EEEEEE' }}>
       <BarraCuenta />
-      <main id="MainUsuariosRegistradosAdmin" className="flex flex-col w-5/6">
-        <section id="MURACabecera" className="p-4">
+      <main id="MainUsuariosRegistradosAdmin" className="flex flex-col max-w-6xl w-full">
+        <section id="MURACabecera" className="p-3 bg-white rounded-lg mx-3">
           <h2 className="text-xl font-bold">Series</h2>
         </section>
         <section id="MURABuscador" className="p-4 flex items-center justify-between">
           <input
             type="text"
             placeholder="Buscar..."
-            className="w-3/4 px-4 py-2 rounded-md bg-gray-200 text-gray-800 focus:outline-none focus:bg-white"
+            className="max-w-3xl w-full px-4 py-2 rounded-3xl border-slate-950 border-2 bg-white text-gray-800 focus:outline-none"
             value={busqueda}
             onChange={handleBusquedaChange}
           />
           <select
             value={opcionBusqueda}
             onChange={handleOpcionBusquedaChange}
-            className="w-1/4 px-4 py-2 ml-2 rounded-md bg-gray-200 text-gray-800 focus:outline-none focus:bg-white"
+            className="max-w-3xl w-full px-4 py-2 pl-10 rounded-3xl border-slate-950 border-1 bg-gray-100 text-gray-800 focus:outline-none"
           >
             <option value="id">ID</option>
             <option value="nombre">Nombre</option>
@@ -142,7 +150,7 @@ function Series() {
           </select>
         </section>
         <section id="MURAListado" className="p-3.5 text-sm">
-          <article id="MURALCabecera" className="flex bg-gray-300 p-2">
+          <article id="MURALCabecera" className="flex bg-green-200 p-2 items-center mb-2 px-4">
             <p className="flex-none w-12">ID</p>
             <p className="flex-auto w-60">Nombre</p>
             <p className="flex-auto w-60">Descripción</p>
@@ -151,7 +159,7 @@ function Series() {
             <p className="flex-none w-40">Acciones</p>
           </article>
           {usuariosEnPagina.map((usuario) => (
-            <article key={usuario.id} className="flex bg-gray-100 p-2">
+            /**/<article key={usuario.id} className="flex bg-white py-2 px-4 hover:bg-slate-100 items-center mb-1 rounded-md">
               <p className="flex-none w-12">{usuario.id}</p>
               <p className="flex-auto w-60">{usuario.nombre}</p>
               <p className="flex-auto w-60">{usuario.desc}</p>
@@ -171,6 +179,8 @@ function Series() {
         </section>
       </main>
     </div>
+    <Footer/>
+    </>
   );
 }
 
