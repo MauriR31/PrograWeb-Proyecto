@@ -1,19 +1,77 @@
-import { useState } from "react"
+import ErrorLogin from "./ErrorLogin.jsx"
+
+import loginApi from "../../api/Login/login.js"
+import passwordApi from "../../api/Login/passwords.js"
 import { Link, useNavigate } from "react-router-dom"
 import { useFormulario } from "../../context/Formulario.jsx"
-import ErrorLogin from "./ErrorLogin.jsx"
+import { useEffect, useState } from "react"
+
+
 function ContenidoRegistro() {
   const navigate = useNavigate()
-  const formulario = useFormulario()
+  const formulario = useFormulario()  
+  const [idusuario, setIdusuario] = useState()
+  const [idprivado, setIdprivado] = useState()
+  const [usuarios,setUsuarios] = useState([])
+  const [privado, setPrivado] = useState([])
+
+  //Carga de datos de usuarios que existen
+  const handleOnLoad = async () => {
+    const usuariosData = await loginApi.findAllComplete();
+    setUsuarios(usuariosData)    
+    console.log(usuarios)
+
+    setIdusuario(parseInt(usuarios.length) + 1)
+    console.log(idusuario)
+
+    const privadoData = await passwordApi.findAllComplete();
+    setPrivado(privadoData)    
+    console.log(privado)
+
+    setIdprivado(parseInt(privado.length) + 1)
+    console.log(idprivado)
+  }
+
+  useEffect(() => {
+    handleOnLoad();
+  }, [formulario])
+
+  
 
   //Asegurar de completar bien el formulario
-  function handleClickForm() {
-    if(formulario.nombre != '' && formulario.apellido != '' && formulario.correo != '' && formulario.password != '' && formulario.password2 != ''){
+  const handleClickForm = async () => {
+    
+  // const filterExistente = usuarios.filter(u => u.correo == formulario.correo);
+  //if(filterExistente.length != 0){
       if(formulario.password === formulario.password2){
-        alert("Usuario creado exitosamente")
+        alert("Usuario creado exitosamente")       
+        
+        const payloadPrivado = {
+          id: idprivado,
+          id_rol: 1,
+          password : formulario.password
+        }
         //mostrar en consola la cuenta nueva  
-        const cuenta = [formulario.nombre, formulario.apellido , formulario.correo, formulario.password]
-        console.log(cuenta)
+        const crearPrivado = await passwordApi.create(payloadPrivado)
+        console.log(crearPrivado)
+
+        const payloadCuenta = {  
+          id: idusuario,    
+          nombre: formulario.nombre ,   
+          apellido: formulario.apellido,
+          fecha_registro: new Date(),
+          correo: formulario.correo,
+          id_usuario: idprivado,             
+          id_estado: 1,                            
+        }
+
+        const crearUsuario = await loginApi.create(payloadCuenta)
+        console.log(crearUsuario)
+
+             
+        handleOnLoad();
+
+
         formulario.setMensajeError('')
         formulario.setNombre('')
         formulario.setApellido('')
@@ -26,10 +84,10 @@ function ContenidoRegistro() {
         formulario.setMensajeError(<ErrorLogin />)
       }
     }
-    else{
-      formulario.setMensajeError(<ErrorLogin />)
-    }   
-  }
+    //else{
+    // formulario.setMensajeError(<ErrorLogin />)
+    //}   
+  //}
 
   function handleClickRegresar () {
     formulario.setNombre('')

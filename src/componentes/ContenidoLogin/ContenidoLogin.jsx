@@ -1,20 +1,41 @@
 import ErrorLogin from "./ErrorLogin.jsx"
 
+import loginApi from "../../api/Login/login.js"
 import { Link, useNavigate } from "react-router-dom"
 import { useFormulario } from "../../context/Formulario.jsx"
+import { useEffect, useState } from "react"
 function ContenidoLogin() {
   
   const navigate = useNavigate()
   const formulario = useFormulario()
+  const [usuarios,setUsuarios] = useState([])
 
+  //Carga de datos de usuarios que existen
+  const handleOnLoad = async () => {
+    const usuariosData = await loginApi.findAllComplete();
+    setUsuarios(usuariosData)    
+  }
+
+  useEffect(() => {
+    handleOnLoad();
+  }, [formulario])
+
+  
   function Verificar () {
-    if( formulario.correo === "user" && formulario.password === "user"){
+    //2 filtros para buscar si existe una cuenta de usuario admin o usuario comun
+    const buscarUsuario = usuarios.filter(u => u.correo == formulario.correo && u.usuario.password == formulario.password && u.usuario.id_rol == 1) ; 
+    const buscarAdmin = usuarios.filter(u => u.correo == formulario.correo && u.usuario.password == formulario.password && u.usuario.id_rol == 2) ; 
+    console.log(buscarUsuario)   
+    //Si el tamaño del arreglo es 1 es porque encontro a ese usuario en la base de datos
+    if(buscarUsuario.length === 1 ){
+      
       formulario.setMensajeError('')
       formulario.setCorreo('')
       formulario.setPassword('')
       navigate("/usuarios/main")
     }
-    else if( formulario.correo === "admin" && formulario.password === "admin") {
+    else if(buscarAdmin.length === 1 ) {
+
       formulario.setMensajeError('')
       formulario.setCorreo('')
       formulario.setPassword('')
@@ -22,9 +43,8 @@ function ContenidoLogin() {
     }
     else{      
       formulario.setMensajeError(<ErrorLogin />)               
-    }
+    }    
   }
-
   function handleClickOpciones() {
     formulario.setCorreo('')
     formulario.setPassword('')
