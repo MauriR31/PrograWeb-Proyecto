@@ -78,7 +78,7 @@ function ContenidoRegistro() {
         formulario.setCorreo('')
         formulario.setPassword('')
         formulario.setPassword2('')
-        navigate("/usuarios/main")
+        navigate("/usuarios/main/"+idusuario)
       }
       else{
         formulario.setMensajeError(<ErrorLogin />)

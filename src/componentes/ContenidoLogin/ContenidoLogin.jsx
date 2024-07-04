@@ -3,11 +3,13 @@ import ErrorLogin from "./ErrorLogin.jsx"
 import loginApi from "../../api/Login/login.js"
 import { Link, useNavigate } from "react-router-dom"
 import { useFormulario } from "../../context/Formulario.jsx"
+import { useDatos } from "../../context/Datos.jsx"
 import { useEffect, useState } from "react"
 function ContenidoLogin() {
   
   const navigate = useNavigate()
   const formulario = useFormulario()
+  const datos = useDatos()
   const [usuarios,setUsuarios] = useState([])
 
   //Carga de datos de usuarios que existen
@@ -32,13 +34,14 @@ function ContenidoLogin() {
       formulario.setMensajeError('')
       formulario.setCorreo('')
       formulario.setPassword('')
-      navigate("/usuarios/main")
+      navigate("/usuarios/main/"+buscarUsuario[0].id)
     }
     else if(buscarAdmin.length === 1 ) {
 
       formulario.setMensajeError('')
       formulario.setCorreo('')
       formulario.setPassword('')
+      //en la pagina de dashboard falta referenciarlo por id
       navigate("/dashboard")
     }
     else{      

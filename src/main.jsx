@@ -142,7 +142,7 @@ const router = createBrowserRouter([
     element: <RecuperarPassword />,
   },
   {
-    path: "/usuarios/main",
+    path: "/usuarios/main/:id",
     element: <Main />,
   },
 

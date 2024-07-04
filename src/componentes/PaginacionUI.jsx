@@ -1,13 +1,31 @@
 //Ojo este metodo de paginacion va a usar material ui como base
-//Por ahora solo funciona con la pagina main del usuario
 import Pagination from '@mui/material/Pagination';
 import Stack from '@mui/material/Stack';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
+
+import ordRecientesApi from "../api/Main/OrdenesRecientes.js"
 //tiene en cuenta el useContext
 import { useDatos } from "../context/Datos.jsx"
-function PaginacionUI() {
 
+
+function PaginacionUI() {
+  const { id } =  useParams()
+  console.log(id)
   const paginacion = useDatos()
+  const[ordenes,setOrdenes] = useState([])
+  
+
+  const handleOnLoad = async () => {    
+    const ordenesDatos = await ordRecientesApi.findAll();
+    const filtrarOrdenes = ordenesDatos.filter(or => or.id_cliente == parseInt(id))
+    setOrdenes(filtrarOrdenes)
+    console.log(ordenes)
+  }
+
+  useEffect(() => {
+   handleOnLoad();
+  },[])
 
   const handleChange = (event, value) => {
     paginacion.setPage(value)
@@ -16,12 +34,12 @@ function PaginacionUI() {
   const numpage = CalcularPaginas()
     
   function CalcularPaginas(){ 
-    if(paginacion.datos.length >= filasxtabla){
-      if(paginacion.datos.length % filasxtabla == 1){
-        return Math.round(paginacion.datos.length / filasxtabla) + 1
+    if(ordenes.length >= filasxtabla){
+      if(ordenes.length % filasxtabla == 1){
+        return Math.round(ordenes.length / filasxtabla) + 1
       }
       else{
-        return Math.round(paginacion.datos.length / filasxtabla)
+        return Math.round(ordenes.length / filasxtabla)
       }
     }
     else{
