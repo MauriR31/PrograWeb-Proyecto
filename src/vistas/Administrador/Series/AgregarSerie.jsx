@@ -1,42 +1,42 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { Link, useLocation } from 'react-router-dom';
 import ImageUploader from './ImageUploader';
 import BarraCuenta from '../../../componentes/BarraCuenta';
 import HVacio from '../../../componentes/Header/HVacio';
 import Footer from '../../../componentes/Footer';
 
 function AgregarSerie() {
-  // Estados para el nombre, descripción, imagen y lista de productos
+  const location = useLocation();
+  const query = new URLSearchParams(location.search);
+  const nprod = parseInt(query.get('nprod'), 10) || 0; // Default to 0 if nprod is not provided
+
   const [nombre, setNombre] = useState('');
   const [descripcion, setDescripcion] = useState('');
   const [imagen, setImagen] = useState(null);
-  const [productos, setProductos] = useState([
-    { id: 1, desc: "Volumen 1" },
-    { id: 2, desc: "Volumen 2" },
-    { id: 3, desc: "Volumen 3" },
-    { id: 4, desc: "Volumen 4" },
-  ]);
+  const [productos, setProductos] = useState([]);
 
-  const usuariosGuardados = JSON.parse(localStorage.getItem('usuarios'));
-  // Función para manejar la subida de la imagen
+  // Initialize products state based on nprod from URL
+  useEffect(() => {
+    setProductos(Array.from({ length: nprod }, (_, i) => ({ id: i + 1, desc: `Producto ${i + 1}` })));
+  }, [nprod]);
+
   const handleImageUpload = (file) => {
     setImagen(file);
   };
 
-  // Función para agregar un producto a la lista
   const agregarProducto = () => {
-    const nuevoProducto = { id: productos.length + 1, desc: `Volumen ${productos.length + 1}` };
+    const nuevoProducto = { id: productos.length + 1, desc: `Producto ${productos.length + 1}` };
     setProductos([...productos, nuevoProducto]);
   };
 
-  // Función para remover un producto de la lista
   const removerProducto = (id) => {
     const nuevaLista = productos.filter(producto => producto.id !== id);
     setProductos(nuevaLista);
   };
 
-  // Función para guardar los cambios y actualizar los datos en el componente Series
   const guardarCambios = () => {
+    // Simulate saving changes
+    console.log("Guardando cambios", { nombre, descripcion, productos });
     window.location.href = '/series';
   };
 
@@ -51,11 +51,9 @@ function AgregarSerie() {
               <h2 className="text-xl font-bold pl-10 pt-5 w-full">Agregar Serie</h2>
               <section id="ASContenido" className="p-2 h-50 ">
                 <div className="w-1000 p-4 flex">
-                  {/* PARTE IMAGEN */}
                   <div className="bg-gray-200 border border-gray-300 rounded-md p-4 pt-20 mb-4 w-full">
                     <ImageUploader onImageUpload={handleImageUpload} image={imagen} />
                   </div>
-                  {/* PARTE TEXTO */}
                   <div className='w-full m-5'>
                     <label className="block mb-2 pl-5">Nombre</label>
                     <input
@@ -71,13 +69,11 @@ function AgregarSerie() {
                       onChange={(e) => setDescripcion(e.target.value)}
                       className="max-w-3xl w-full px-4 py-2 rounded-3xl border-slate-950 border-2 bg-white text-gray-800 focus:outline-none"
                     />
-                    {/* Lista de productos */}
                     <div className='mb-5 '>
                       <div className='flex'>
                         <h3 className="text-lg font-bold mr-50 w-full h-50">Productos en la Serie</h3>
                         <button onClick={agregarProducto} className="bg-blue-500 text-white px-4 py-2 rounded-md mr-2">
-                        +
-                        
+                          +
                         </button>
                         <Link to="/series/AgregarSeries/AgregarProducto" className="bg-blue-500 tex pt-2 rounded-md text-white">Agregar</Link>
                       </div>
@@ -102,7 +98,6 @@ function AgregarSerie() {
                         </tbody>
                       </table>
                     </div>
-                    {/* Botón de guardar cambios */}
                     <div className="w-1/2 p-4">
                       <button onClick={guardarCambios} className="bg-green-500 text-white px-4 py-2 rounded-md">
                         Guardar

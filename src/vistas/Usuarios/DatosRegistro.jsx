@@ -1,77 +1,79 @@
 import React, { useState } from 'react';
 
-function DatosRegistro() {
-  const [datos, setDatos] = useState({
-    nombre: '',
-    apellido: '',
-    correo: '',
+function CambiarDatos() {
+  const [datos, setdatos] = useState({
+    Nombre: '',
+    Apellido: '',
+    Correo: '',
   });
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setDatos({
+    setdatos({
       ...datos,
       [name]: value,
     });
   };
-
+  const guardarCambios = () => {
+    window.location.href = '/usuarios/main/:id';
+  };
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Aquí puedes agregar la lógica para guardar y actualizar los datos
-    console.log("Nombre:", datos.nombre);
-    console.log("Apellido:", datos.apellido);
-    console.log("Correo:", datos.correo);
-    // Lógica para enviar los datos y actualizar la información de registro
-    // Por ahora, simplemente mostraremos los datos en la consola
-    alert('Datos actualizados exitosamente.');
+    
+    console.log("Nombre:", datos.Nombre);
+    console.log("Apellido:", datos.Apellido);
+    console.log("Correo:", datos.Correo);
+    // Lógica para enviar los datos y actualizar la contraseña
+   
+    alert('Datos actualizados.');
   };
 
   return (
-    <div className="flex flex-col bg-gray-200">
-      <main id="MainDatosRegistro" className="flex flex-col w-full">
-        <section id="DRCabecera" className="p-4 bg-neutral-400">
-          <h2 className="text-xl font-bold ">Datos de Registro</h2>
+    <div className="flex justify-center py-4" style={{ backgroundColor:'#EEEEEE' }}>
+      <main id="MainCambiarPassword" className="flex flex-col max-w-6xl w-full">
+        <section id="CPCabecera" className="p-3 bg-white rounded-lg mx-3">
+          <h2 className="text-xl font-bold">DATOS REGISTRO</h2>
         </section>
-        <div className="p-4">
-          <form onSubmit={handleSubmit} className="w-full max-w-lg">
+        <div className="p-4 pl-80">
+          <form onSubmit={handleSubmit} className="w-full max-w-lg ">
             <div className="mb-4">
               <input
                 placeholder='Nombre'
-                type="text"
-                id="nombre"
-                name="nombre"
-                value={datos.nombre}
+                type='text'
+                id="Nombre"
+                name="Nombre"
+                value={datos.Nombre}
                 onChange={handleChange}
-                className="border border-gray-400 rounded-md w-full p-2"
+                className="max-w-3xl w-full px-4 py-2 rounded-3xl border-slate-950 border-2 bg-white text-gray-800 focus:outline-none"
                 required
               />
             </div>
             <div className="mb-4">
               <input
                 placeholder='Apellido'
-                type="text"
-                id="apellido"
-                name="apellido"
-                value={datos.apellido}
+                type="password"
+                id="Apellido"
+                name="Apellido"
+                value={datos.Apellido}
                 onChange={handleChange}
-                className="border border-gray-400 rounded-md w-full p-2"
+                className="max-w-3xl w-full px-4 py-2 rounded-3xl border-slate-950 border-2 bg-white text-gray-800 focus:outline-none"
                 required
               />
             </div>
-            <div className="mb-4">
-             <input
+            <div className="mb-4 ">
+              <input
                 placeholder='Correo'
-                type="email"
-                id="correo"
-                name="correo"
-                value={datos.correo}
+                type="text"
+                id="Correo"
+                name="Correo"
+                value={datos.Correo}
                 onChange={handleChange}
-                className="border border-gray-400 rounded-md w-full p-2"
+                className="max-w-3xl w-full px-4 py-2 rounded-3xl border-slate-950 border-2 bg-white text-gray-800 focus:outline-none"
                 required
               />
             </div>
-            <div className='pl-40 pr-0'>
-            <button type="submit" className="bg-black text-white px-10 py-2 rounded-lg ">Actualizar</button>
+            <div className='pl-60'>
+            <button onClick={guardarCambios} type="submit" className="bg-green-500 text-white px-4 py-2 rounded-md flex-none w-30"><link rel="stylesheet"  />Guardar</button>
             </div>
           </form>
         </div>
@@ -80,4 +82,4 @@ function DatosRegistro() {
   );
 }
 
-export default DatosRegistro;
+export default CambiarDatos;

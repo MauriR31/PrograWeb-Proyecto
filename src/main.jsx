@@ -53,6 +53,7 @@ import AdAgregarSeries from "./vistas/Administrador/Series/AgregarSerie.jsx";
 import AdAgregarProducto from "./vistas/Administrador/Series/AgregarProducto.jsx";
 import UCambiarPassword from "./vistas/Usuarios/CambiarPassword.jsx";
 import UDatosRegistro from "./vistas/Usuarios/DatosRegistro.jsx";
+import ODetalleOrden from "./vistas/Usuarios/Ordenes/DetalleOrden.jsx"
 
 //Parte de Mauricio
 import Login from "./vistas/Login/Login.jsx";
@@ -166,6 +167,10 @@ const router = createBrowserRouter([
   {
     path: "/Usuario/DatosRegistro",
     element: <UDatosRegistro />,
+  },
+  {
+    path: "/Usuario/DetalleOrden",
+    element: <ODetalleOrden />,
   },
 
   //Parte de Erick
