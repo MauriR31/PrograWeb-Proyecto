@@ -1,16 +1,38 @@
 import { Link } from "react-router-dom"
 import { useFormulario } from "../../context/Formulario"
 import ErrorLogin from "./ErrorLogin"
+import loginApi from "../../api/Login/login.js"
+import { useEffect, useState } from "react"
 
 function ContenidoRecuperar() {
   const formulario = useFormulario()
+  const [usuarios,setUsuarios] = useState([])
+
+  //Carga de datos de usuarios que existen
+  const handleOnLoad = async () => {
+    const usuariosData = await loginApi.findAll();
+    setUsuarios(usuariosData)    
+  }
+
+  useEffect(() => {
+    handleOnLoad();
+  }, [formulario])
+
   function handleClickRecuperar () {
+    const buscarUsuario = usuarios.filter(u => u.correo == formulario.correo); 
+    const buscarAdmin = usuarios.filter(u => u.correo == formulario.correo); 
     //Mensaje de recepcion
-    if(formulario.correo != '')
-    {      
-      formulario.setMensajeError('')
-      alert("Restauracion de contraseña enviada al correo: ("+ formulario.correo + ") ,revise su correo por favor")      
+    if(buscarUsuario.length === 1)
+    {     
+      formulario.setMensajeError('')       
       formulario.setCorreo('')
+      alert("señor(a): "+buscarUsuario[0].nombre+" se te ha enviado un correo para reestablecer tu contraseña")     
+    }
+    else if(buscarAdmin.length === 1)
+    {     
+      formulario.setMensajeError('')           
+      formulario.setCorreo('')
+      alert("señor(a): "+buscarAdmin[0].nombre+" se te ha enviado un correo para reestablecer tu contraseña") 
     }
     else{
       formulario.setMensajeError(<ErrorLogin/>)
