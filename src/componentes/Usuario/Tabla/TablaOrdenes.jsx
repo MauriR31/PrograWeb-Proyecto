@@ -17,7 +17,7 @@ import { useParams } from 'react-router-dom';
 
 
 function TablaOrdenes() {  
-  const { id } =  useParams()
+  const { id } =  useParams()  
   const datosPagina = useDatos()
 
   const[ordenes,setOrdenes] = useState([])
@@ -28,6 +28,8 @@ function TablaOrdenes() {
   const[pais,setPais] = useState([])  
 
   const handleOnLoad = async () => {    
+    datosPagina.setId(parseInt(id));
+    console.log(datosPagina.id)
     const ordenesDatos = await ordRecientesApi.findAll();
     const filtrarOrdenes = ordenesDatos.filter(or => or.id_cliente == parseInt(id)) 
 

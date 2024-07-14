@@ -33,14 +33,14 @@ function ContenidoLogin() {
       
       formulario.setMensajeError('')
       formulario.setCorreo('')
-      formulario.setPassword('')
+      formulario.setPassword('')      
       navigate("/usuarios/main/"+buscarUsuario[0].id)
     }
     else if(buscarAdmin.length === 1 ) {
 
       formulario.setMensajeError('')
       formulario.setCorreo('')
-      formulario.setPassword('')
+      formulario.setPassword('')      
       //en la pagina de dashboard falta referenciarlo por id
       navigate("/dashboard")
     }
