@@ -41,8 +41,10 @@ function ContenidoRegistro() {
   //Asegurar de completar bien el formulario
   const handleClickForm = async () => {
     
-  // const filterExistente = usuarios.filter(u => u.correo == formulario.correo);
-  //if(filterExistente.length != 0){
+  const filterExistente = usuarios.filter(u => u.correo == formulario.correo);
+  console.log(filterExistente.length)
+  if(filterExistente.length != 1){
+    if(formulario.nombre != '' && formulario.apellido != '' && formulario.correo != '' && formulario.password != '' && formulario.password2 != ''){    
       if(formulario.password === formulario.password2){
         alert("Usuario creado exitosamente")       
         
@@ -80,14 +82,19 @@ function ContenidoRegistro() {
         formulario.setPassword2('')
         navigate("/usuarios/main/"+idusuario)
       }
+
       else{
         formulario.setMensajeError(<ErrorLogin />)
       }
     }
-    //else{
-    // formulario.setMensajeError(<ErrorLogin />)
-    //}   
-  //}
+    else{
+     formulario.setMensajeError(<ErrorLogin />)
+    }   
+  }
+  else{
+    formulario.setMensajeError(<ErrorLogin />)
+  }
+}
 
   function handleClickRegresar () {
     formulario.setNombre('')
@@ -97,6 +104,8 @@ function ContenidoRegistro() {
     formulario.setPassword2('')
     formulario.setMensajeError('')
   }  
+
+
   return(
     <>
       <section className="flex flex-col items-center justify-center h-[41.125rem] bg-slate-100">
