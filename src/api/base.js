@@ -1,4 +1,4 @@
-const URI = 'http://localhost:3001/';
+const URI = 'https://grupo4-backend.azurewebsites.net/';
 
 const get = async (endpoint) => {
   return await fetch(URI + endpoint)
