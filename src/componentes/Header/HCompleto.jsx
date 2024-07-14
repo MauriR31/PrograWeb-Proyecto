@@ -1,6 +1,7 @@
-<<<<<<< HEAD
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { useState } from 'react';
+import React from 'react';
+import { Link, useNavigate} from 'react-router-dom';
+import {useDatos} from "../../context/Datos.jsx";
 
 function ProductTable() {
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
@@ -21,12 +22,7 @@ function ProductTable() {
       setIsDropdownOpen(false);
     }, 200);
   };
-=======
-import React from 'react';
-import { Link, useNavigate} from 'react-router-dom';
-import {useDatos} from "../../context/Datos.jsx";
 
-function ProductTable() {
   const datosPagina = useDatos();
   const navigate = useNavigate();
   const handleIniciarSesion = () => {
@@ -38,7 +34,6 @@ function ProductTable() {
     else
       navigate("/login")
   }
->>>>>>> 49aeb07d1f29acf0d033cb18752cc46e0ad7eb13
 
   return (
     <header className="bg-blue-200 text-black shadow-md">
@@ -103,7 +98,6 @@ function ProductTable() {
             <a href="#" className="text-gray-600 hover:text-gray-800">Ayuda</a>
           </div>
 
-<<<<<<< HEAD
           <div className="relative">
             <button
               id="dropdownHoverButton"
@@ -133,9 +127,7 @@ function ProductTable() {
               </div>
             )}
           </div>
-=======
           <Link onClick={handleIniciarSesion} className="Cuenta bg-gray-700 text-white py-2 px-4 rounded-lg text-sm hover:bg-gray-800 mr-1">Mi Cuenta</Link>
->>>>>>> 49aeb07d1f29acf0d033cb18752cc46e0ad7eb13
         </nav>
       </div>
     </header>
