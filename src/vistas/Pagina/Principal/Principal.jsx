@@ -8,7 +8,7 @@ function Principal() {
   return (
    <>
     <HCompleto />
-    < SeccionPrincipal/>
+    <SeccionPrincipal/>
     <Footer />
     </>
   );

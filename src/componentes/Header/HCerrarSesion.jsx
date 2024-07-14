@@ -3,7 +3,7 @@ import React from "react";
 const HCerrarSesion = () => {
   return (
     <>
-      <header className="text-black shadow-md" style={{ backgroundColor: '#EEEEEE' }}>
+       <header className="bg-blue-200 text-black shadow-md" >
         <div className="container mx-auto flex items-center justify-between py-4 px-6">
           <nav className="MenuCabecera">
             <a href="/">

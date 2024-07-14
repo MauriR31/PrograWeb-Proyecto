@@ -4,6 +4,7 @@ const get = async (endpoint) => {
   return await fetch(URI + endpoint)
             .then(response => response.json())
             .then(data => {
+                
                 console.log(data)
                 return data
             })

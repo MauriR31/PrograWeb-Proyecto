@@ -3,7 +3,7 @@ import React from "react";
 const HVacio = () => {
   return (
     <>
-      <header className="bg-gray-200 text-black shadow-md">
+       <header className="bg-blue-200 text-black shadow-md">
         <div className="container mx-auto flex items-center justify-between py-4 px-6">
           <nav className="MenuCabecera">
             <a href="/">

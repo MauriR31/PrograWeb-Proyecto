@@ -1,4 +1,4 @@
-}import React, { useState } from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Banner, images } from '../Principal/BD_Productos';
 
@@ -150,3 +150,143 @@ const SeccionPrincipal = () => {
 };
 
 export default SeccionPrincipal;
+---------------------
+import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import productosApi from '../../../api/ProductoVista';
+
+const ProductList = () => {
+  const [productos, setProductos] = useState([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const data = await productosApi.findAll();
+        setProductos(data);
+      } catch (error) {
+        console.error('Error al obtener productos:', error);
+      }
+    };
+
+
+    const handleSearch = () => {
+      if (searchTerm) {
+        navigate('/Busqueda', { state: { searchTerm } });
+      } else {
+        setShowWarning(true);
+      }
+    };
+  
+    const handleProductSelection = (Producto) => {
+      console.log("ID del producto:", Producto.id);
+      navigate('/DetalleProducto', { state: { productId: producto.id } });
+    };
+  
+
+    const ProductTable = ({ category }) => {
+      const [startIndex, setStartIndex] = useState(0);
+      const filteredImages = productos.filter((producto) => producto.rubro === category);
+      const visibleImages = filteredImages.slice(startIndex, startIndex + itemsPerPage);
+    
+      const handleNext = () => {
+        const newStartIndex = startIndex + itemsPerPage;
+        if (newStartIndex < filteredImages.length) {
+          setStartIndex(newStartIndex);
+        } else {
+          setStartIndex(0);
+        }
+      };
+
+
+
+
+
+
+    fetchData();
+  }, []);
+
+  return (
+    <div>
+      <h1>Lista de Productos</h1>
+      <ul>
+        {productos.map((producto) => (
+          <li key={producto.id}>
+            {producto.nombre} - {producto.precio} $
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+};
+
+export default ProductList;
+--------------------
+import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import productosApi from '../../../api/ProductoVista';
+
+const ProductList = () => {
+  const [productos, setProductos] = useState([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const data = await productosApi.findAll();
+        setProductos(data);
+      } catch (error) {
+        console.error('Error al obtener productos:', error);
+      }
+    };
+
+
+    const handleSearch = () => {
+      if (searchTerm) {
+        navigate('/Busqueda', { state: { searchTerm } });
+      } else {
+        setShowWarning(true);
+      }
+    };
+  
+    const handleProductSelection = (Producto) => {
+      console.log("ID del producto:", Producto.id);
+      navigate('/DetalleProducto', { state: { productId: producto.id } });
+    };
+  
+
+    const ProductTable = ({ category }) => {
+      const [startIndex, setStartIndex] = useState(0);
+      const filteredImages = productos.filter(() => producto.rubro === category);
+      const visibleImages = filteredImages.slice(startIndex, startIndex + itemsPerPage);
+    
+      const handleNext = () => {
+        const newStartIndex = startIndex + itemsPerPage;
+        if (newStartIndex < filteredImages.length) {
+          setStartIndex(newStartIndex);
+        } else {
+          setStartIndex(0);
+        }
+      };
+
+
+
+
+
+
+    fetchData();
+  }, []);
+
+  return (
+    <div>
+      <h1>Lista de Productos</h1>
+      <ul>
+        {productos.map((producto) => (
+          <li key={producto.id}>
+            {producto.nombre} - {producto.precio} $
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+};
+
+export default ProductList;
