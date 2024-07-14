@@ -1,6 +1,22 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
+import { useDatos } from "../context/Datos.jsx";
 
 const Footer = () => {
+  const datosPagina = useDatos();
+  const navigate = useNavigate();
+
+  const handleIniciarSesion = () => {
+    console.log(datosPagina.id)
+    if(datosPagina.id >= 3)
+      navigate("/usuarios/main/"+datosPagina.id)
+    else if (datosPagina.id == 1 || datosPagina.id == 2)
+      navigate("/dashboard")      
+    else
+      navigate("/login")
+  }
+    
+
   return (
     <footer className="text-white py-8" style={{ backgroundColor:'#0c2941' }}>
       <div className="container mx-auto flex flex-wrap justify-between">
@@ -19,7 +35,7 @@ const Footer = () => {
           <h3 className="text-lg font-bold mb-4">Cuenta</h3>
           <ul>
             <li style={{ marginTop: "22px" }}>
-              <a href="/login" className="text-gray-400 hover:text-white">
+              <a onClick={handleIniciarSesion} className="text-gray-400 hover:text-white">
                 Login
               </a>
             </li>

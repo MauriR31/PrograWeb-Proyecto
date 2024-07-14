@@ -1,6 +1,4 @@
 import { createContext, useContext, useEffect, useMemo, useState } from "react";
-import { ordenes } from "../data/Ordenes";
-
 
 export const DatosContext = createContext(null)
 
@@ -12,21 +10,22 @@ export const DatosProvider = ({ children }) => {
     return localStoragePagina ? JSON.parse(localStoragePagina) : 1
   }  
 
-  const guardarOrdenes = () =>{
-    const localStorageOrdenes = localStorage.getItem('datos')
-    return localStorageOrdenes ? JSON.parse(localStorageOrdenes) : ordenes
-  } 
+  const guardarId = () =>{
+    const localStorageId = localStorage.getItem('id')
+    return localStorageId ? JSON.parse(localStorageId) : 0
+  }
+
 
   //no cambiar ordenes ya que con eso inicia
-  const [datos,setDatos] = useState(guardarOrdenes)
+  const [id,setId] = useState(guardarId)
   const [page,setPage] = useState(guardarPagina)
     
   useEffect(() => {      
-    localStorage.setItem('page', JSON.stringify(page))    
-    localStorage.setItem('datos', JSON.stringify(datos))   
-  },[page,datos])
+    localStorage.setItem('page', JSON.stringify(page)) 
+    localStorage.setItem('id', JSON.stringify(id)) 
+  },[page,id])
 
-    const value= useMemo(() => ({datos,setDatos,page,setPage}), [datos,setDatos,page,setPage])
+    const value= useMemo(() => ({id,setId,page,setPage}), [id,setId,page,setPage])
 
     
     return (

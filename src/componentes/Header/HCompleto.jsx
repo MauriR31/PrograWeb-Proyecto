@@ -1,7 +1,20 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate} from 'react-router-dom';
+import {useDatos} from "../../context/Datos.jsx";
 
 function ProductTable() {
+  const datosPagina = useDatos();
+  const navigate = useNavigate();
+  const handleIniciarSesion = () => {
+    console.log(datosPagina.id)
+    if(datosPagina.id >= 3)
+      navigate("/usuarios/main/"+datosPagina.id)
+    else if (datosPagina.id == 1 || datosPagina.id == 2)
+      navigate("/dashboard")      
+    else
+      navigate("/login")
+  }
+
   return (
     <header className="bg-gray-200 text-black shadow-md">
       <div className="container mx-auto flex items-center justify-between py-4 px-6">
@@ -27,7 +40,7 @@ function ProductTable() {
             <a href="#" className="text-gray-600 hover:text-gray-800">Ayuda</a>
           </div>
 
-          <Link to="/login" className="Cuenta bg-gray-700 text-white py-2 px-4 rounded-lg text-sm hover:bg-gray-800 mr-1">Mi Cuenta</Link>
+          <Link onClick={handleIniciarSesion} className="Cuenta bg-gray-700 text-white py-2 px-4 rounded-lg text-sm hover:bg-gray-800 mr-1">Mi Cuenta</Link>
         </nav>
       </div>
     </header>

@@ -1,6 +1,13 @@
 import React from "react";
-
+import { useDatos } from "../../context/Datos.jsx"
 const HCerrarSesion = () => {
+  const datosPagina = useDatos()  
+
+  const handleCerrarSesion = () => {
+    datosPagina.setId(0)
+    datosPagina.setPage(1)
+  }
+
   return (
     <>
       <header className="text-black shadow-md" style={{ backgroundColor: '#EEEEEE' }}>
@@ -12,7 +19,7 @@ const HCerrarSesion = () => {
           </nav>
           <nav className="ml-0 lg:ml-auto flex items-center">
             <div className="help hidden lg:block mr-8">
-              <a href="/" className="text-gray-600 hover:text-gray-800">
+              <a href="/" onClick={handleCerrarSesion} className="text-gray-600 hover:text-gray-800">
                 Cerrar Sersion
               </a>
             </div>
