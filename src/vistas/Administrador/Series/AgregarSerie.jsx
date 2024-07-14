@@ -1,24 +1,24 @@
+
 import React, { useState, useEffect } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useHistory } from 'react-router-dom';
 import ImageUploader from './ImageUploader';
-import BarraCuenta from '../../../componentes/BarraCuenta';
 import HVacio from '../../../componentes/Header/HVacio';
 import Footer from '../../../componentes/Footer';
+import BotonMenuPagina from "../../../componentes/ConvetirOAdaptar/BotonMenuPagina";
 
 function AgregarSerie() {
   const location = useLocation();
   const query = new URLSearchParams(location.search);
-  const nprod = parseInt(query.get('nprod'), 10) || 0; // Default to 0 if nprod is not provided
+  const nprodQuery = parseInt(query.get('nprod'), 10) || 0;
 
-  const [nombre, setNombre] = useState('');
-  const [descripcion, setDescripcion] = useState('');
+  const [nombre, setNombre] = useState(query.get('nombre') || '');
+  const [descripcion, setDescripcion] = useState(query.get('desc') || '');
   const [imagen, setImagen] = useState(null);
   const [productos, setProductos] = useState([]);
 
-  // Initialize products state based on nprod from URL
   useEffect(() => {
-    setProductos(Array.from({ length: nprod }, (_, i) => ({ id: i + 1, desc: `Producto ${i + 1}` })));
-  }, [nprod]);
+    setProductos(Array.from({ length: nprodQuery }, (_, i) => ({ id: i + 1, desc: `Producto ${i + 1}` })));
+  }, [nprodQuery]);
 
   const handleImageUpload = (file) => {
     setImagen(file);
@@ -35,7 +35,6 @@ function AgregarSerie() {
   };
 
   const guardarCambios = () => {
-    // Simulate saving changes
     console.log("Guardando cambios", { nombre, descripcion, productos });
     window.location.href = '/series';
   };
@@ -46,7 +45,7 @@ function AgregarSerie() {
       <div className="flex w-full">
         <main id="MainAgregarSerie" className="flex w-full">
           <section id="ASCabecera" className="flex w-full overflow-y-auto">
-            <BarraCuenta />
+            <BotonMenuPagina />
             <div className='w-full h-100'>
               <h2 className="text-xl font-bold pl-10 pt-5 w-full">Agregar Serie</h2>
               <section id="ASContenido" className="p-2 h-50 ">
@@ -75,7 +74,15 @@ function AgregarSerie() {
                         <button onClick={agregarProducto} className="bg-blue-500 text-white px-4 py-2 rounded-md mr-2">
                           +
                         </button>
-                        <Link to="/series/AgregarSeries/AgregarProducto" className="bg-blue-500 tex pt-2 rounded-md text-white">Agregar</Link>
+                        <Link
+                          to={{
+                            pathname: "/series/AgregarSeries/AgregarProducto",
+                            search: `?nombre=${nombre}&desc=${descripcion}&nprod=${productos.length}`
+                          }}
+                          className="bg-blue-500 text-white px-4 py-2 rounded-md"
+                        >
+                          Agregar
+                        </Link>
                       </div>
                       <table className="w-full mt-3 h-1/2 border-2">
                         <thead>
