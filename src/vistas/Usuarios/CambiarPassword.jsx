@@ -1,4 +1,7 @@
 import React, { useState } from 'react';
+import Menu from "../../componentes/Usuario/Menu.jsx"
+import Footer from "../../componentes/Footer.jsx"
+import HCerrarSesion from "../../componentes/Header/HCerrarSesion.jsx"
 
 function CambiarPassword() {
   const [passwords, setPasswords] = useState({
@@ -20,19 +23,21 @@ function CambiarPassword() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Aquí puedes agregar la lógica para guardar y actualizar las contraseñas
+    
     console.log("Contraseña actual:", passwords.actual);
     console.log("Nueva contraseña:", passwords.nueva);
     console.log("Repetir contraseña:", passwords.repetir);
-    // Lógica para enviar los datos y actualizar la contraseña
-    // Por ahora, simplemente mostraremos los datos en la consola
+ 
     alert('Contraseña actualizada exitosamente.');
   };
 
   return (
+    <div><HCerrarSesion/>
     <div className="flex justify-center py-4" style={{ backgroundColor:'#EEEEEE' }}>
-      <main id="MainCambiarPassword" className="flex flex-col max-w-6xl w-full">
-        <section id="CPCabecera" className="p-3 bg-white rounded-lg mx-3">
+      
+    <Menu/><main id="MainCambiarPassword" className="flex flex-col max-w-6xl w-full">
+      
+      <section id="CPCabecera" className="p-3 bg-white rounded-lg mx-3">
           <h2 className="text-xl font-bold">Cambiar Password</h2>
         </section>
         <div className="p-4 pl-80">
@@ -79,6 +84,8 @@ function CambiarPassword() {
           </form>
         </div>
       </main>
+      
+    </div><Footer/>
     </div>
   );
 }

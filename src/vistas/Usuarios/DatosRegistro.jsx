@@ -1,4 +1,7 @@
 import React, { useState } from 'react';
+import Menu from "../../componentes/Usuario/Menu.jsx"
+import Footer from "../../componentes/Footer.jsx"
+import HCerrarSesion from "../../componentes/Header/HCerrarSesion.jsx"
 
 function CambiarDatos() {
   const [datos, setdatos] = useState({
@@ -23,14 +26,15 @@ function CambiarDatos() {
     console.log("Nombre:", datos.Nombre);
     console.log("Apellido:", datos.Apellido);
     console.log("Correo:", datos.Correo);
-    // Lógica para enviar los datos y actualizar la contraseña
+   
    
     alert('Datos actualizados.');
   };
 
   return (
+    <div><HCerrarSesion/>
     <div className="flex justify-center py-4" style={{ backgroundColor:'#EEEEEE' }}>
-      <main id="MainCambiarPassword" className="flex flex-col max-w-6xl w-full">
+    <Menu/><main id="MainCambiarPassword" className="flex flex-col max-w-6xl w-full">
         <section id="CPCabecera" className="p-3 bg-white rounded-lg mx-3">
           <h2 className="text-xl font-bold">DATOS REGISTRO</h2>
         </section>
@@ -78,6 +82,8 @@ function CambiarDatos() {
           </form>
         </div>
       </main>
+    </div>
+    <Footer/>
     </div>
   );
 }
