@@ -1,10 +1,10 @@
 import { useState } from "react";
 import Encabezado from "../../componentes/Header/HCerrarSesion.jsx";
 import Footer from "../../componentes/Footer.jsx";
-import BotonMenuPagina from "../../componentes/ConvetirOAdaptar/BotonMenuPagina.jsx"
-import Barra from "../../componentes/Administrador/BarraDashboard.jsx";
-import SeleccionadorFecha from "../../componentes/Administrador/Minicalendario.jsx";
-import TablasResumen from "../../componentes/Administrador/SummaryCards.jsx";
+import BotonMenuPagina from "../../componentes/ConvetirOAdaptar/BotonMenuPagina.jsx";
+import BarraDashboard from "../../componentes/Administrador/BarraDashboard.jsx";
+import Minicalendario from "../../componentes/Administrador/Minicalendario.jsx";
+import TablaDashboard from "../../componentes/Administrador/SummaryCards.jsx";
 
 const Dashboard = () => {
   const [showCalendar, setShowCalendar] = useState(false);
@@ -17,7 +17,6 @@ const Dashboard = () => {
     } else {
       setEndDate(date);
     }
-    setShowCalendar(false);
   };
 
   return (
@@ -26,17 +25,20 @@ const Dashboard = () => {
       <main className="flex bg-gray-100">
         <BotonMenuPagina />
         <div className="flex-1 flex flex-col ml-4 my-11">
-          <Barra setShowCalendar={setShowCalendar} />
+          <BarraDashboard 
+            setShowCalendar={setShowCalendar} 
+            startDate={startDate} 
+            endDate={endDate} 
+          />
           {showCalendar && (
-            <SeleccionadorFecha
+            <Minicalendario
               startDate={startDate}
               endDate={endDate}
               handleDateChange={handleDateChange}
               closeCalendar={() => setShowCalendar(false)}
             />
           )}
-
-          <TablasResumen startDate={startDate} endDate={endDate} />
+          <TablaDashboard startDate={startDate} endDate={endDate} />
         </div>
       </main>
       <Footer />

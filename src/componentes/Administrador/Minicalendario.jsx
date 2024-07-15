@@ -12,16 +12,18 @@ const Minicalendario = ({
       <div className="bg-white p-4 rounded-lg shadow-lg">
         <div className="mb-4">
           <label className="block text-gray-700 font-extrabold">Fecha de Inicio</label>
-          <DatePicker className="cursor-pointer font-bold text-blue-500 underline"
+          <DatePicker
             selected={startDate}
             onChange={(date) => handleDateChange(date, "start")}
+            className="cursor-pointer font-bold text-blue-500 underline"
           />
         </div>
         <div className="mb-4">
-          <label className="block text-gray-700 font-extrabold">End Date</label>
-          <DatePicker className="cursor-pointer font-bold text-blue-500 underline"
+          <label className="block text-gray-700 font-extrabold">Fecha de Fin</label>
+          <DatePicker
             selected={endDate}
             onChange={(date) => handleDateChange(date, "end")}
+            className="cursor-pointer font-bold text-blue-500 underline"
           />
         </div>
         <button

@@ -24,19 +24,18 @@ const DetalleProductos = () => {
         <div className="flex flex-col gap-4 mt-4 md:grid md:grid-cols-2">
           <div className="bg-white col-span-2 px-2 py-1 rounded-md">
             <h2 className="text-xl font-bold">
-              {producto?.title || "Título de Producto"}
+              {producto?.nombre || "Título de Producto"}
             </h2>
             <p className="text-gray-500 mt-2">
-              Por: {producto?.marca || "Marca desconocida"} - Serie:{" "}
-              {producto?.serie || "Serie desconocida"}
+              Por: {producto?.marca || "Marca desconocida"} - Serie: {producto?.serie || "Serie desconocida"}
             </p>
           </div>
           <div className="bg-gray-200 h-64 rounded-md">
-            {producto?.imagen ? (
+            {producto?.url ? (
               <img
-                src={producto.imagen}
-                alt={producto.title}
-                className="h-full w-full object-cover"
+                src={producto.url}
+                alt={producto.nombre}
+                className="h-full w-full object-contain rounded-md"
               />
             ) : (
               <div className="flex items-center justify-center h-full">
@@ -59,7 +58,7 @@ const DetalleProductos = () => {
               <div className="flex my-2 mx-1 px-2 justify-between items-center mt-4">
                 <span className="text-lg font-bold">Cantidad:</span>
                 <span className="text-2xl font-bold">
-                  {producto?.cantidad || "Sin Stock"}
+                  {producto?.stock || "Sin Stock"}
                 </span>
               </div>
               <div className="my-4 px-2 flex justify-center">
@@ -81,15 +80,9 @@ const DetalleProductos = () => {
           </p>
         </div>
         <div className="bg-gray-300 my-4 rounded-md px-2 py-4">
-          <h3 className="text-xl font-bold ">Características del Producto:</h3>
+          <h3 className="text-xl font-bold">Características del Producto:</h3>
           <ul className="list-disc pl-10 mt-2 pr-4 text-gray-700">
-            {producto?.caracteristicas ? (
-              producto.caracteristicas.map((caracteristica, index) => (
-                <li key={index}>{caracteristica}</li>
-              ))
-            ) : (
-              <li>No hay características disponibles.</li>
-            )}
+            {producto?.caracteristicas || "No hay características disponibles."}
           </ul>
         </div>
       </main>

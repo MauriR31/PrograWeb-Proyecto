@@ -6,6 +6,7 @@ import Barra from "../../../componentes/Administrador/BarraProductos";
 import BusquedaProductos from "../../../componentes/Administrador/BusquedaProductos";
 import TablaProductos from "../../../componentes/Administrador/TablaProductos";
 import BarraPaginacion from "../../../componentes/Administrador/ProductosPaginacion";
+import ProductosAPI from "../../../api/Alumno05/ListProd";
 
 const Productos = () => {
   const productosPorPagina = 10;
@@ -14,14 +15,11 @@ const Productos = () => {
   const [buscarProducto, setBuscarProducto] = useState("");
 
   useEffect(() => {
-    const productosData = JSON.parse(localStorage.getItem("productos"));
-    if (productosData) {
-      const productosConEstado = productosData.map((producto) => ({
-        ...producto,
-        estado: "Activo",
-      }));
-      setProductos(productosConEstado);
-    }
+    const fetchProductos = async () => {
+      const productosData = await ProductosAPI.findAll();
+      setProductos(productosData);
+    };
+    fetchProductos();
   }, []);
 
   const handleSearchChange = (e) => {
@@ -40,24 +38,12 @@ const Productos = () => {
           : producto
       )
     );
-
-    const productosLocalStorage = JSON.parse(localStorage.getItem("productos"));
-    const productosActualizados = productosLocalStorage.map((producto) => {
-      if (producto.id === id) {
-        return {
-          ...producto,
-          estado: producto.estado === "Activo" ? "Inactivo" : "Activo",
-        };
-      }
-      return producto;
-    });
-    localStorage.setItem("productos", JSON.stringify(productosActualizados));
   };
 
   const filteredProducts = productos.filter(
     (producto) =>
-      producto.title &&
-      producto.title.toLowerCase().includes(buscarProducto.toLowerCase())
+      producto.nombre &&
+      producto.nombre.toLowerCase().includes(buscarProducto.toLowerCase())
   );
 
   const totalPaginas = Math.ceil(filteredProducts.length / productosPorPagina);
