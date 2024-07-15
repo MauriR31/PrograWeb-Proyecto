@@ -30,19 +30,29 @@ function ContenidoLogin() {
     console.log(buscarUsuario)   
     //Si el tamaño del arreglo es 1 es porque encontro a ese usuario en la base de datos
     if(buscarUsuario.length === 1 ){
-      
-      formulario.setMensajeError('')
-      formulario.setCorreo('')
-      formulario.setPassword('')      
-      navigate("/usuarios/main/"+buscarUsuario[0].id)
+      if(buscarUsuario[0].id_estado === 1)
+      {
+        formulario.setMensajeError('')
+        formulario.setCorreo('')
+        formulario.setPassword('')      
+        navigate("/usuarios/main/"+buscarUsuario[0].id)
+      }
+      else{
+        formulario.setMensajeError(<ErrorLogin />) 
+      }      
     }
     else if(buscarAdmin.length === 1 ) {
-
-      formulario.setMensajeError('')
-      formulario.setCorreo('')
-      formulario.setPassword('')      
-      //en la pagina de dashboard falta referenciarlo por id
-      navigate("/dashboard")
+      if(buscarAdmin[0].id_estado === 1)
+        {
+          formulario.setMensajeError('')
+          formulario.setCorreo('')
+          formulario.setPassword('')      
+          //en la pagina de dashboard falta referenciarlo por id
+          navigate("/dashboard")
+        }
+        else{
+          formulario.setMensajeError(<ErrorLogin />) 
+        }      
     }
     else{      
       formulario.setMensajeError(<ErrorLogin />)               
